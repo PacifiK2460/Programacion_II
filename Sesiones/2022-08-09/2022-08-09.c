@@ -14,11 +14,13 @@ void loadZonas(struct Zona destination[], int total) {
 int main() {
   // Cargamos las cantidad de zonas
   int NZonas = getZonas();
-  if(NZonas == -1) {
-    return -1;
-  } else if (NZonas == 0) {
-    printf("Sin zonas por motrar\n");
-    return 0;
+  { // Error checking
+    if(NZonas == -1) {
+      return -1;
+    } else if (NZonas == 0) {
+      printf("Sin zonas por motrar\n");
+      return 0;
+    }
   }
   
   // Creamos el listado de las zonas
