@@ -1,23 +1,9 @@
 #include <stdio.h>
 
-// Zona struct, name & price
-struct Zona {
-  char *nombre;
-  int costo;
-} Zona;
+#include "../libs/string/string.h"
+#include "../libs/Zona/zona.h"
 
-int zonas() {
-  FILE *archivo = fopen("zonas.cfg", 0);
-  char c = 0;
-  int contador = 0;
-  while ((c = fgetc(archivo++)) != EOF) {
-    if (c == '\n')
-      contador++;
-  }
-
-  return contador;
-}
-
+// TODO FIX W/ LIBS
 void loadZonas(struct Zona destination[], int total) {
   for (int actual = 0; actual < total; actual++) {
     destination[actual].nombre = ""; // TODO
@@ -27,7 +13,14 @@ void loadZonas(struct Zona destination[], int total) {
 
 int main() {
   // Cargamos las cantidad de zonas
-  int NZonas = zonas();
+  int NZonas = getZonas();
+  if(NZonas == -1) {
+    return -1;
+  } else if (NZonas == 0) {
+    printf("Sin zonas por motrar\n");
+    return 0;
+  }
+  
   // Creamos el listado de las zonas
   struct Zona Listado[NZonas];
   // Cargamos las zonas en memoria
