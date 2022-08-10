@@ -3,6 +3,7 @@
         "string.h": "c",
         "stdio.h": "c",
         "zona.h": "c",
-        "source_location": "cpp"
+        "source_location": "cpp",
+        "graph.h": "c"
     }
 }
