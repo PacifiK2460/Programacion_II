@@ -1,15 +1,18 @@
 #ifndef TRABAJADOR_H
-#define TRABAJADOR_H
+    #define TRABAJADOR_H
 
-typedef struct date{
-    int day;
-    int month;
-    int year;
-} date;
+    #include "../string/string.h"
 
-typedef struct Trabajador{
-    int id;
-    
-} Trabajador
+    typedef struct Date{
+        int day;
+        int month;
+        int year;
+    } Date;
+
+    typedef struct Trabajador{
+        int id;
+        String name;
+        Date birthDate;
+    } Trabajador;
 
 #endif
