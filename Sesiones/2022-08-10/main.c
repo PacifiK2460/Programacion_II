@@ -2,15 +2,15 @@
 #include "../libs/project/trabajador/trabajador.h"
 #include "../libs/graph/graph.h"
 
-#define input(str, condition, ...)    \
+#define input(str, condition)    \
     while (1)              \
     {                      \
         printf("%s", str); \
-        if (condition){__VA_ARGS__, break;}   \
+        if (condition) break;   \
     }
 
 int main(){
-    Graph trabajadores = new_graph();
+    Graph trabajadores;
 
     // Worker initialization
     {
@@ -18,9 +18,9 @@ int main(){
         Trabajador* worker = newTrabajador();
 
         // Get worker info
-        input("Enter worker born day: ", evaluarInt(worker->bnirday.day));
-        input("Enter worker born month: ", evaluarInt(worker->bnirday.month));s
-        input("Enter worker born year: ", evaluarInt(worker->bnirday.year));
+        input("Enter worker born day: ", evaluarInt(worker->birthDate.day));
+        input("Enter worker born month: ", evaluarInt(worker->birthDate.month));
+        input("Enter worker born year: ", evaluarInt(worker->birthDate.year));
         input("Enter worker ID: ", evaluarInt(worker->id));
         input("Enter worker name: ", evaluarString(worker->name.str));
 
