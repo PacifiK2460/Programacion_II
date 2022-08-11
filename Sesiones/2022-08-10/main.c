@@ -1,35 +1,30 @@
 #include <stdio.h>
-#include "libs/project/trabajador.h"
+#include "../libs/project/trabajador/trabajador.h"
+#include "../libs/graph/graph.h"
 
-#define input(str, ...)    \
+#define input(str, condition, ...)    \
     while (1)              \
     {                      \
         printf("%s", str); \
-        if (__VA_ARGS__)   \
-            break;         \
+        if (condition){__VA_ARGS__, break;}   \
     }
 
-int main()
-{
-    // define and get one worker info
-    Trabajador worker;
+int main(){
+    Graph trabajadores = new_graph();
 
     // Worker initialization
     {
-        int id;
-        String name;
-        Date birthDate;
+        // define and get one worker info
+        Trabajador* worker = newTrabajador();
 
         // Get worker info
-        input("Enter worker id: ", evaluarInt(&birthDate.day));
-        input("Enter worker born day: ", evaluarInt(&birthDate.day));
-        input("Enter worker born month: ", evaluarInt(&birthDate.month));
-        input("Enter worker born year: ", evaluarInt(&birthDate.year));
-        input("Enter worker ID: ", evaluarInt(&id));
-        input("Enter worker name: ", evaluarString(&name));
+        input("Enter worker born day: ", evaluarInt(worker->bnirday.day));
+        input("Enter worker born month: ", evaluarInt(worker->bnirday.month));s
+        input("Enter worker born year: ", evaluarInt(worker->bnirday.year));
+        input("Enter worker ID: ", evaluarInt(worker->id));
+        input("Enter worker name: ", evaluarString(worker->name.str));
 
-        worker.id = id;
-        worker.name = name;
-        worker.birthDate = birthDate;
+        // Add worker to graph
+        graph_add_leaf(&trabajadores, worker);
     }
 }

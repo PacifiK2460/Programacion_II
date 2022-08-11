@@ -36,9 +36,16 @@ int evaluarDouble(double* dest){
 }
 
 int evaluarString(String* dest){
+    if(dest->str != 0){
+        free(dest->str);
+    }
+
     if(!fgets(dest->str, 1024, stdin)){
         return -1;
     }
+
+    dest->str = malloc(1024 * sizeof(char));
+
     dest->str[1024] = '\0';
     dest->str[strcspn(dest->str, "\r\n")] = 0;
 

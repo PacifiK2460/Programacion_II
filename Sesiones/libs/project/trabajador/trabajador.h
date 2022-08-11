@@ -15,4 +15,7 @@
         Date birthDate;
     } Trabajador;
 
+
+    Trabajador* newTrabajador();
+    Date newDate();
 #endif
