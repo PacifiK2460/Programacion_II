@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include "libs/project/trabajador.h"
 
+#define input(str,...) while(1) \
+    { \
+        printf("%s", str); \
+        if(__VA_ARGS__) break; \
+    }
+
 int main(){
     //define and get one worker info
     Trabajador worker;
@@ -12,23 +18,13 @@ int main(){
         Date birthDate;
 
         // Get worker info
-        // TODO add info validation and error handling
-        printf("Enter worker born day: ");
-        evaluarInt(&birthDate.day);
+        input("Enter worker id: ", evaluarInt(&birthDate.day));
+        input("Enter worker born month: ", evaluarInt(&birthDate.month));
+        input("Enter worker born year: ",evaluarInt(&birthDate.year));
+        input("Enter worker ID: ",evaluarInt(&id));
+        input("Enter worker name: ",evaluarString(&name));
 
-        printf("Enter worker born month: ");
-        evaluarInt(&birthDate.month);
-
-        printf("Enter worker born year: ");
-        evaluarInt(&birthDate.year);
-
-        printf("Enter worker ID: ");
-        evaluarInt(&id);
-
-        printf("Enter worker name: ");
-        evaluarString(&name);
-
-        worker.id = id;|
+        worker.id = id;
         worker.name = name;
         worker.birthDate = birthDate;
     }
