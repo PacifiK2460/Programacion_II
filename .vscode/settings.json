@@ -4,6 +4,9 @@
         "stdio.h": "c",
         "zona.h": "c",
         "source_location": "cpp",
-        "graph.h": "c"
+        "graph.h": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c"
     }
 }
