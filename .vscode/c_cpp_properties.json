@@ -1,4 +1,7 @@
 {
+    "env": {
+        "MyCompilerPath": "E:/mingw64/bin/gcc.exe"
+    },
     "configurations": [
         {
             "name": "Win32",
@@ -12,7 +15,8 @@
             ],
             "cStandard": "c17",
             "cppStandard": "c++17",
-            "intelliSenseMode": "windows-msvc-x64"
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "E:/mingw64/bin/gcc.exe"
         }
     ],
     "version": 4

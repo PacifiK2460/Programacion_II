@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include "../libs/project/trabajador/trabajador.h"
+#include "../libs/IO/IO.h"
 #include "../libs/graph/graph.h"
+#include "../libs/project/trabajador/trabajador.h"
 
 #define input(str, condition)    \
     while (1)              \
@@ -27,4 +28,4 @@ int main(){
         // Add worker to graph
         graph_add_leaf(&trabajadores, worker);
     }
-}
+}}
