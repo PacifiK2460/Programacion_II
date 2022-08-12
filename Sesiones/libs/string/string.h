@@ -7,10 +7,10 @@ typedef struct String {
     int len;
 } String;
 
-String newString();
-String newFrom(char *str);
+String *newString();
+String *newFrom(char *str);
 int setStringFromChar(String* dest,char* src);
-int setStringFromString(String* Dest, String* Src)
+int setStringFromString(String* Dest, String* Src);
 void freeString(String* s);
 
 #endif // STRING_H

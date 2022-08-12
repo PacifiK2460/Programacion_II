@@ -15,27 +15,49 @@ int getZonas() {
   return lineas;
 }
 
-int loadZonas(Graph* Destination){
+int loadZonas(LList* Destination){
+  FILE *archivo = fopen("zonas.cfg", "r");
+  if(archivo == NULL) {
+    return -1;
+  }
+
   for(int i = 0, j = getZonas(); i < j; i++){
     // we go line by line, reading the name and the cost
-    // TODO fix this, add support for the string itself to read from file
-    char name[50];
-    int costo;
-    
-    FILE *archivo = fopen("zonas.cfg", "r");
-    if(archivo == NULL) {
+    String* nameBuffer = new_string();
+    if(nameBuffer == 0){
+      close(archivo);
+      return -1;
+    }
+    int costBuffer = 0;
+
+    if(evaluarString(nameBuffer, archivo) == -1){
+      fclose(archivo);
+      return -1;
+    }
+    if(evaluarInt(&costBuffer, archivo) == -1){
+      fclose(archivo);
       return -1;
     }
     
-    fscanf(archivo, "%s %i", name, &costo);
-    fclose(archivo);
-
-    String nombre = newFrom(name);
-
     // we create a new node with the name and the cost
-    Zona* new = 
+    Zona* new = malloc(sizeof(Zona));
+    if(new == 0){
+      fclose(archivo);
+      return -1;
+    }
+    setStringFromString(&new->nombre, nameBuffer);
+    new->costo = costBuffer;
 
     // we add the new leaf to the graph
-    graph_add_leaf(Destination, (void*)nombre);
+    graph_add_leaf(Destination, new);
+  }
+  
+  fclose(archivo);
+}
+
+void imprimirZonas(LList* zona){
+  for(int i = 0, j = llist_size(zona); i < j; i++){
+    Zona* z = llist_get(zona, i);
+    printf("[Zona]: %s, $%i\n", z->nombre, z->costo);
   }
 }

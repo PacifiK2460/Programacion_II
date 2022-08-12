@@ -1,40 +1,58 @@
 #include <stdio.h>
 
 #include "../libs/string/string.h"
-#include "../libs/Zona/zona.h"
-#include "../libs/graph/graph.h"
+#include "../libs/project/Zona/zona.h"
+#include "../libs/LList/Llist.h"
+#include "../libs/io/IO.h"
 
-
-// TODO FIX W/ LIBS
-// void loadZonas(struct Zona destination[], int total) {
-//   for (int actual = 0; actual < total; actual++) {
-//     destination[actual].nombre = ""; // TODO
-//     destination[actual].costo = 0;   // TODO
-//   }
-// }
-
-int main() {
+int main()
+{
   // Creamos el listado de las zonas
-  Graph Lista = new_graph();
+  LList *zonas = new_llist();
 
   // Cargamos las zonas en memoria
-  if ( loadZonas(&Lista) == -1 ) {
+  switch (loadZonas(zonas))
+  {
+  case -1:
     printf("Error al cargar las zonas\n");
     return -1;
+    break;
+  case 0:
+    printf("Sin zonas por cargar\n");
+    return 0;
+    break;
+  default:
+    printf("Se han cargado %i zonas\n", llist_size(zonas));
+    break;
   }
 
-  // UNEXPECTED INPUT CHEKING LEFT IN TODO
-  while (1) {
-    printf("Selecciona el ID de la zona a mostrar: \n$");
-    // int selected = 0;
-    // scanf("%i", &selected);
+  imprimirZonas(zonas);
+  int opcion = 0;
+  while (1)
+  {
+    printf("Selecciona el ID de la zona a mostrar, -1 para reimprimir las zonas: \n $> ");
+    if (evaluarInt(&opcion, stdin) == -1)
+    {
+      printf("Error al leer la opcion\n");
+      return -1;
+    }
 
-    // if (selected > NZonas || selected < 1) {
-    //   printf("Selecciona una zona registrada\n");
-    //   continue;
-    // }
-
-    // printf("ZONA SELECCIONADA: %s, $%i\n", Listado[selected].nombre,
-    //        Listado[selected].costo);
+    if (opcion == -1)
+    {
+      imprimirZonas(zonas);
+    }
+    else
+    {
+      if (opcion >= 0 && opcion < llist_size(zonas))
+      {
+        Zona *z = llist_get(zonas, opcion);
+        printf("\tNombre: %s\n", z->nombre.str);
+        printf("\tCosto: %i\n", z->costo);
+      }
+      else
+      {
+        printf("La opcion no es valida\n");
+      }
+    }
   }
 }

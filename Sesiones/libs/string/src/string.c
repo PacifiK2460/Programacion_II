@@ -1,15 +1,19 @@
 // Include header file
 #include "../string.h"
 
-String new(){
-    String s = {.str = 0, .len = 0};
+String *new(){
+    String* s = malloc(sizeof(String));
+    s->str = 0;
+    s->len = 0; 
     return s;
 }
 
-String newFrom(char *str){
-    String s = new();
-    s.str = str;
-    s.len = strlen(str);
+String *newFrom(char *str){
+    String* s = malloc(sizeof(String));
+    s->len = strlen(str);
+    s->str = malloc(s->len * sizeof(char));
+    strcpy(s->str, str);
+    s->[s->len] = '\0';
     return s;
 }
 
@@ -20,9 +24,6 @@ int setStringFromChar(String* dest,char* src){
 
     dest->len = strlen(src);
     dest->str = malloc(dest->len * sizeof(char));
-
-    if(dest->str == 0)
-        return -1;
 
     strcpy(dest->str, src);
     dest->str[dest->len] = '\0';

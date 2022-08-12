@@ -1,7 +1,4 @@
 {
-    "env": {
-        "MyCompilerPath": "E:/mingw64/bin/gcc.exe"
-    },
     "configurations": [
         {
             "name": "Win32",

@@ -1,9 +1,9 @@
 #include "../IO.h"
 
 //dummy funcs for testing
-int evaluarInt(int* dest){
+int evaluarInt(int* dest, FILE* stream) {
     char buff[1024];
-    if(!fgets(buff,1024,stdin)){
+    if(!fgets(buff,1024,stream)) {
         return -1;
     }
 
@@ -18,9 +18,9 @@ int evaluarInt(int* dest){
     return 1;
 }
 
-int evaluarDouble(double* dest){
+int evaluarDouble(double* dest, FILE* stream) {
     char buff[1024];
-    if(!fgets(buff,1024,stdin)){
+    if(!fgets(buff,1024,stream)){
         return -1;
     }
 
@@ -35,16 +35,17 @@ int evaluarDouble(double* dest){
     return 1;
 }
 
-int evaluarString(String* dest){
+int evaluarString(String* dest, FILE* stream) {
     if(dest->str != 0){
         free(dest->str);
     }
+    
+    dest->str = malloc(1024 * sizeof(char));
 
-    if(!fgets(dest->str, 1024, stdin)){
+    if(!fgets(dest->str, 1024, stream)){
         return -1;
     }
 
-    dest->str = malloc(1024 * sizeof(char));
 
     dest->str[1024] = '\0';
     dest->str[strcspn(dest->str, "\r\n")] = 0;
@@ -54,14 +55,9 @@ int evaluarString(String* dest){
     return 1;
 }
 
-int evaluarChar(char* Dest){
-    if(!fgets(dest->str, 1, stdin)){
+int evaluarChar(char* Dest, FILE* stream) {
+    if(!fgets(Dest, 1, stream)){
         return -1;
     }
-    dest->str[1] = '\0';
-    dest->str[strcspn(dest->str, "\r\n")] = 0;
-
-    dest->len = strlen(dest->str);
-
     return 1;
 }
