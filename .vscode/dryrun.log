@@ -1,9 +1,9 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/pk/Documents/UPSLP/PROGRAMACION/Programacion_II'
 echo -e "\033[0;33m" "Compilando: " "\033[0m" "Lugares.c"
-gcc -Wall -Ilibs/ libs/*/src/*.c "Sesiones/Lugares Turisticos/LugaresTuristicos.c" -o bin/LugaresTuristicos.o
+gcc -Wall -c -Ilibs/ libs/*/src/*.c "Sesiones/Lugares Turisticos/LugaresTuristicos.c"
 echo -e "\033[0;33m" "Terminando... " "\033[0m"
-gcc bin/LugaresTuristicos.o -o bin/LugaresTuristicos
+gcc *.o -o bin/LugaresTuristicos
 echo -e "\033[0;32m" "Listo" "\033[0m"
 make: Leaving directory '/home/pk/Documents/UPSLP/PROGRAMACION/Programacion_II'
  

@@ -7,7 +7,7 @@
 int main()
 {
   // Creamos el listado de las zonas
-  Zonas zonas = malloc(sizeof(Zonas));
+  LList *zonas = LList_new();
   if(zonas == 0){
     printf("Error al crear el listado de zonas\n");
     return -1;

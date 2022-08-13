@@ -15,20 +15,19 @@ LIB = libs/*/src/*.c
 
 BASE_PATH = Sesiones
 
+all: Lugares
+
 Lugares: Lugares.o
 	@echo -e $(yellow) "Terminando... " $(reset)
-	gcc bin/LugaresTuristicos.o -o bin/LugaresTuristicos
+	gcc *.o -o bin/LugaresTuristicos
 	@echo -e $(green) "Listo" $(reset)
 
 Lugares.o:
 	@echo -e $(yellow) "Compilando: " $(reset) "Lugares.c"
-	gcc -Wall $(INC) $(LIB) "$(BASE_PATH)/Lugares Turisticos/LugaresTuristicos.c" -o bin/LugaresTuristicos.o
-
-hello:
-	gcc libs/project/src/*.c -o bin/headers.o
+	gcc -Wall -c $(INC) $(LIB) "$(BASE_PATH)/Lugares Turisticos/LugaresTuristicos.c"
 
 #Clean up
-.PHONY: clean
+.PHONY: all 
 clean:
 	@echo -e $(green) "Limpiando..." $(reset)
-	rm -rf bin/*.o
+	rm -rf *.o

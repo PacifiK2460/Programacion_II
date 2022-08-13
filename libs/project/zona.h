@@ -13,14 +13,10 @@ typedef struct Zona{
   int costo;
 } Zona;
 
-typedef struct Zonas {
-  LList *root;
-} *Zonas;
+int cantidadZonas(LList* zonas);
+int loadZonas(LList* Destination);
+void imprimirZonas(LList* zona);
 
-int cantidadZonas(Zonas zonas);
-int loadZonas(Zonas Destination);
-void imprimirZonas(Zonas zona);
-
-Zona* getZona(Zonas zonas, int id);
+Zona* getZona(LList* zonas, int id);
 
 #endif // ZONA_H

@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Aug 12 20:52:02 2022
+# Make data base, printed on Fri Aug 12 22:02:49 2022
 
 # Variables
 
@@ -171,7 +169,7 @@ LOGNAME = pk
 # environment
 XDG_VTNR = 7
 # makefile
-.DEFAULT_GOAL := Lugares
+.DEFAULT_GOAL := all
 # makefile (from 'Makefile', line 16)
 BASE_PATH = Sesiones
 # environment
@@ -239,7 +237,7 @@ GDMSESSION = xfce
 # environment
 LC_IDENTIFICATION = en_US.UTF-8
 # variable set hash-table stats:
-# Load=113/1024=11%, Rehash=0, Collisions=7/143=5%
+# Load=113/1024=11%, Rehash=0, Collisions=7/151=5%
 
 # Pattern-specific Variable Values
 
@@ -260,18 +258,16 @@ LC_IDENTIFICATION = en_US.UTF-8
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 20:51:35.711368128
+#  Last modified 2022-08-12 22:01:28.400686008
 #  File has been updated.
 #  Successfully updated.
 
 clean:
-#  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 33):
+#  recipe to execute (from 'Makefile', line 32):
 	@echo -e $(green) "Limpiando..." $(reset)
-	cd bin
 	rm -rf *.o
 
 # Not a target:
@@ -280,57 +276,82 @@ clean:
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-all:
-#  Command line target.
-#  Implicit rule search has been done.
-#  File does not exist.
-#  File has not been updated.
-
  
+all: Lugares
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/8=0%
+
 Lugares: Lugares.o
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 19):
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/8=0%
+#  recipe to execute (from 'Makefile', line 21):
 	@echo -e $(yellow) "Terminando... " $(reset)
-	gcc bin/LugaresTuristicos.o -o bin/LugaresTuristicos
+	gcc *.o -o bin/LugaresTuristicos
 	@echo -e $(green) "Listo" $(reset)
 
 Lugares.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 24):
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := Lugares.o
+# automatic
+# * := 
+# automatic
+# < := 
+# automatic
+# + := 
+# automatic
+# % := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/16=12%
+#  recipe to execute (from 'Makefile', line 26):
 	@echo -e $(yellow) "Compilando: " $(reset) "Lugares.c"
-	gcc -Wall $(INC) $(LIB) "$(BASE_PATH)/Lugares Turisticos/LugaresTuristicos.c" -o bin/LugaresTuristicos.o
+	gcc -Wall -c $(INC) $(LIB) "$(BASE_PATH)/Lugares Turisticos/LugaresTuristicos.c"
 
-hello:
+# Not a target:
+.SUFFIXES:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 28):
-	gcc libs/project/src/*.c -o bin/headers.o
 
-.PHONY: clean
+.PHONY: all
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=9/1024=1%, Rehash=0, Collisions=0/23=0%
+# Load=8/1024=1%, Rehash=0, Collisions=0/25=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 21 / storage = 166 B / avg = 7 B
-# current buf: size = 8162 B / used = 166 B / count = 21 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 20 / storage = 160 B / avg = 8 B
+# current buf: size = 8162 B / used = 160 B / count = 20 / avg = 8 B
 
-# strcache performance: lookups = 32 / hit rate = 34%
+# strcache performance: lookups = 34 / hit rate = 41%
 # hash-table stats:
-# Load=21/8192=0%, Rehash=0, Collisions=0/32=0%
-# Finished Make data base on Fri Aug 12 20:52:02 2022
+# Load=20/8192=0%, Rehash=0, Collisions=0/34=0%
+# Finished Make data base on Fri Aug 12 22:02:49 2022
 
  

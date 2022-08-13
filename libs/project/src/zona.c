@@ -1,13 +1,14 @@
 #include "../zona.h"
 
 int cantidadDeZonas() {
-  FILE *archivo = fopen("zonas.cfg", "r");
+  FILE *archivo = fopen("zonas.cfg", "r+");
   if(archivo == NULL) {
     return -1;
   }
+
   char c = 0;
   int lineas = 0;
-  while ((c = fgetc(archivo++)) != EOF) {
+  while ((c = fgetc(archivo)) != EOF) {
     if (c == '\n')
       lineas++;
   }
@@ -15,15 +16,15 @@ int cantidadDeZonas() {
   return lineas;
 }
 
-int loadZonas(Zonas Destination){
-  FILE *archivo = fopen("zonas.cfg", "r");
-  if(archivo == NULL) {
-    return -1;
-  }
-
-  int j = cantidadDeZonas();
+int loadZonas(LList* Destination){
+  int j = (cantidadDeZonas()+1)/2;
   if(j <= 0) {
     return j;
+  }
+
+  FILE *archivo = fopen("zonas.cfg", "r+");
+  if(archivo == NULL) {
+    return -1;
   }
 
 
@@ -46,7 +47,7 @@ int loadZonas(Zonas Destination){
     }
     
     // we create a new node with the name and the cost
-    Zona* new = malloc(sizeof(Zona));
+    Zona* new = (Zona*)malloc(sizeof(Zona));
     if(new == 0){
       fclose(archivo);
       return -1;
@@ -55,28 +56,29 @@ int loadZonas(Zonas Destination){
     new->costo = costBuffer;
 
     // we add the new leaf to the graph
-    if(LList_add(Destination->root, new) == -1){
+    if(LList_add(Destination, new) == -1){
       fclose(archivo);
       return -1;
     }
+
   }
   
   fclose(archivo);
   return 1;
 }
 
-int cantidadZonas(Zonas zonas){
-  return LList_size(zonas->root);
+int cantidadZonas(LList* zonas){
+  return LList_size(zonas);
 }
 
-void imprimirZonas(Zonas zona){
-  int j = LList_size(zona->root);
+void imprimirZonas(LList* zona){
+  int j = LList_size(zona);
   for(int i = 0; i < j; i++){
-    Zona* z = LList_get(zona->root, i);
-    printf("[Zona]: %s, $%i\n", z->nombre.str, z->costo);
+    Zona* z = LList_get(zona, i);
+    printf("[Zona %i]: %s, $%i\n",i, z->nombre.str, z->costo);
   }
 }
 
-Zona* getZona(Zonas zonas, int id){
-  return LList_get(zonas->root, id);
+Zona* getZona(LList* zonas, int id){
+  return LList_get(zonas, id);
 }
