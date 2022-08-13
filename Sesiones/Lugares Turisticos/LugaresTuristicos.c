@@ -1,14 +1,17 @@
 #include <stdio.h>
 
-#include "../libs/string/string.h"
-#include "../libs/project/Zona/zona.h"
-#include "../libs/LList/Llist.h"
-#include "../libs/io/IO.h"
+#include "string/string.h"
+#include "io/io.h"
+#include "project/zona.h"
 
 int main()
 {
   // Creamos el listado de las zonas
-  LList *zonas = new_llist();
+  Zonas zonas = malloc(sizeof(Zonas));
+  if(zonas == 0){
+    printf("Error al crear el listado de zonas\n");
+    return -1;
+  }
 
   // Cargamos las zonas en memoria
   switch (loadZonas(zonas))
@@ -22,7 +25,7 @@ int main()
     return 0;
     break;
   default:
-    printf("Se han cargado %i zonas\n", llist_size(zonas));
+    printf("Se han cargado %i zonas\n", cantidadZonas(zonas));
     break;
   }
 
@@ -30,22 +33,16 @@ int main()
   int opcion = 0;
   while (1)
   {
-    printf("Selecciona el ID de la zona a mostrar, -1 para reimprimir las zonas: \n $> ");
-    if (evaluarInt(&opcion, stdin) == -1)
-    {
-      printf("Error al leer la opcion\n");
-      return -1;
-    }
-
+    input("Selecciona el ID de la zona a mostrar, -1 para reimprimir las zonas: \n $> ",evaluarInt(&opcion, stdin));
     if (opcion == -1)
     {
       imprimirZonas(zonas);
     }
     else
     {
-      if (opcion >= 0 && opcion < llist_size(zonas))
+      if (opcion >= 0 && opcion < cantidadZonas(zonas))
       {
-        Zona *z = llist_get(zonas, opcion);
+        Zona *z = getZona(zonas, opcion);
         printf("\tNombre: %s\n", z->nombre.str);
         printf("\tCosto: %i\n", z->costo);
       }

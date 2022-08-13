@@ -1,6 +1,6 @@
 #include "../zona.h"
 
-int getZonas() {
+int cantidadDeZonas() {
   FILE *archivo = fopen("zonas.cfg", "r");
   if(archivo == NULL) {
     return -1;
@@ -15,13 +15,19 @@ int getZonas() {
   return lineas;
 }
 
-int loadZonas(LList* Destination){
+int loadZonas(Zonas Destination){
   FILE *archivo = fopen("zonas.cfg", "r");
   if(archivo == NULL) {
     return -1;
   }
 
-  for(int i = 0, j = getZonas(); i < j; i++){
+  int j = cantidadDeZonas();
+  if(j <= 0) {
+    return j;
+  }
+
+
+  for(int i = 0;i < j; i++){
     // we go line by line, reading the name and the cost
     String* nameBuffer = new_string();
     if(nameBuffer == 0){
@@ -49,15 +55,27 @@ int loadZonas(LList* Destination){
     new->costo = costBuffer;
 
     // we add the new leaf to the graph
-    graph_add_leaf(Destination, new);
+    if(llist_add(Destination->root, new) == -1){
+      fclose(archivo);
+      return -1;
+    }
   }
   
   fclose(archivo);
+  return 1;
 }
 
-void imprimirZonas(LList* zona){
+int cantidadZonas(Zonas zonas){
+  return llist_size(zonas->root);
+}
+
+void imprimirZonas(Zonas zona){
   for(int i = 0, j = llist_size(zona); i < j; i++){
     Zona* z = llist_get(zona, i);
     printf("[Zona]: %s, $%i\n", z->nombre, z->costo);
   }
+}
+
+Zona* getZona(Zonas zonas, int id){
+  return llist_get(zonas->root, id);
 }

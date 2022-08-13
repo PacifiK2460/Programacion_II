@@ -1,6 +1,6 @@
-#include "../Llist.h"
+#include "llist.h"
 
-LList* new_llist() {
+LList* LList_new() {
   LList* list = malloc(sizeof(LList));
   list->head = 0;
   list->tail = 0;
@@ -8,7 +8,7 @@ LList* new_llist() {
   return list;
 }
 
-int llist_add(LList* list, void* data) {
+int LList_add(LList* list, void* data) {
   if (list->size == 0) {
     list->head = malloc(sizeof(LListNode));
     if(list->head == 0) {
@@ -26,8 +26,7 @@ int llist_add(LList* list, void* data) {
   list->size++;
 }
 
-
-int Llist_remove_at(LList* list, int index) {
+int LList_remove_at(LList* list, int index) {
   if (index < 0 || index >= list->size) {
     return -2;
   }
@@ -46,7 +45,7 @@ int Llist_remove_at(LList* list, int index) {
   list->size--;
 }
 
-void Llist_free(LList* list) {
+void LList_free(LList* list) {
   LListNode* current = list->head;
   while (current != 0) {
     LListNode* next = current->next;
@@ -56,11 +55,11 @@ void Llist_free(LList* list) {
   free(list);
 }
 
-int llist_size(LList* list) {
+int LList_size(LList* list) {
   return list->size;
 }
 
-void* llist_get(LList* list, int index) {
+void* LList_get(LList* list, int index) {
   if (index < 0 || index >= list->size) {
     return 0;
   }

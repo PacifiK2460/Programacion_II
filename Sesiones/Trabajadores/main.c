@@ -1,14 +1,7 @@
 #include <stdio.h>
-#include "../libs/IO/IO.h"
+#include "../libs/io/IO.h"
 #include "../libs/graph/graph.h"
 #include "../libs/project/trabajador/trabajador.h"
-
-#define input(str, condition)    \
-    while (1)              \
-    {                      \
-        printf("%s", str); \
-        if (condition) break;   \
-    }
 
 int main(){
     Graph trabajadores;

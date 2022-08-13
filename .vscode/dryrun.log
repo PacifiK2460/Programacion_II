@@ -1,0 +1,7 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/pk/Documents/UPSLP/PROGRAMACION/Programacion_II'
+echo -e "\033[0;33m" "Compilando: " "\033[0m" "Lugares.c"
+gcc -Wall -Ilibs/ -c "Sesiones/Lugares Turisticos/LugaresTuristicos.c" -o bin/LugaresTuristicos.o
+gcc bin/LugaresTuristicos.o -o bin/LugaresTuristicos
+make: Leaving directory '/home/pk/Documents/UPSLP/PROGRAMACION/Programacion_II'
+ 
