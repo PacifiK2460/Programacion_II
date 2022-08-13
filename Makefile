@@ -10,6 +10,7 @@ reset=		"\033[0m"
 
 
 #include the local libs folder
+CC = gcc
 INC = -Ilibs/
 LIB = libs/*/src/*.c
 
@@ -19,12 +20,13 @@ all: Lugares
 
 Lugares: Lugares.o
 	@echo -e $(yellow) "Terminando... " $(reset)
-	gcc *.o -o bin/LugaresTuristicos
+	mv *.cfg /bin
+	$(CC) *.o -o bin/LugaresTuristicos
 	@echo -e $(green) "Listo" $(reset)
 
 Lugares.o:
 	@echo -e $(yellow) "Compilando: " $(reset) "Lugares.c"
-	gcc -Wall -c $(INC) $(LIB) "$(BASE_PATH)/Lugares Turisticos/LugaresTuristicos.c"
+	$(CC) -Wall -c $(INC) $(LIB) "$(BASE_PATH)/Lugares Turisticos/LugaresTuristicos.c"
 
 #Clean up
 .PHONY: all 
