@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-#include "string/string.h"
 #include "io/io.h"
 #include "project/zona.h"
 
