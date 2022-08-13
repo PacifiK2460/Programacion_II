@@ -7,9 +7,8 @@ make: *** No rule to make target 'all'.  Stop.
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
- 
 
-# Make data base, printed on Fri Aug 12 19:39:54 2022
+# Make data base, printed on Fri Aug 12 20:52:02 2022
 
 # Variables
 
@@ -21,8 +20,6 @@ LC_ALL = C
 NO_AT_BRIDGE = 1
 # makefile (from 'Makefile', line 4)
 yellow = "\033[0;33m"
-# makefile (from 'Makefile', line 13)
-LOCAL_LIBS = -Ilibs/
 # environment
 LC_NAME = en_US.UTF-8
 # environment
@@ -109,6 +106,8 @@ QT_QPA_PLATFORMTHEME = gnome
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# makefile (from 'Makefile', line 14)
+LIB = libs/*/src/*.c
 # environment
 AMD_VULKAN_ICD = RADV
 # automatic
@@ -117,7 +116,6 @@ AMD_VULKAN_ICD = RADV
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
- 
 # makefile
 SHELL = /bin/sh
 # default
@@ -148,6 +146,8 @@ magenta = "\033[0;35m"
 LC_TELEPHONE = en_US.UTF-8
 # automatic
 ?F = $(notdir $?)
+# makefile (from 'Makefile', line 13)
+INC = -Ilibs/
 # environment
 XDG_SEAT = seat0
 # environment
@@ -162,7 +162,6 @@ DESKTOP_SESSION = xfce
 ORIGINAL_XDG_CURRENT_DESKTOP = XFCE
 # 'override' directive
 GNUMAKEFLAGS := 
- 
 # environment
 BROWSER = firefox
 # makefile (from 'Makefile', line 2)
@@ -173,13 +172,12 @@ LOGNAME = pk
 XDG_VTNR = 7
 # makefile
 .DEFAULT_GOAL := Lugares
-# makefile (from 'Makefile', line 14)
+# makefile (from 'Makefile', line 16)
 BASE_PATH = Sesiones
 # environment
 DISPLAY = :0.0
 # environment
 GTK_MODULES = canberra-gtk-module:canberra-gtk-module
- 
 # environment
 USER = pk
 # default
@@ -201,7 +199,6 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 GTK2_RC_FILES = $HOME/.gtkrc-2.0
 # environment
- 
 HOME = /home/pk
 # environment
 DIFFPROG = /usr/bin/meld
@@ -242,7 +239,7 @@ GDMSESSION = xfce
 # environment
 LC_IDENTIFICATION = en_US.UTF-8
 # variable set hash-table stats:
-# Load=112/1024=11%, Rehash=0, Collisions=8/142=6%
+# Load=113/1024=11%, Rehash=0, Collisions=7/143=5%
 
 # Pattern-specific Variable Values
 
@@ -250,9 +247,9 @@ LC_IDENTIFICATION = en_US.UTF-8
 
 # Directories
 
-# . (device 39, inode 1064628): 10 files, no impossibilities.
+# . (device 39, inode 1064628): 11 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -263,7 +260,7 @@ LC_IDENTIFICATION = en_US.UTF-8
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 19:37:40.488915096
+#  Last modified 2022-08-12 20:51:35.711368128
 #  File has been updated.
 #  Successfully updated.
 
@@ -272,7 +269,8 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 29):
+#  recipe to execute (from 'Makefile', line 33):
+	@echo -e $(green) "Limpiando..." $(reset)
 	cd bin
 	rm -rf *.o
 
@@ -289,27 +287,30 @@ all:
 #  File does not exist.
 #  File has not been updated.
 
+ 
 Lugares: Lugares.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 17):
+#  recipe to execute (from 'Makefile', line 19):
+	@echo -e $(yellow) "Terminando... " $(reset)
 	gcc bin/LugaresTuristicos.o -o bin/LugaresTuristicos
+	@echo -e $(green) "Listo" $(reset)
 
 Lugares.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 20):
+#  recipe to execute (from 'Makefile', line 24):
 	@echo -e $(yellow) "Compilando: " $(reset) "Lugares.c"
-	gcc -Wall $(LOCAL_LIBS) -c "$(BASE_PATH)/Lugares Turisticos/LugaresTuristicos.c" -o bin/LugaresTuristicos.o
+	gcc -Wall $(INC) $(LIB) "$(BASE_PATH)/Lugares Turisticos/LugaresTuristicos.c" -o bin/LugaresTuristicos.o
 
 hello:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 24):
-	@echo -e $(yellow) "hello world" $(reset)
+#  recipe to execute (from 'Makefile', line 28):
+	gcc libs/project/src/*.c -o bin/headers.o
 
 .PHONY: clean
 #  Implicit rule search has not been done.
@@ -324,12 +325,12 @@ hello:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 20 / storage = 158 B / avg = 7 B
-# current buf: size = 8162 B / used = 158 B / count = 20 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 21 / storage = 166 B / avg = 7 B
+# current buf: size = 8162 B / used = 166 B / count = 21 / avg = 7 B
 
-# strcache performance: lookups = 31 / hit rate = 35%
+# strcache performance: lookups = 32 / hit rate = 34%
 # hash-table stats:
-# Load=20/8192=0%, Rehash=0, Collisions=0/31=0%
-# Finished Make data base on Fri Aug 12 19:39:54 2022
+# Load=21/8192=0%, Rehash=0, Collisions=0/32=0%
+# Finished Make data base on Fri Aug 12 20:52:02 2022
 
  

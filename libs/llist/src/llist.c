@@ -1,4 +1,4 @@
-#include "llist.h"
+#include "../llist.h"
 
 LList* LList_new() {
   LList* list = malloc(sizeof(LList));
@@ -19,11 +19,15 @@ int LList_add(LList* list, void* data) {
     list->tail = list->head;
   } else {
     list->tail->next = malloc(sizeof(LListNode));
+    if(list->tail->next == 0) {
+      return -1;
+    }
     list->tail->next->data = data;
     list->tail->next->next = 0;
     list->tail = list->tail->next;
   }
   list->size++;
+  return 1;
 }
 
 int LList_remove_at(LList* list, int index) {
@@ -43,6 +47,7 @@ int LList_remove_at(LList* list, int index) {
   }
   free(current);
   list->size--;
+  return 1;
 }
 
 void LList_free(LList* list) {

@@ -11,7 +11,7 @@ reset=		"\033[0m"
 
 #include the local libs folder
 INC = -Ilibs/
-LIB = -Llibs/project/*.c
+LIB = libs/*/src/*.c
 
 BASE_PATH = Sesiones
 
@@ -25,11 +25,10 @@ Lugares.o:
 	gcc -Wall $(INC) $(LIB) "$(BASE_PATH)/Lugares Turisticos/LugaresTuristicos.c" -o bin/LugaresTuristicos.o
 
 hello:
-	@echo -e $(yellow) "hello world" $(reset)
+	gcc libs/project/src/*.c -o bin/headers.o
 
 #Clean up
 .PHONY: clean
 clean:
 	@echo -e $(green) "Limpiando..." $(reset)
-	cd bin
-	rm -rf *.o
+	rm -rf bin/*.o

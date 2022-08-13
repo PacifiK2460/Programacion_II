@@ -1,4 +1,4 @@
-#include "../IO.h"
+#include "../io.h"
 
 //dummy funcs for testing
 int evaluarInt(int* dest, FILE* stream) {

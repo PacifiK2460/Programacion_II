@@ -5,6 +5,7 @@
 #include <math.h>
 #include <errno.h>
 #include <stdio.h>
+#include <string.h>
 #include "../string/string.h"
 
 // We evaluar an input from the desired stream

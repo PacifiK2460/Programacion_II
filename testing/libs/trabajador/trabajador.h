@@ -1,6 +1,7 @@
 #ifndef TRABAJADOR_H
     #define TRABAJADOR_H
 
+    #include <stdlib.h>
     #include "../string/string.h"
 
     typedef struct Date{
@@ -11,7 +12,7 @@
 
     typedef struct Trabajador{
         int id;
-        String name;
+        String* name;
         Date birthDate;
     } Trabajador;
 

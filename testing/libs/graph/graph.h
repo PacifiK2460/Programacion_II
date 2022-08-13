@@ -2,6 +2,7 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
+#include <stdlib.h>
 #include <stdint.h>
 
 typedef struct Leaf{

@@ -29,9 +29,9 @@ int loadZonas(Zonas Destination){
 
   for(int i = 0;i < j; i++){
     // we go line by line, reading the name and the cost
-    String* nameBuffer = new_string();
+    String* nameBuffer = newString();
     if(nameBuffer == 0){
-      close(archivo);
+      fclose(archivo);
       return -1;
     }
     int costBuffer = 0;
@@ -55,7 +55,7 @@ int loadZonas(Zonas Destination){
     new->costo = costBuffer;
 
     // we add the new leaf to the graph
-    if(llist_add(Destination->root, new) == -1){
+    if(LList_add(Destination->root, new) == -1){
       fclose(archivo);
       return -1;
     }
@@ -66,16 +66,17 @@ int loadZonas(Zonas Destination){
 }
 
 int cantidadZonas(Zonas zonas){
-  return llist_size(zonas->root);
+  return LList_size(zonas->root);
 }
 
 void imprimirZonas(Zonas zona){
-  for(int i = 0, j = llist_size(zona); i < j; i++){
-    Zona* z = llist_get(zona, i);
-    printf("[Zona]: %s, $%i\n", z->nombre, z->costo);
+  int j = LList_size(zona->root);
+  for(int i = 0; i < j; i++){
+    Zona* z = LList_get(zona->root, i);
+    printf("[Zona]: %s, $%i\n", z->nombre.str, z->costo);
   }
 }
 
 Zona* getZona(Zonas zonas, int id){
-  return llist_get(zonas->root, id);
+  return LList_get(zonas->root, id);
 }

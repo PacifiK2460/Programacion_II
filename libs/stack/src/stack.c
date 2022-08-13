@@ -1,16 +1,12 @@
 #include "../stack.h"
 
-Stack stack_create(int capacity)
-{
-    Stack stack;
-    stack.size = 0;
-    stack.top = 0;
-    return stack;
-}
 
 void stack_push(Stack *stack, void *data)
 {
     Stack_node *node = (Stack_node*)malloc(sizeof(Stack_node));
+    if(node == 0) {
+        return;
+    }
     node->data = data;
     node->next = stack->top;
     stack->top = node;

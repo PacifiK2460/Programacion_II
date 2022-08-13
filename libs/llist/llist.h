@@ -1,6 +1,8 @@
 #ifndef LLIST_H
 #define LLIST_H
 
+#include <stdlib.h>
+
 // Linked List
 typedef struct LListNode {
     void *data;

@@ -1,6 +1,8 @@
 #ifndef STACK_H
 #define STACK_H
 
+#include <stdlib.h>
+
 typedef struct Stack_node{
     void *data;
     struct stack_node *next;
@@ -11,7 +13,6 @@ typedef struct Stack{
     Stack_node* top;
 } Stack;
 
-Stack stack_create(int capacity);
 void stack_push(Stack *stack, void *data);
 void stack_pop(Stack *stack);
 void* stack_top(Stack *stack);
