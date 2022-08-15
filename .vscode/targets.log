@@ -6,7 +6,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Aug 15 10:39:21 2022
+# Make data base, printed on Mon Aug 15 10:59:49 2022
 
 # Variables
 
@@ -91,7 +91,7 @@ LIB = libs/*/src/*.c
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_13184_YPGIENFCNTCBFIIF
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_6820_VSBESSVLNFYRQFLX
 # environment
 COMPUTERNAME = CC4-10
 # environment
@@ -215,9 +215,10 @@ SW_SIM_MPIT = INTELMPI
 # environment
 LANG = C
 # environment
-PROCESSOR_LEVEL = 6
+PROCESSOR_LE 
+VEL = 6
 # environment
-VSCODE_PID = 13184
+VSCODE_PID = 6820
 # environment
 USERDOMAIN_ROAMINGPROFILE = UPSLP
 # variable set hash-table stats:
@@ -240,8 +241,7 @@ USERDOMAIN_ROAMINGPROFILE = UPSLP
 # Files
 
 Lugares.o:
-#  Implicit rule search h 
-as not been done.
+#  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
 #  File does not exist.
 #  File has been updated.
@@ -337,6 +337,6 @@ clean:
 # strcache performance: lookups = 31 / hit rate = 41%
 # hash-table stats:
 # Load=18/8192=0%, Rehash=0, Collisions=1/31=3%
-# Finished Make data base on Mon Aug 15 10:39:21 2022
+# Finished Make data base on Mon Aug 15 10:59:49 2022
 
  

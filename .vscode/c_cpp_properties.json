@@ -3,7 +3,11 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "E:/w64devkit/bin/",
+                "E:/w64devkit/lib/gcc/x86_64-w64-mingw32/12.1.0/include/c++/",
+                "E:/w64devkit/lib/gcc/x86_64-w64-mingw32/12.1.0/include/*/",
+                "E:/w64devkit/lib/gcc/x86_64-w64-mingw32/12.1.0/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -13,7 +17,7 @@
             "compilerPath": "E:\\w64devkit\\bin\\gcc.exe",
             "cStandard": "c17",
             "cppStandard": "c++17",
-            "intelliSenseMode": "windows-gcc-x64",
+            "intelliSenseMode": "linux-gcc-x86",
             "mergeConfigurations": false,
             "configurationProvider": "ms-vscode.makefile-tools",
             "browse": {

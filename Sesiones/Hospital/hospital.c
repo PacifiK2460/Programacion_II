@@ -1,16 +1,19 @@
+#include <stdlib.h>
 #include <stdio.h>
 
-typedef struct Medico{
-    Paciente* Pacientes[10];
-    char* Nombre;
-    // ...
-} Medico;
+typedef struct Medico Medico;
 
 typedef struct Paciente{
     Medico* Medico;
     char* Nombre;
     // ...
 } Paciente;
+
+typedef struct Medico{
+    Paciente* Pacientes[10];
+    char* Nombre;
+    // ...
+} Medico;
 
 typedef struct Hospital{
     Paciente* Pacientes[10];
