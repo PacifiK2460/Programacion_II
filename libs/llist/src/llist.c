@@ -1,7 +1,7 @@
 #include "../llist.h"
 
 LList* LList_new() {
-  LList* list = malloc(sizeof(LList));
+  LList* list = calloc(sizeof(LList));
   list->head = 0;
   list->tail = 0;
   list->size = 0;
@@ -10,7 +10,7 @@ LList* LList_new() {
 
 int LList_add(LList* list, void* data) {
   if (list->size == 0) {
-    list->head = malloc(sizeof(LListNode));
+    list->head = calloc(sizeof(LListNode));
     if(list->head == 0) {
       return -1;
     }
@@ -18,7 +18,7 @@ int LList_add(LList* list, void* data) {
     list->head->next = 0;
     list->tail = list->head;
   } else {
-    list->tail->next = malloc(sizeof(LListNode));
+    list->tail->next = calloc(sizeof(LListNode));
     if(list->tail->next == 0) {
       return -1;
     }

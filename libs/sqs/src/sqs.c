@@ -1,10 +1,10 @@
 #include "../sqs.h"
 
 SQS sqs_create(int size){
-    SQS sqs = (SQS)malloc(sizeof(struct SQS));
+    SQS sqs = (SQS)calloc(sizeof(struct SQS));
     sqs->bottom = 0;
     sqs->size = size;
-    sqs->dataArray = (void **)malloc(sizeof(void *) * size);
+    sqs->dataArray = (void **)calloc(sizeof(void *) * size);
     return sqs;
 }
 

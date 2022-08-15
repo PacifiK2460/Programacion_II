@@ -47,7 +47,7 @@ int loadZonas(LList* Destination){
     }
     
     // we create a new node with the name and the cost
-    Zona* new = (Zona*)malloc(sizeof(Zona));
+    Zona* new = (Zona*)calloc(sizeof(Zona));
     if(new == 0){
       fclose(archivo);
       return -1;
