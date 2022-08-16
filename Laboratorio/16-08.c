@@ -74,12 +74,14 @@ void sort(int* arreglo, int COLS, int ROWS){
 
     for(int i = 0; i < ROWS; i+=2){
         int* temp = malloc(COLS * sizeof(int));
-        for(int j = 0; j < COLS; j++){
+        for(int j = COLS-1; j >= 0; j--){
             temp[j] = arreglo[i*COLS+j];
         }
+
         for(int j = 0; j < COLS; j++){
-            arreglo[i*COLS+j] = arreglo[(i+1)*COLS+j];
+            arreglo[i*COLS+j] = temp[j];
         }
+
         free(temp);
     }
 }
