@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+//PROTOTIPOS
 void llenar(int* arreglo, int COLS, int ROWS);
 void print(int* arreglo, int COLS, int ROWS);
 void sort(int* arreglo, int COLS, int ROWS);
@@ -14,41 +15,15 @@ int main(){
     sort(arreglo, 4, 6);
 
     print(arreglo, 4, 6);
-
-    /*
-        rand = 1+rand()%40
-
-        func1(){
-            for(itme, index in list){
-                item[index] = rand
-            }
-
-        sort(){
-            sort()
-            for(item, index in list){
-                temp[cols];
-                for(item, index in Item){
-                    temp[cols - index] = arr[index];
-                }
-                for(item, index in Item){
-                    temp[index] = arr[cols - index];
-                }
-            }
-        }
-
-        print(){
-            for(item in list){
-                print(item)
-            }
-        }
-    */
 }
 
+//LENO EL ARREGLO CON DATOS ALEATORIOS
 void llenar(int* arreglo, int COLS, int ROWS){
     for(int i = 0; i < ROWS*COLS; i++)
         arreglo[i] = 1+rand()%40;
 }
 
+//IMPRIMO CADA ELEMNTO
 void print(int* arreglo, int COLS, int ROWS){
     for(int i = 0; i < ROWS; i++){
         for(int j = 0; j < COLS; j++){
@@ -62,7 +37,9 @@ void sort(int* arreglo, int COLS, int ROWS){
     //sort;
 
     //sort array
+    //VOY A CADA ITEM
     for(int i = 0; i < ROWS*COLS; i++){
+      // SI ESTE ES MENOR AL SIG LOS CAMBIO
         for(int j = 0; j < ROWS*COLS; j++){
             if(arreglo[i] < arreglo[j]){
                 int temp = arreglo[i];
@@ -72,14 +49,19 @@ void sort(int* arreglo, int COLS, int ROWS){
         }
     }
 
+    // UNA VEZ ORDENADO, CADA DOS FILAS LOS CAMBIO
     for(int i = 0; i < ROWS; i+=2){
         int* temp = malloc(COLS * sizeof(int));
-        for(int j = COLS-1; j >= 0; j--){
+
+        //invert array
+      // COPIO EN UN ARREGLO TEMPORAL
+        for(int j = 0; j < COLS; j++){
             temp[j] = arreglo[i*COLS+j];
         }
 
+      //LOS INTERCAMBIO DELANTE POR DETRAS
         for(int j = 0; j < COLS; j++){
-            arreglo[i*COLS+j] = temp[j];
+            arreglo[i*COLS+j] = temp[COLS-j-1];
         }
 
         free(temp);
