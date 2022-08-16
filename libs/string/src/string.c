@@ -2,16 +2,16 @@
 #include "../string.h"
 
 String *newString(){
-    String* s = calloc(sizeof(String));
+    String* s = malloc(sizeof(String));
     s->str = 0;
     s->len = 0; 
     return s;
 }
 
 String *newFrom(char *str){
-    String* s = calloc(sizeof(String));
+    String* s = malloc(sizeof(String));
     s->len = strlen(str);
-    s->str = calloc(s->len * sizeof(char));
+    s->str = malloc(s->len * sizeof(char));
     strcpy(s->str, str);
     s->str[s->len] = '\0';
     return s;
@@ -23,7 +23,7 @@ int setStringFromChar(String* dest,char* src){
     }
 
     dest->len = strlen(src);
-    dest->str = calloc(dest->len * sizeof(char));
+    dest->str = malloc(dest->len * sizeof(char));
 
     if(dest->str == 0){
         return -1;
@@ -40,7 +40,7 @@ int setStringFromString(String* Dest, String* Src){
     }
 
     Dest->len = Src->len;
-    Dest->str = calloc(Dest->len * sizeof(char));
+    Dest->str = malloc(Dest->len * sizeof(char));
 
     if(Dest->str == 0){
         return -1;

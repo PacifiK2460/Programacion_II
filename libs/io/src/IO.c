@@ -40,7 +40,7 @@ int evaluarString(String* dest, FILE* stream) {
         free(dest->str);
     }
     
-    dest->str = calloc(1024 * sizeof(char));
+    dest->str = malloc(1024 * sizeof(char));
 
     if(!fgets(dest->str, 1024, stream)){
         return -1;

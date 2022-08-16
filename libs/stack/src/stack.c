@@ -3,7 +3,7 @@
 
 void stack_push(Stack *stack, void *data)
 {
-    Stack_node *node = (Stack_node*)calloc(sizeof(Stack_node));
+    Stack_node *node = (Stack_node*)malloc(sizeof(Stack_node));
     if(node == 0) {
         return;
     }

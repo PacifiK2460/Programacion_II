@@ -9,7 +9,7 @@ Queue Queue_new(){
 }
 
 int Queue_enqueue(Queue *queue, void *data){
-    Queue_node *node = (Queue_node*)calloc(sizeof(Queue_node));
+    Queue_node *node = (Queue_node*)malloc(sizeof(Queue_node));
     if(node == 0)
         return -1;
     node->data = data;

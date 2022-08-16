@@ -28,12 +28,18 @@
         "label": "g++ debug proyect",
         "command": "gcc",
         "args": [
+          "-I${workspaceFolder}${pathSeparator}libs${pathSeparator}",
           "-g",
-          "-I${workspaceFolder}/libs/",
-          "${workspaceFolder}/libs/*/src/*.c",
+          "${workspaceFolder}${pathSeparator}libs${pathSeparator}io${pathSeparator}src${pathSeparator}*.c",
+          "${workspaceFolder}${pathSeparator}libs${pathSeparator}llist${pathSeparator}src${pathSeparator}*.c",
+          "${workspaceFolder}${pathSeparator}libs${pathSeparator}project${pathSeparator}src${pathSeparator}*.c",
+          "${workspaceFolder}${pathSeparator}libs${pathSeparator}queue${pathSeparator}src${pathSeparator}*.c",
+          "${workspaceFolder}${pathSeparator}libs${pathSeparator}sqs${pathSeparator}src${pathSeparator}*.c",
+          "${workspaceFolder}${pathSeparator}libs${pathSeparator}stack${pathSeparator}src${pathSeparator}*.c",
+          "${workspaceFolder}${pathSeparator}libs${pathSeparator}string${pathSeparator}src${pathSeparator}*.c",
           "${file}",
           "-o",
-          "${workspaceFolder}/bin/${fileBasenameNoExtension}"
+          "${workspaceFolder}${pathSeparator}bin${pathSeparator}${fileBasenameNoExtension}.exe"
         ],
         "options": {
           "cwd": "bin"

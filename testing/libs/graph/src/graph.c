@@ -21,7 +21,7 @@ void* graph_get_nth_leaf(Graph *graph, int n){
 }
 
 int graph_add_leaf(Graph *graph, void *data){
-    Leaf *new = (Leaf*)calloc(sizeof(Leaf));
+    Leaf *new = (Leaf*)malloc(sizeof(Leaf));
     if(new == 0) return -1;
 
     new->data = data;

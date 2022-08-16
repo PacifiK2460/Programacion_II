@@ -4,10 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "E:/w64devkit/bin/",
-                "E:/w64devkit/lib/gcc/x86_64-w64-mingw32/12.1.0/include/c++/",
-                "E:/w64devkit/lib/gcc/x86_64-w64-mingw32/12.1.0/include/*/",
-                "E:/w64devkit/lib/gcc/x86_64-w64-mingw32/12.1.0/**"
+                "E:/mingw64/x86_64-w64-mingw32/include"
             ],
             "defines": [
                 "_DEBUG",

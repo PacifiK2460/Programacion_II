@@ -26,7 +26,7 @@ Lugares: Lugares.o
 
 Lugares.o:
 	@echo -e $(yellow) "Compilando: " $(reset) "Lugares.c"
-	$(CC) -Wall -c $(INC) $(LIB) "$(BASE_PATH)/Lugares Turisticos/LugaresTuristicos.c"
+	$(CC) -Wall -c $(INC) $(LIB) "./Sesiones/Lugares Turisticos/LugaresTuristicos.c"
 
 #Clean up
 .PHONY: all 
