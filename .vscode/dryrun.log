@@ -1,7 +1,7 @@
 make.exe --dry-run --always-make --keep-going --print-directory
 make.exe: Entering directory 'c:/Users/177685/Documents/Code/Programacion_II'
 echo -e "\033[0;33m" "Compilando: " "\033[0m" "Lugares.c"
-gcc -Wall -c -Ilibs/ libs/*/src/*.c "Sesiones/Lugares Turisticos/LugaresTuristicos.c"
+gcc -Wall -c -Ilibs/ libs/*/src/*.c "./Sesiones/Lugares Turisticos/LugaresTuristicos.c"
 echo -e "\033[0;33m" "Terminando... " "\033[0m"
 mv *.cfg /bin
 gcc *.o -o bin/LugaresTuristicos
