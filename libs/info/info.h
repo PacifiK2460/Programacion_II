@@ -1,6 +1,8 @@
-#ifned INFO_H
+#ifndef INFO_H
 #define INFO_H
 
-vois pinrtInfo();
+#include <stdio.h>
+
+void printInfo();
 
 #endif

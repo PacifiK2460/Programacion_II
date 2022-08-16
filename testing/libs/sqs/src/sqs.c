@@ -18,7 +18,7 @@ void sqs_enqueue(SQS sqs, void *data){
     // If the queue is full, return
     if(sqs->bottom == sqs->size){
         printf("Queue is full\n");
-        return 0;
+        return;
     }
 
     // Add data to the end of the queue

@@ -1,6 +1,6 @@
 #include "../info.h"
 
-vois pinrtInfo(){
+void printInfo(){
     printf("Matricula: 177685\n"
            "Nombre: Martinez Lara Santiago de la cruz\n"
            "Materia: Programación II\n"
