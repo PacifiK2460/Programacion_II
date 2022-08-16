@@ -6,188 +6,212 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Aug 15 10:59:49 2022
+# Make data base, printed on Mon Aug 15 18:45:30 2022
 
 # Variables
 
-# 'override' directive
-GNUMAKEFLAGS := 
-# automatic
-<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
-# automatic
-?F = $(notdir $?)
+# environment
+GDK_BACKEND = x11
+# environment
+LC_ALL = C
+# environment
+NO_AT_BRIDGE = 1
+# makefile (from 'Makefile', line 4)
+yellow = "\033[0;33m"
+# environment
+LC_NAME = en_US.UTF-8
+# environment
+LC_NUMERIC = en_US.UTF-8
+# environment
+VSCODE_CWD = /home/pk
+# environment
+LC_ADDRESS = en_US.UTF-8
 # default
-.SHELLFLAGS := -c
-# makefile
-MAKEFLAGS = pqrR
-# automatic
-?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
-# automatic
-@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
+MAKE_COMMAND := make
 # environment
-HOMEDRIVE = C:
+GTK3_MODULES = xapp-gtk3-module:xapp-gtk3-module
 # automatic
-@F = $(notdir $@)
-# automatic
-^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
-# makefile
-CURDIR := c:/Users/177685/Documents/Code/Programacion_II
+@D = $(patsubst %/,%,$(dir $@))
+# makefile (from 'Makefile', line 9)
+reset = "\033[0m"
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
-SHELL := E:/w64devkit/bin/sh.exe
+.VARIABLES := 
 # environment
-WINDIR = C:\Windows
+PWD = /home/pk/Documents/UPSLP/PROGRAMACION/Programacion_II
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
 # environment
-VSCODE_NLS_CONFIG = {"locale":"es","availableLanguages":{},"_languagePackSupport":true}
+MAIL = thunderbird
 # environment
-VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
-# environment
-ONEDRIVE = C:\Users\177685\OneDrive - Universidad Polit�cnica de San Luis Potos�
-# makefile (from 'Makefile', line 8)
-white = "\033[0;37m"
-# environment
-PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
-# makefile (from 'Makefile', line 5)
-blue = "\033[0;34m"
-# makefile (from 'Makefile', line 1)
-MAKEFILE_LIST :=  Makefile
-# environment
-GCC = E:\w64devkit\bin
-# environment
-TMP = C:\Users\177685\AppData\Local\Temp
-# environment
-PROGRAMW6432 = C:\Program Files
-# environment
-PROGRAMDATA = C:\ProgramData
-# environment
-VSCODE_CWD = C:\Users\177685\AppData\Local\Programs\Microsoft VS Code
-# makefile (from 'Makefile', line 3)
-green = "\033[0;32m"
-# makefile (from 'Makefile', line 2)
-red = "\033[0;31m"
-# default
-MAKE_HOST := x86_64-w64-mingw32
-# environment
-PATH = C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Users\177685\AppData\Local\Microsoft\WindowsApps;C:\Users\177685\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\177685\AppData\Local\Programs\Git\cmd;E:\w64devkit\bin;
-# environment
-SW_SIM_HYDRA = C:\Program Files\Common Files\SolidWorks Shared\Simulation Worker Agent\
-# environment
-COMMONPROGRAMW6432 = C:\Program Files\Common Files
-# environment
-PROCESSOR_ARCHITECTURE = AMD64
-# environment
-USERPROFILE = C:\Users\177685
-# environment
-MINITAB_LICENSE_FILE = @192.168.2.234
-# environment
-ALLUSERSPROFILE = C:\ProgramData
-# environment
-NUMBER_OF_PROCESSORS = 12
-# environment
-ELECTRON_RUN_AS_NODE = 1
-# makefile (from 'Makefile', line 15)
-LIB = libs/*/src/*.c
-# default
-.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync
+XDG_DATA_DIRS = /usr/local/share:/usr/share
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_6820_VSBESSVLNFYRQFLX
+VSCODE_CODE_CACHE_PATH = /home/pk/.config/Code/CachedData/6d9b74a70ca9c7733b29f0456fd8195364076dda
 # environment
-COMPUTERNAME = CC4-10
+XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session0
 # environment
-PROGRAMFILES = C:\Program Files
+LANG = C
+# environment
+XAUTHORITY = /home/pk/.Xauthority
 # default
 .LOADED := 
-# environment
-USERDNSDOMAIN = UPSLP.EDU.MX
-# environment
-DRIVERDATA = C:\Windows\System32\Drivers\DriverData
-# environment
-ORIGINAL_XDG_CURRENT_DESKTOP = undefined
-# environment
-USERNAME = 177685
-# environment
-PUBLIC = C:\Users\Public
-# environment
-VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
-# environment
-VSCODE_CODE_CACHE_PATH = C:\Users\177685\AppData\Roaming\Code\CachedData\6d9b74a70ca9c7733b29f0456fd8195364076dda
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# makefile
+MAKEFLAGS = pqrR
+# makefile
+CURDIR := /home/pk/Documents/UPSLP/PROGRAMACION/Programacion_II
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
 # environment
-COMMONPROGRAMFILES = C:\Program Files\Common Files
+MFLAGS = -pqrR
 # environment
-LOGONSERVER = \\DC01
+SSH_AUTH_SOCK = /tmp/ssh-XXXXXXE1lbIA/agent.822
+# default
+.SHELLFLAGS := -c
 # environment
-VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+XDG_CONFIG_DIRS = /etc/xdg
+# automatic
++D = $(patsubst %/,%,$(dir $+))
 # environment
-USERDOMAIN = UPSLP
+XDG_SESSION_DESKTOP = xfce
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_PID = 2215
+# makefile (from 'Makefile', line 7)
+cyan = "\033[0;36m"
+# environment
+XDG_SESSION_TYPE = x11
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+SESSION_MANAGER = local/pk:@/tmp/.ICE-unix/759,unix/pk:/tmp/.ICE-unix/759
+# automatic
+*F = $(notdir $*)
+# environment
+QT_QPA_PLATFORMTHEME = gnome
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# makefile (from 'Makefile', line 15)
+LIB = libs/*/src/*.c
+# environment
+AMD_VULKAN_ICD = RADV
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# makefile
+SHELL = /bin/sh
+# default
+MAKECMDGOALS := all
+# environment
+DOTNET_BUNDLE_EXTRACT_BASE_DIR = /home/pk/.cache/dotnet_bundle_extract
+# environment
+SHLVL = 1
 # environment
 MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
+# environment
+PATH = /usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/home/pk/.dotnet/tools:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 # default
-MAKECMDGOALS := all
-# makefile (from 'Makefile', line 13)
-CC = gcc
+MAKEFILES := 
+# environment
+LC_MONETARY = en_US.UTF-8
+# environment
+MOTD_SHOWN = pam
+# automatic
+^F = $(notdir $^)
+# environment
+LC_TIME = en_US.UTF-8
 # makefile (from 'Makefile', line 6)
 magenta = "\033[0;35m"
 # environment
-ONEDRIVECOMMERCIAL = C:\Users\177685\OneDrive - Universidad Polit�cnica de San Luis Potos�
-# default
-MAKE_VERSION := 4.2
-# makefile
-.DEFAULT_GOAL := all
-# makefile (from 'Makefile', line 9)
-reset = "\033[0m"
-# environment
-PROGRAMFILES(X86) = C:\Program Files (x86)
+LC_TELEPHONE = en_US.UTF-8
 # automatic
-%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
-# environment
-LOCALAPPDATA = C:\Users\177685\AppData\Local
-# environment
-PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\PowerShell\Modules\
-# default
-MAKE_COMMAND := make.exe
+?F = $(notdir $?)
 # makefile (from 'Makefile', line 14)
 INC = -Ilibs/
-# default
-.VARIABLES := 
-# automatic
-*F = $(notdir $*)
 # environment
-PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 158 Stepping 10, GenuineIntel
+XDG_SEAT = seat0
 # environment
-OS = Windows_NT
-# environment
-VSCODE_IPC_HOOK = \\.\pipe\aa7a2436b9ad2f97ef79005b033d3fb0-1.70.1-main-sock
-# environment
-HOMEPATH = \Users\177685
-# environment
-COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
-# environment
-PROMPT = $P$G
-# environment
-MFLAGS = -pqrR
-# automatic
-*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
-# environment
-SYSTEMROOT = C:\Windows
-# automatic
-+D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+XDG_CURRENT_DESKTOP = XFCE
 # automatic
 +F = $(notdir $+)
 # environment
-APPDATA = C:\Users\177685\AppData\Roaming
-# makefile (from 'Makefile', line 4)
-yellow = "\033[0;33m"
+XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
 # environment
-TEMP = C:\Users\177685\AppData\Local\Temp
+DESKTOP_SESSION = xfce
 # environment
-COMSPEC = C:\Windows\system32\cmd.exe
+ORIGINAL_XDG_CURRENT_DESKTOP = XFCE
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+BROWSER = firefox
+# makefile (from 'Makefile', line 2)
+red = "\033[0;31m"
+# environment
+LOGNAME = pk
+# environment
+XDG_VTNR = 7
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from 'Makefile', line 17)
+BASE_PATH = Sesiones
+# environment
+DISPLAY = :0.0
+# environment
+GTK_MODULES = canberra-gtk-module:canberra-gtk-module
+# environment
+USER = pk
 # default
-MAKEFILES := 
+MAKE_VERSION := 4.3
+# environment
+LC_MEASUREMENT = en_US.UTF-8
+# environment
+SSH_AGENT_PID = 823
+# environment
+_ = /usr/bin/make
+# environment
+LC_PAPER = en_US.UTF-8
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+XDG_SESSION_CLASS = user
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+GTK2_RC_FILES = $HOME/.gtkrc-2.0
+# environment
+HOME = /home/pk
+# environment
+DIFFPROG = /usr/bin/meld
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-5a02b1de-1.70.1-main.sock
+# environment
+HG = /usr/bin/hg
+# environment
+XDG_SESSION_ID = 1
+# makefile (from 'Makefile', line 8)
+white = "\033[0;37m"
+# default
+.RECIPEPREFIX := 
 # automatic
 <F = $(notdir $<)
 # makefile (from 'Makefile', line 17)
@@ -230,7 +254,7 @@ USERDOMAIN_ROAMINGPROFILE = UPSLP
 
 # Directories
 
-# . (key c:/Users/177685/Documents/Code/Programacion_II, mtime 1660575961ll): 11 files, no impossibilities.
+# . (device 40, inode 1064628): 11 files, no impossibilities.
 
 # 11 files, no impossibilities in 1 directories.
 
@@ -240,7 +264,31 @@ USERDOMAIN_ROAMINGPROFILE = UPSLP
 
 # Files
 
-Lugares.o:
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-13 18:18:06.895263394
+#  File has been updated.
+#  Successfully updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 34):
+	@echo -e $(green) "Limpiando..." $(reset)
+	rm -rf *.o
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all: Lugares
+ 
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
 #  File does not exist.
@@ -336,7 +384,7 @@ clean:
 
 # strcache performance: lookups = 31 / hit rate = 41%
 # hash-table stats:
-# Load=18/8192=0%, Rehash=0, Collisions=1/31=3%
-# Finished Make data base on Mon Aug 15 10:59:49 2022
+# Load=20/8192=0%, Rehash=0, Collisions=0/34=0%
+# Finished Make data base on Mon Aug 15 18:45:30 2022
 
  

@@ -1,13 +1,50 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
-        {
-            "name":_ "Debug",
-            "label": "echo",
-            "type": "shell",
-            "command": "echo Hello"
+      {
+        "type": "shell",
+        "label": "g++ build proyect",
+        "command": "gcc",
+        "args": [
+          "-I${workspaceFolder}/libs/",
+          "${workspaceFolder}/libs/*/src/*.c",
+          "${file}",
+          "-o",
+          "${workspaceFolder}/bin/${fileBasenameNoExtension}"
+        ],
+        "options": {
+          "cwd": "bin"
+        },
+        "problemMatcher": [
+          "$gcc"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
         }
+      },
+      {
+        "type": "shell",
+        "label": "g++ debug proyect",
+        "command": "gcc",
+        "args": [
+          "-g",
+          "-I${workspaceFolder}/libs/",
+          "${workspaceFolder}/libs/*/src/*.c",
+          "${file}",
+          "-o",
+          "${workspaceFolder}/bin/${fileBasenameNoExtension}"
+        ],
+        "options": {
+          "cwd": "bin"
+        },
+        "problemMatcher": [
+          "$gcc"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": false
+        }
+      }
     ]
-}
+  }
