@@ -1,4 +1,4 @@
-#include "info/info.h"
+//#include "info/info.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -8,12 +8,10 @@ void print(int* arreglo, int COLS, int ROWS);
 void sort(int* arreglo, int COLS, int ROWS);
 
 int main(){
-    printInfo();
+    //printInfo();
     int arreglo[6][4];
     llenar(arreglo, 4, 6);
-
     sort(arreglo, 4, 6);
-
     print(arreglo, 4, 6);
 }
 

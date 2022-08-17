@@ -6,7 +6,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Aug 16 17:04:13 2022
+# Make data base, printed on Wed Aug 17 10:29:20 2022
 
 # Variables
 
@@ -37,11 +37,11 @@ SHELL := E:/w64devkit/bin/sh.exe
 # environment
 WINDIR = C:\Windows
 # environment
-VSCODE_NLS_CONFIG = {"locale":"es","availableLanguages":{"*":"es"},"_languagePackId":"58ee994e295d58ff8ba81b345e5d3728.es","_translationsConfigFile":"C:\\Users\\177685\\AppData\\Roaming\\Code\\clp\\58ee994e295d58ff8ba81b345e5d3728.es\\tcf.json","_cacheRoot":"C:\\Users\\177685\\AppData\\Roaming\\Code\\clp\\58ee994e295d58ff8ba81b345e5d3728.es","_resolvedLanguagePackCoreLocation":"C:\\Users\\177685\\AppData\\Roaming\\Code\\clp\\58ee994e295d58ff8ba81b345e5d3728.es\\6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"C:\\Users\\177685\\AppData\\Roaming\\Code\\clp\\58ee994e295d58ff8ba81b345e5d3728.es\\corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"es","availableLanguages":{"*":"es"},"_languagePackId":"9336b18a2694f1b71e2417b4e335df52.es","_translationsConfigFile":"C:\\Users\\177685\\AppData\\Roaming\\Code\\clp\\9336b18a2694f1b71e2417b4e335df52.es\\tcf.json","_cacheRoot":"C:\\Users\\177685\\AppData\\Roaming\\Code\\clp\\9336b18a2694f1b71e2417b4e335df52.es","_resolvedLanguagePackCoreLocation":"C:\\Users\\177685\\AppData\\Roaming\\Code\\clp\\9336b18a2694f1b71e2417b4e335df52.es\\6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"C:\\Users\\177685\\AppData\\Roaming\\Code\\clp\\9336b18a2694f1b71e2417b4e335df52.es\\corrupted.info","_languagePackSupport":true}
 # environment
 VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
 # environment
-ONEDRIVE = C:\Users\177685\OneDrive
+ONEDRIVE = C:\Users\177685\OneDrive - Universidad Polit�cnica de San Luis Potos�
 # makefile (from 'Makefile', line 8)
 white = "\033[0;37m"
 # environment
@@ -50,6 +50,10 @@ PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
 blue = "\033[0;34m"
 # makefile (from 'Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
+# environment
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# environment
+GCC = E:\w64devkit\bin
 # environment
 TMP = C:\Users\177685\AppData\Local\Temp
 # environment
@@ -65,7 +69,7 @@ red = "\033[0;31m"
 # default
 MAKE_HOST := x86_64-w64-mingw32
 # environment
-PATH = C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\MATLAB\R2008a\bin;C:\Program Files\MATLAB\R2008a\bin\win64;C:\Users\177685\AppData\Local\Microsoft\WindowsApps;E:\w64devkit\bin;C:\Users\177685\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\177685\Downloads\PortableGit\bin;
+PATH = C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files (x86)\pgmodeler;C:\Users\177685\AppData\Local\Microsoft\WindowsApps;C:\Users\177685\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\177685\AppData\Local\Programs\Git\cmd;E:\w64devkit\bin;
 # environment
 SW_SIM_HYDRA = C:\Program Files\Common Files\SolidWorks Shared\Simulation Worker Agent\
 # environment
@@ -79,7 +83,7 @@ MINITAB_LICENSE_FILE = @192.168.2.234
 # environment
 ALLUSERSPROFILE = C:\ProgramData
 # environment
-NUMBER_OF_PROCESSORS = 4
+NUMBER_OF_PROCESSORS = 12
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # makefile (from 'Makefile', line 15)
@@ -89,15 +93,15 @@ LIB = libs/*/src/*.c
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_11820_XHLYKSBTGLPVKZCZ
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_8840_IMHOJPUVIGOMGTDT
 # environment
-COMPUTERNAME = CC15-3
+COMPUTERNAME = CC4-10
 # environment
 PROGRAMFILES = C:\Program Files
 # default
 .LOADED := 
 # environment
-USERDNSDOMAIN = upslp.edu.mx
+USERDNSDOMAIN = UPSLP.EDU.MX
 # environment
 DRIVERDATA = C:\Windows\System32\Drivers\DriverData
 # environment
@@ -125,11 +129,14 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # default
-MAKECMDGOALS := all
+MAKECMDG 
+OALS := all
 # makefile (from 'Makefile', line 13)
 CC = gcc
 # makefile (from 'Makefile', line 6)
 magenta = "\033[0;35m"
+# environment
+ONEDRIVECOMMERCIAL = C:\Users\177685\OneDrive - Universidad Polit�cnica de San Luis Potos�
 # default
 MAKE_VERSION := 4.2
 # makefile
@@ -153,7 +160,7 @@ INC = -Ilibs/
 # automatic
 *F = $(notdir $*)
 # environment
-PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 158 Stepping 10, GenuineIntel
 # environment
 OS = Windows_NT
 # environment
@@ -203,7 +210,7 @@ SYSTEMDRIVE = C:
 # environment
 SESSIONNAME = Console
 # environment
-PROCESSOR_REVISION = 3a09
+PROCESSOR_REVISION = 9e0a
 # environment
 SW_SIM_MPIT = INTELMPI
 # default
@@ -213,11 +220,13 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 6
 # environment
-VSCODE_PID = 11820
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# environment
+VSCODE_PID = 8840
 # environment
 USERDOMAIN_ROAMINGPROFILE = UPSLP
 # variable set hash-table stats:
-# Load=103/1024=10%, Rehash=0, Collisions=16/131=12%
+# Load=107/1024=10%, Rehash=0, Collisions=16/135=12%
 
 # Pattern-specific Variable Values
 
@@ -225,9 +234,9 @@ USERDOMAIN_ROAMINGPROFILE = UPSLP
 
 # Directories
 
-# . (key c:/Users/177685/Documents/Code/Programacion_II, mtime 1660686447ll): 13 files, no impossibilities.
+# . (key c:/Users/177685/Documents/Code/Programacion_II, mtime 1660748580ll): 15 files, no impossibilities.
 
-# 13 files, no impossibilities in 1 directories.
+# 15 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -300,7 +309,7 @@ all: Lugares
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-16 16:47:27
+#  Last modified 2022-08-16 10:37:29
 #  File has been updated.
 #  Successfully updated.
 
@@ -326,12 +335,12 @@ clean:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 20 / storage = 154 B / avg = 7 B
-# current buf: size = 8162 B / used = 154 B / count = 20 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 22 / storage = 172 B / avg = 7 B
+# current buf: size = 8162 B / used = 172 B / count = 22 / avg = 7 B
 
-# strcache performance: lookups = 33 / hit rate = 39%
+# strcache performance: lookups = 35 / hit rate = 37%
 # hash-table stats:
-# Load=20/8192=0%, Rehash=0, Collisions=1/33=3%
-# Finished Make data base on Tue Aug 16 17:04:13 2022
+# Load=22/8192=0%, Rehash=0, Collisions=1/35=3%
+# Finished Make data base on Wed Aug 17 10:29:20 2022
 
  

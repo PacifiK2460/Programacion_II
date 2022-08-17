@@ -11,7 +11,9 @@
         "trabajador.h": "c",
         "llist.h": "c",
         "sqs.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "io.h": "c",
+        "bidi.h": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "makefile.extensionOutputFolder": "./.vscode"

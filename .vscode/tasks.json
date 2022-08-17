@@ -1,56 +1,84 @@
 {
     "version": "2.0.0",
     "tasks": [
-      {
-        "type": "shell",
-        "label": "g++ build proyect",
-        "command": "gcc",
-        "args": [
-          "-I${workspaceFolder}/libs/",
-          "${workspaceFolder}/libs/*/src/*.c",
-          "${file}",
-          "-o",
-          "${workspaceFolder}/bin/${fileBasenameNoExtension}"
-        ],
-        "options": {
-          "cwd": "bin"
+        {
+            "type": "shell",
+            "label": "g++ build proyect",
+            "command": "gcc",
+            "args": [
+                "-I${workspaceFolder}${pathSeparator}libs${pathSeparator}",
+                "${workspaceFolder}${pathSeparator}libs${pathSeparator}io${pathSeparator}src${pathSeparator}io.c",
+                "${workspaceFolder}${pathSeparator}libs${pathSeparator}llist${pathSeparator}src${pathSeparator}llist.c",
+                "${workspaceFolder}${pathSeparator}libs${pathSeparator}project${pathSeparator}src${pathSeparator}zona.c",
+                "${workspaceFolder}${pathSeparator}libs${pathSeparator}queue${pathSeparator}src${pathSeparator}queue.c",
+                "${workspaceFolder}${pathSeparator}libs${pathSeparator}string${pathSeparator}src${pathSeparator}string.c",
+                "${file}",
+                "-o",
+                "${workspaceFolder}${pathSeparator}bin${pathSeparator}${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
         },
-        "problemMatcher": [
-          "$gcc"
-        ],
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        }
-      },
-      {
-        "type": "shell",
-        "label": "g++ debug proyect",
-        "command": "gcc",
-        "args": [
-          "-I${workspaceFolder}${pathSeparator}libs${pathSeparator}",
-          "-g",
-          "${workspaceFolder}${pathSeparator}libs${pathSeparator}io${pathSeparator}src${pathSeparator}*.c",
-          "${workspaceFolder}${pathSeparator}libs${pathSeparator}llist${pathSeparator}src${pathSeparator}*.c",
-          "${workspaceFolder}${pathSeparator}libs${pathSeparator}project${pathSeparator}src${pathSeparator}*.c",
-          "${workspaceFolder}${pathSeparator}libs${pathSeparator}queue${pathSeparator}src${pathSeparator}*.c",
-          "${workspaceFolder}${pathSeparator}libs${pathSeparator}sqs${pathSeparator}src${pathSeparator}*.c",
-          "${workspaceFolder}${pathSeparator}libs${pathSeparator}stack${pathSeparator}src${pathSeparator}*.c",
-          "${workspaceFolder}${pathSeparator}libs${pathSeparator}string${pathSeparator}src${pathSeparator}*.c",
-          "${file}",
-          "-o",
-          "${workspaceFolder}${pathSeparator}bin${pathSeparator}${fileBasenameNoExtension}.exe"
-        ],
-        "options": {
-          "cwd": "bin"
+        {
+            "type": "shell",
+            "label": "g++ debug proyect",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "-I${workspaceFolder}${pathSeparator}libs${pathSeparator}",
+                "${workspaceFolder}${pathSeparator}libs${pathSeparator}io${pathSeparator}src${pathSeparator}io.c",
+                "${workspaceFolder}${pathSeparator}libs${pathSeparator}llist${pathSeparator}src${pathSeparator}llist.c",
+                "${workspaceFolder}${pathSeparator}libs${pathSeparator}project${pathSeparator}src${pathSeparator}zona.c",
+                "${workspaceFolder}${pathSeparator}libs${pathSeparator}queue${pathSeparator}src${pathSeparator}queue.c",
+                "${workspaceFolder}${pathSeparator}libs${pathSeparator}string${pathSeparator}src${pathSeparator}string.c",
+                "${file}",
+                "-o",
+                "${workspaceFolder}${pathSeparator}bin${pathSeparator}${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
         },
-        "problemMatcher": [
-          "$gcc"
-        ],
-        "group": {
-          "kind": "build",
-          "isDefault": false
+        {
+            "type": "cppbuild",
+            "label": "C/C++: gcc.exe compilar archivo activo",
+            "command": "E:\\w64devkit\\bin\\gcc.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "-I${workspaceFolder}${pathSeparator}libs${pathSeparator}",
+                "${workspaceFolder}${pathSeparator}libs${pathSeparator}io${pathSeparator}src${pathSeparator}io.c",
+                "${workspaceFolder}${pathSeparator}libs${pathSeparator}llist${pathSeparator}src${pathSeparator}llist.c",
+                "${workspaceFolder}${pathSeparator}libs${pathSeparator}project${pathSeparator}src${pathSeparator}zona.c",
+                "${workspaceFolder}${pathSeparator}libs${pathSeparator}queue${pathSeparator}src${pathSeparator}queue.c",
+                "${workspaceFolder}${pathSeparator}libs${pathSeparator}string${pathSeparator}src${pathSeparator}string.c",
+                "${file}",
+                "-o",
+                "${workspaceFolder}${pathSeparator}bin${pathSeparator}${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Tarea generada por el depurador."
         }
-      }
     ]
-  }
+}
