@@ -3,8 +3,8 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "g++ build proyect",
-            "command": "gcc",
+            "label": "g++ build proyect to windows",
+            "command": "i686-w64-mingw32-cc",
             "args": [
                 "-I${workspaceFolder}${pathSeparator}libs${pathSeparator}",
                 "${workspaceFolder}${pathSeparator}libs${pathSeparator}io${pathSeparator}src${pathSeparator}io.c",
@@ -52,12 +52,10 @@
             }
         },
         {
-            "type": "cppbuild",
-            "label": "C/C++: gcc.exe compilar archivo activo",
-            "command": "E:\\w64devkit\\bin\\gcc.exe",
+            "type": "shell",
+            "label": "g++ build proyect",
+            "command": "gcc",
             "args": [
-                "-fdiagnostics-color=always",
-                "-g",
                 "-I${workspaceFolder}${pathSeparator}libs${pathSeparator}",
                 "${workspaceFolder}${pathSeparator}libs${pathSeparator}io${pathSeparator}src${pathSeparator}io.c",
                 "${workspaceFolder}${pathSeparator}libs${pathSeparator}llist${pathSeparator}src${pathSeparator}llist.c",
@@ -69,16 +67,15 @@
                 "${workspaceFolder}${pathSeparator}bin${pathSeparator}${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "bin"
             },
             "problemMatcher": [
                 "$gcc"
             ],
             "group": {
                 "kind": "build",
-                "isDefault": true
-            },
-            "detail": "Tarea generada por el depurador."
+                "isDefault": false
+            }
         }
     ]
 }

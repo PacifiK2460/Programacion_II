@@ -40,7 +40,23 @@
             "ignoreFailures": false
           }
         ],
-        "preLaunchTask": "g++ debug proyect",
+        "preLaunchTask": "g++ build proyect",
+        "miDebuggerPath": "gdb",
+      },
+      {
+        "name": "g++ build proyect to windows",
+        "type": "cppdbg",
+        "request": "attach",
+        "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}.exe",
+        "MIMode": "gdb",
+        "setupCommands": [
+          {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": false
+          }
+        ],
+        "preLaunchTask": "g++ build proyect to windows",
         "miDebuggerPath": "gdb",
       }
     ]
