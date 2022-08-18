@@ -10,8 +10,14 @@ int main(){
 
     LList* StringList = LList_new();
     for(int i = 0; i < N; i++){
+        int max;
+        input("Ingrese el numero maximo de caracteres: ", evaluarInt(&max, stdin));
         String* string = newString();
-        input("Ingrese el nombre: ", evaluarString(string, stdin));
+        while(1){
+          input("Ingrese el nombre: ", evaluarString(string, stdin));
+          if(string.len < max)
+            break;
+        }
 
         LList_add(StringList, string);
     }
