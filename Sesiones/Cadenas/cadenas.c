@@ -1,6 +1,9 @@
 #include "io/io.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 int main(){
+    srand(0);
     int N;
     input("Ingrese el numero de Filas: ", evaluarInt(&N, stdin));
 
@@ -13,8 +16,13 @@ int main(){
       int suma = 0;
       for(int j = 0; j < M; j++){
         printf("Columna: %i.\n", j);
-        input("Ingrese el numero a guardar: ", evaluarInt(&(filas[i][j]), stdin));
-        suma += filas[i][j];
+        int temp = rand() % 50;
+        while(temp % 2) temp = rand() % 50;
+        printf("%i\n", temp);
+
+        filas[i][j] = temp;
+        
+        suma += temp;
       }
 
       filas[i][M] = suma;
