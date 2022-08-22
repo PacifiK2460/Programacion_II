@@ -8,6 +8,7 @@
 #include <string.h>
 #include "../string/string.h"
 
+// INPUT
 // We evaluar an input from the desired stream
 int evaluarInt(int* dest, FILE* stream);
 int evaluarDouble(double* dest, FILE* stream);
@@ -20,6 +21,8 @@ int evaluarChar(char* Dest, FILE* stream);
         printf("%s", str); \
         if (condition) break;   \
     }
+
+// FILE I/O with user defined write and read functions
 
 
 #endif // SMARTIO_H
