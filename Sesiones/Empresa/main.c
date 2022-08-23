@@ -28,6 +28,36 @@ typedef struct Relacion{
     Empleado* empleado;
 } Relacion;
 
+int writeRelacion(Relacion* relacion, FILE* stream){
+    if(relacion == 0 || stream == 0) return -1;
+
+    fprintf(stream,"%i\n"
+    "%i\n"
+    "%s\n"
+
+    "%i\n"
+    "%s\n"
+    "%s\n"
+    
+    "%i\n"
+    "%s\n"
+    "%lf\n",
+    
+    relacion->idRelación,
+    relacion->empresa->idEmpresa,
+    relacion->empresa->RazonSocial.str,
+    
+    relacion->departamento->idDepartamento,
+    relacion->departamento->nombre.str,
+    relacion->departamento->projecto.str,
+    
+    relacion->empleado->idEmpleado,
+    relacion->empleado->nombre.str,
+    relacion->empleado->sueldo);
+
+    return 1;
+}
+
 int main(){
     Relacion *relacion = malloc(sizeof(Relacion));
     if(relacion == 0) return -1;
@@ -61,5 +91,9 @@ int main(){
     printf("Nombre del empleado: %s\n", relacion->empleado->nombre.str);
     printf("Sueldo del empleado: %f\n", relacion->empleado->sueldo);
 
+
+    FILE* stream = fopen("data.txt", "w");
+    if(stream == 0) return -1;
+    writeRelacion(relacion, stream);
     return 0;
 }
