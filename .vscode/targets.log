@@ -6,7 +6,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Aug 23 10:08:12 2022
+# Make data base, printed on Tue Aug 23 16:08:35 2022
 
 # Variables
 
@@ -41,19 +41,18 @@ VSCODE_NLS_CONFIG = {"locale":"es","availableLanguages":{"*":"es"},"_languagePac
 # environment
 VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
 # environment
-ONEDRIVE = C:\Users\177685\OneDrive - Universidad Polit�cnica de San Luis Potos�
+ONEDRIVE = C:\Users\177685\OneDrive
 # makefile (from 'Makefile', line 8)
 white = "\033[0;37m"
 # environment
-PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+PATHEXT = .COM;.EXE;.BAT;.C 
+MD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
 # makefile (from 'Makefile', line 5)
 blue = "\033[0;34m"
 # makefile (from 'Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # environment
 FPS_BROWSER_USER_PROFILE_STRING = Default
-# environment
-GCC = E:\w64devkit\bin
 # environment
 TMP = C:\Users\177685\AppData\Local\Temp
 # environment
@@ -69,7 +68,7 @@ red = "\033[0;31m"
 # default
 MAKE_HOST := x86_64-w64-mingw32
 # environment
-PATH = C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files (x86)\pgmodeler;C:\Users\177685\AppData\Local\Microsoft\WindowsApps;C:\Users\177685\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\177685\AppData\Local\Programs\Git\cmd;E:\w64devkit\bin;
+PATH = C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\MATLAB\R2008a\bin;C:\Program Files\MATLAB\R2008a\bin\win64;C:\Users\177685\AppData\Local\Microsoft\WindowsApps;E:\w64devkit\bin;C:\Users\177685\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\177685\Downloads\PortableGit\bin;
 # environment
 SW_SIM_HYDRA = C:\Program Files\Common Files\SolidWorks Shared\Simulation Worker Agent\
 # environment
@@ -83,7 +82,7 @@ MINITAB_LICENSE_FILE = @192.168.2.234
 # environment
 ALLUSERSPROFILE = C:\ProgramData
 # environment
-NUMBER_OF_PROCESSORS = 12
+NUMBER_OF_PROCESSORS = 4
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # makefile (from 'Makefile', line 15)
@@ -93,9 +92,9 @@ LIB = libs/*/src/*.c
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_12104_CAZQYNOQSXSHETUH
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_7676_CMYVBJWQYZHSBVLL
 # environment
-COMPUTERNAME = CC4-10
+COMPUTERNAME = CC15-3
 # environment
 PROGRAMFILES = C:\Program Files
 # default
@@ -115,7 +114,7 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 VSCODE_CODE_CACHE_PATH = C:\Users\177685\AppData\Roaming\Code\CachedData\e4503b30fc78200f846c62cf8091b76ff5547662
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 COMMONPROGRAMFILES = C:\Program Files\Common Files
 # environment
@@ -134,8 +133,6 @@ MAKECMDGOALS := all
 CC = gcc
 # makefile (from 'Makefile', line 6)
 magenta = "\033[0;35m"
-# environment
-ONEDRIVECOMMERCIAL = C:\Users\177685\OneDrive - Universidad Polit�cnica de San Luis Potos�
 # default
 MAKE_VERSION := 4.2
 # makefile
@@ -159,7 +156,7 @@ INC = -Ilibs/
 # automatic
 *F = $(notdir $*)
 # environment
-PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 158 Stepping 10, GenuineIntel
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
 # environment
 OS = Windows_NT
 # environment
@@ -209,7 +206,7 @@ SYSTEMDRIVE = C:
 # environment
 SESSIONNAME = Console
 # environment
-PROCESSOR_REVISION = 9e0a
+PROCESSOR_REVISION = 3a09
 # environment
 SW_SIM_MPIT = INTELMPI
 # default
@@ -221,11 +218,11 @@ PROCESSOR_LEVEL = 6
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 12104
+VSCODE_PID = 7676
 # environment
 USERDOMAIN_ROAMINGPROFILE = UPSLP
 # variable set hash-table stats:
-# Load=107/1024=10%, Rehash=0, Collisions=16/135=12%
+# Load=105/1024=10%, Rehash=0, Collisions=16/133=12%
 
 # Pattern-specific Variable Values
 
@@ -233,9 +230,9 @@ USERDOMAIN_ROAMINGPROFILE = UPSLP
 
 # Directories
 
-# . (key c:/Users/177685/Documents/Code/Programacion_II, mtime 1661180630ll): 15 files, no impossibilities.
+# . (key c:/Users/177685/Documents/Code/Programacion_II, mtime 1661288658ll): 14 files, no impossibilities.
 
-# 15 files, no impossibilities in 1 directories.
+# 14 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -308,7 +305,7 @@ all: Lugares
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-16 10:37:29
+#  Last modified 2022-08-16 16:47:27
 #  File has been updated.
 #  Successfully updated.
 
@@ -334,13 +331,12 @@ clean:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 22 / storage = 172 B / avg = 7 B
-# current buf: size = 8162 B / used = 172 B / count = 22 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 21 / storage = 166 B / avg = 7 B
+# current buf: size = 8162 B / used = 166 B / count = 21 / avg = 7 B
 
- 
-# strcache performance: lookups = 35 / hit rate = 37%
+# strcache performance: lookups = 34 / hit rate = 38%
 # hash-table stats:
-# Load=22/8192=0%, Rehash=0, Collisions=1/35=3%
-# Finished Make data base on Tue Aug 23 10:08:12 2022
+# Load=21/8192=0%, Rehash=0, Collisions=1/34=3%
+# Finished Make data base on Tue Aug 23 16:08:35 2022
 
  
