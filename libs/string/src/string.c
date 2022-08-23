@@ -11,7 +11,7 @@ String *newString(){
 String *newFrom(char *str){
     String* s = malloc(sizeof(String));
     s->len = strlen(str);
-    s->str = malloc(s->len * sizeof(char));
+    s->str = malloc((s->len + 1) * sizeof(char));
     strcpy(s->str, str);
     s->str[s->len] = '\0';
     return s;

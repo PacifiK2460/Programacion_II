@@ -56,10 +56,10 @@ int main(){
     printf("Razon social de la empresa: %s\n", relacion->empresa->RazonSocial.str);
     printf("Id del departamento: %i\n", relacion->departamento->idDepartamento);
     printf("Nombre del departamento: %s\n", relacion->departamento->nombre.str);
-    printf("Projecto del departamento: %s\n", relacion->departamento->projecto.str);|
+    printf("Projecto del departamento: %s\n", relacion->departamento->projecto.str);
     printf("Id del empleado: %i\n", relacion->empleado->idEmpleado);
     printf("Nombre del empleado: %s\n", relacion->empleado->nombre.str);
     printf("Sueldo del empleado: %f\n", relacion->empleado->sueldo);
 
-    retuirn 0;
+    return 0;
 }
