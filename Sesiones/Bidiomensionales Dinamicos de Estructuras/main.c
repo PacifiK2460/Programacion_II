@@ -80,6 +80,7 @@ int main(){
     FILE* stream = fopen("data.txt", "a+");
     if(stream == 0) return -1;
     writeDato(*current, stream);
+    fclose(stream);
 
     printf("\n");
 
