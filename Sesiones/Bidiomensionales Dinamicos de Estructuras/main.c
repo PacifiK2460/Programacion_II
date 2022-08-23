@@ -14,7 +14,26 @@ typedef struct Dato{
   double calificaciones[CALIFICACIONES];
 } Dato;
 
-int writeDato()
+int writeDato(Dato dato, FILE* stream){
+  if(stream == 0) return -1;
+
+  fprintf(stream,"%i\n"
+  "%s\n"
+  "%i\n"
+  "%s\n"
+  "%lf\n"
+  "%lf\n"
+  "%lf\n",
+  dato.matricula,
+  dato.nombre.str,
+  dato.edad,
+  dato.carrera.str,
+  dato.calificaciones[0],
+  dato.calificaciones[1],
+  dato.calificaciones[2]);
+
+  return 1;
+}
 
 int main(){
   LList* memory = LList_new();
@@ -57,6 +76,10 @@ int main(){
     for(int i = 0; i < CALIFICACIONES; i++){
       printf("\tCalificación %i: %lf\n", i, current->calificaciones[i]);
     }
+
+    FILE* stream = fopen("data.txt", "a+");
+    if(stream == 0) return -1;
+    writeDato(*current, stream);
 
     printf("\n");
 

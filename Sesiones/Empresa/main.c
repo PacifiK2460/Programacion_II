@@ -56,6 +56,22 @@ int writeRelacion(Relacion relacion, FILE* stream){
     return 1;
 }
 
+int readRelacion(Relacion* relacion, FILE* stream){
+    if(stream == 0) return -1;
+
+    if( evaluarInt(&relacion->idRelación, stream) == -1) return 0;
+    if( evaluarInt(&relacion->empresa->idEmpresa, stream) == -1) return 0;
+    if( evaluarString(&relacion->empresa->RazonSocial, stream) == -1) return 0;
+    if( evaluarInt(&relacion->departamento->idDepartamento, stream) == -1) return 0;
+    if( evaluarString(&relacion->departamento->nombre, stream) == -1) return 0;
+    if( evaluarString(&relacion->departamento->projecto, stream) == -1) return 0;
+    if( evaluarInt(&relacion->empleado->idEmpleado, stream) == -1) return 0;
+    if( evaluarString(&relacion->empleado->nombre, stream) == -1) return 0;
+    if( evaluarDouble(&relacion->empleado->sueldo, stream) == -1) return 0;
+
+    return 1;
+}
+
 int main(){
     int N = 0;
     input("N: ", evaluarInt(&N, stdin));
