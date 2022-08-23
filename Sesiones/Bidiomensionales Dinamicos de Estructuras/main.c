@@ -14,6 +14,8 @@ typedef struct Dato{
   double calificaciones[CALIFICACIONES];
 } Dato;
 
+int writeDato()
+
 int main(){
   LList* memory = LList_new();
   

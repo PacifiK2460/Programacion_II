@@ -23,13 +23,13 @@ typedef struct Empleado{
 
 typedef struct Relacion{
     int idRelación;
-    Empresa* empresa;
-    Departamento* departamento;
-    Empleado* empleado;
+    Empresa empresa;
+    Departamento departamento;
+    Empleado empleado;
 } Relacion;
 
-int writeRelacion(Relacion* relacion, FILE* stream){
-    if(relacion == 0 || stream == 0) return -1;
+int writeRelacion(Relacion relacion, FILE* stream){
+    if(stream == 0) return -1;
 
     fprintf(stream,"%i\n"
     "%i\n"
@@ -43,57 +43,55 @@ int writeRelacion(Relacion* relacion, FILE* stream){
     "%s\n"
     "%lf\n",
     
-    relacion->idRelación,
-    relacion->empresa->idEmpresa,
-    relacion->empresa->RazonSocial.str,
-    
-    relacion->departamento->idDepartamento,
-    relacion->departamento->nombre.str,
-    relacion->departamento->projecto.str,
-    
-    relacion->empleado->idEmpleado,
-    relacion->empleado->nombre.str,
-    relacion->empleado->sueldo);
+    relacion.idRelación,
+    relacion.empresa->idEmpresa,
+    relacion.empresa->RazonSocial.str,
+    relacion.departamento->idDepartamento,
+    relacion.departamento->nombre.str,
+    relacion.departamento->projecto.str,
+    relacion.empleado->idEmpleado,
+    relacion.empleado->nombre.str,
+    relacion.empleado->sueldo);
 
     return 1;
 }
 
 int main(){
-    Relacion *relacion = malloc(sizeof(Relacion));
+    int N = 0;
+    input("N: ", evaluarInt(&N, stdin));
+    Relacion *relacion = malloc( N * sizeof(Relacion));
     if(relacion == 0) return -1;
 
-    relacion->empleado = malloc(sizeof(Empleado));
-    relacion->departamento = malloc(sizeof(Departamento));
-    relacion->empresa = malloc(sizeof(Empresa));
+    for(int i = 0; i < N; i++){
+        input("idRelación: ", evaluarInt(&relacion[i].idRelación, stdin));
+        input("idEmpresa: ", evaluarInt(&relacion[i].empresa->idEmpresa, stdin));
+        input("RazonSocial: ", evaluarString(&relacion[i].empresa->RazonSocial, stdin));
+        input("idDepartamento: ", evaluarInt(&relacion[i].departamento->idDepartamento, stdin));
+        input("nombre: ", evaluarString(&relacion[i].departamento->nombre, stdin));
+        input("projecto: ", evaluarString(&relacion[i].departamento->projecto, stdin));
+        input("idEmpleado: ", evaluarInt(&relacion[i].empleado->idEmpleado, stdin));
+        input("nombre: ", evaluarString(&relacion[i].empleado->nombre, stdin));
+        input("sueldo: ", evaluarDouble(&relacion[i].empleado->sueldo, stdin));
+    }
 
-    if(relacion->empleado == 0 || relacion->departamento == 0 || relacion->empresa == 0) return -1;
 
-    input("Id de la relación: ", evaluarInt(&relacion->idRelación, stdin));
-    input("Id de la empresa: ", evaluarInt(&relacion->empresa->idEmpresa, stdin));
-    input("Razon social de la empresa: ", evaluarString(&relacion->empresa->RazonSocial, stdin));
+    printf("\nDatos obtenidos:");
+    for(int i = 0; i < N;  i++){
+        printf("\nidRelación: %i", relacion[i].idRelación);
+        printf("\nidEmpresa: %i", relacion[i].empresa->idEmpresa);
+        printf("\nRazonSocial: %i", relacion[i].empresa->RazonSocial.str);
+        printf("\nidDepartamento: %i", relacion[i].departamento->idDepartamento);
+        printf("\nnombre: %i", relacion[i].departamento->nombre.str);
+        printf("\nprojecto: %i", relacion[i].departamento->projecto.str);
+        printf("\nidEmpleado: %i", relacion[i].empleado->idEmpleado);
+        printf("\nnombre: %i", relacion[i].empleado->nombre.str);
+        printf("\nsueldo: %i", relacion[i].empleado->sueldo);
+    }
 
-    input("Id del departamento: ", evaluarInt(&relacion->departamento->idDepartamento, stdin));
-    input("Nombre del departamento: ", evaluarString(&relacion->departamento->nombre, stdin));
-    input("Projecto del departamento: ", evaluarString(&relacion->departamento->projecto, stdin));
-
-    input("Id del empleado: ", evaluarInt(&relacion->empleado->idEmpleado, stdin));
-    input("Nombre del empleado: ", evaluarString(&relacion->empleado->nombre, stdin));
-    input("Sueldo del empleado: ", evaluarDouble(&relacion->empleado->sueldo, stdin));
-
-    printf("Datos obtenidos: \n");
-    printf("Id de la relación: %i\n", relacion->idRelación);
-    printf("Id de la empresa: %i\n", relacion->empresa->idEmpresa);
-    printf("Razon social de la empresa: %s\n", relacion->empresa->RazonSocial.str);
-    printf("Id del departamento: %i\n", relacion->departamento->idDepartamento);
-    printf("Nombre del departamento: %s\n", relacion->departamento->nombre.str);
-    printf("Projecto del departamento: %s\n", relacion->departamento->projecto.str);
-    printf("Id del empleado: %i\n", relacion->empleado->idEmpleado);
-    printf("Nombre del empleado: %s\n", relacion->empleado->nombre.str);
-    printf("Sueldo del empleado: %f\n", relacion->empleado->sueldo);
 
 
     FILE* stream = fopen("data.txt", "w");
     if(stream == 0) return -1;
-    writeRelacion(relacion, stream);
+    writeRelacion(*relacion, stream);
     return 0;
 }
