@@ -68,23 +68,23 @@ int readRelacion(Relacion *relacion, FILE *stream)
         return -1;
 
     if (evaluarInt(&(relacion->idRelación), stream) == -1)
-        return 0;
+        return -1;
     if (evaluarInt(&(relacion->empresa.idEmpresa), stream) == -1)
-        return 0;
+        return -1;
     if (evaluarString(&(relacion->empresa.RazonSocial), stream) == -1)
-        return 0;
+        return -1;
     if (evaluarInt(&(relacion->departamento.idDepartamento), stream) == -1)
-        return 0;
+        return -1;
     if (evaluarString(&(relacion->departamento.nombre), stream) == -1)
-        return 0;
+        return -1;
     if (evaluarString(&(relacion->departamento.projecto), stream) == -1)
-        return 0;
+        return -1;
     if (evaluarInt(&(relacion->empleado.idEmpleado), stream) == -1)
-        return 0;
+        return -1;
     if (evaluarString(&(relacion->empleado.nombre), stream) == -1)
-        return 0;
+        return -1;
     if (evaluarDouble(&(relacion->empleado.sueldo), stream) == -1)
-        return 0;
+        return -1;
 
     return 1;
 }
@@ -126,6 +126,9 @@ int main()
     }
 
     printf("\nDatos obtenidos:");
+    FILE *stream = fopen("data.txt", "w");
+    if (stream == 0)
+        return -1;
     for (int i = 0; i < N; i++)
     {
         for (int j = 0; j < Js[i]; j++)
@@ -140,11 +143,12 @@ int main()
             printf("\nnombre: %s", relacion[i][j].empleado.nombre.str);
             printf("\nsueldo: %fl", relacion[i][j].empleado.sueldo);
 
-            FILE *stream = fopen("data.txt", "w");
-            if (stream == 0)
+            if (writeRelacion(relacion[i][j], stream) == -1)
+            {
+                printf("\n[FATAL] Error al escribir en el archivo, parando para prevenir corrupcion de datos");
+                fclose(stream);
                 return -1;
-            writeRelacion(relacion[i][j], stream);
-            fclose(stream);
+            }
 
             free(relacion[i][j].empresa.RazonSocial.str);
             free(relacion[i][j].departamento.nombre.str);
@@ -153,6 +157,7 @@ int main()
         }
         free(relacion[i]);
     }
+    fclose(stream);
     free(relacion);
 
     return 0;
