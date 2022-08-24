@@ -78,12 +78,12 @@ int inputRelacion(Relacion* relacion){
 int main(){
     // Sesiones
     int N = 0;
-    input("Ingrese el numero de sesiones: ", evaluarInt(stdin, &N) );
+    input("Ingrese el numero de sesiones: ", evaluarInt(&N,stdin) );
     Relacion **dato = (Relacion**)malloc(N * sizeof(Relacion*));
 
     // Relaciones de cada sesion
     int M = 0;
-    input("Ingrese el numero de relaciones: ", evaluarInt(stdin, &M) );
+    input("Ingrese el numero de relaciones: ", evaluarInt(&M,stdin) );
     for(int i = 0; i < N; i++){
         dato[i] = (Relacion*)malloc(M * sizeof(Relacion));
     }
