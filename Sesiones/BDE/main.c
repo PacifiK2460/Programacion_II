@@ -79,7 +79,7 @@ int inputRelacion(Relacion* relacion){
 
 int main(){
     // Sesiones
-    int N = 0;E
+    int N = 0;
     input("Ingrese el numero de sesiones: ", evaluarInt(&N,stdin) );
     Relacion **dato = (Relacion**)malloc(N * sizeof(Relacion*));
 
