@@ -91,14 +91,14 @@ int main(){
     // Relacion Input
     for(int i = 0; i < N; i++){
         for(int j = 0; j < M; j++){
-            inputRelacion(dato[i][j]);
+            inputRelacion(&dato[i][j]);
         }
     }
 
     // Relacion Output
     for(int i = 0; i < N; i++){
         for(int j = 0; j < M; j++){
-            writeRelacion(*dato[i][j], stdout);
+            writeRelacion(dato[i][j], stdout);
         }
     }
     
@@ -110,7 +110,6 @@ int main(){
                 free(dato[i][j].departamento.nombre.str);
                 free(dato[i][j].departamento.projecto.str);
                 free(dato[i][j].empresa.RazonSocial.str);
-                free(dato[i][j]);
             }
             free(dato[i]);
         }
