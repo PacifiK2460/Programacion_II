@@ -73,11 +73,13 @@ int inputRelacion(Relacion* relacion){
     input("idEmpleado: ", evaluarInt(&relacion->empleado.idEmpleado,stdin));
     input("nombre: ", evaluarString(&relacion->empleado.nombre,stdin));
     input("sueldo: ", evaluarDouble(&relacion->empleado.sueldo,stdin));
+
+    return 1;
 }
 
 int main(){
     // Sesiones
-    int N = 0;
+    int N = 0;E
     input("Ingrese el numero de sesiones: ", evaluarInt(&N,stdin) );
     Relacion **dato = (Relacion**)malloc(N * sizeof(Relacion*));
 
