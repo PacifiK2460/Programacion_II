@@ -64,15 +64,15 @@ int writeRelacion(Relacion relacion, FILE *stream)
 }
 
 int inputRelacion(Relacion* relacion){
-    input("idRelación: ", evaluarInt(&relacion.idRelación, stdin));
-    input("idEmpresa: ", evaluarInt(&relacion.empresa.idEmpresa, stdin));
-    input("RazonSocial: ", evaluarString(&relacion.empresa.RazonSocial, stdin));
-    input("idDepartamento: ", evaluarInt(&relacion.departamento.idDepartamento, stdin));
-    input("nombre: ", evaluarString(&relacion.departamento.nombre, stdin));
-    input("projecto: ", evaluarString(&relacion.departamento.projecto, stdin));
-    input("idEmpleado: ", evaluarInt(&relacion.empleado.idEmpleado, stdin));
-    input("nombre: ", evaluarString(&relacion.empleado.nombre, stdin));
-    input("sueldo: ", evaluarDouble(&relacion.empleado.sueldo, stdin));
+    input("idRelación: ", evaluarInt(stdin, &relacion->idRelación));
+    input("idEmpresa: ", evaluarInt(stdin, &relacion->empresa.idEmpresa));
+    input("RazonSocial: ", evaluarString(stdin, &relacion->empresa.RazonSocial));
+    input("idDepartamento: ", evaluarInt(stdin, &relacion->departamento.idDepartamento));
+    input("nombre: ", evaluarString(stdin, &relacion->departamento.nombre));
+    input("projecto: ", evaluarString(stdin, &relacion->departamento.projecto));
+    input("idEmpleado: ", evaluarInt(stdin, &relacion->empleado.idEmpleado));
+    input("nombre: ", evaluarString(stdin, &relacion->empleado.nombre));
+    input("sueldo: ", evaluarDouble(stdin, &relacion->empleado.sueldo));
 }
 
 int main(){
