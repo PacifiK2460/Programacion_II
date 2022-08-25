@@ -33,32 +33,58 @@ typedef struct Relacion
     Empleado empleado;
 } Relacion;
 
-int writeRelacion(Relacion relacion, FILE *stream)
+int writeRelacion(Relacion relacion, FILE *stream, int FORMAT)
 {
     if (stream == 0)
         return -1;
 
-    fprintf(stream, "%i\n"
-                    "%i\n"
-                    "%s\n"
+    if (FORMAT == 0){
+        fprintf(stream, "%i\n"
+                        "%i\n"
+                        "%s\n"
 
-                    "%i\n"
-                    "%s\n"
-                    "%s\n"
+                        "%i\n"
+                        "%s\n"
+                        "%s\n"
 
-                    "%i\n"
-                    "%s\n"
-                    "%lf\n",
+                        "%i\n"
+                        "%s\n"
+                        "%lf\n",
 
-            relacion.idRelación,
-            relacion.empresa.idEmpresa,
-            relacion.empresa.RazonSocial.str,
-            relacion.departamento.idDepartamento,
-            relacion.departamento.nombre.str,
-            relacion.departamento.projecto.str,
-            relacion.empleado.idEmpleado,
-            relacion.empleado.nombre.str,
-            relacion.empleado.sueldo);
+                relacion.idRelación,
+                relacion.empresa.idEmpresa,
+                relacion.empresa.RazonSocial.str,
+                relacion.departamento.idDepartamento,
+                relacion.departamento.nombre.str,
+                relacion.departamento.projecto.str,
+                relacion.empleado.idEmpleado,
+                relacion.empleado.nombre.str,
+                relacion.empleado.sueldo);
+        return 1;
+    }
+
+    fprintf(stream, "Relacion IdRelacion: %i\n"
+                "Relacion Empresa idEmpresa: %i\n"
+                "Relacion Empresa RazonSocial: %s\n"
+
+                "Relacion Departamento idDepartamento: %i\n"
+                "Relacion Departamento Nombre: %s\n"
+                "Relacion Departamento Projecto: %s\n"
+
+                "Relacion Empleado idEmpleado: %i\n"
+                "Relacion Empleado Nombre: %s\n"
+                "Relacion Empleado Sueldo: %lf\n",
+
+        relacion.idRelación,
+        relacion.empresa.idEmpresa,
+        relacion.empresa.RazonSocial.str,
+        relacion.departamento.idDepartamento,
+        relacion.departamento.nombre.str,
+        relacion.departamento.projecto.str,
+        relacion.empleado.idEmpleado,
+        relacion.empleado.nombre.str,
+        relacion.empleado.sueldo);
+
 
     return 1;
 }
@@ -84,30 +110,30 @@ int main(){
     Relacion **dato = (Relacion**)malloc(N * sizeof(Relacion*));
 
     // Relaciones de cada sesion
-    int M = 0;
-    input("Ingrese el numero de relaciones: ", evaluarInt(&M,stdin) );
+    int M[N] = {0};
     for(int i = 0; i < N; i++){
-        dato[i] = (Relacion*)malloc(M * sizeof(Relacion));
+        input("Ingrese el numero de relaciones: ", evaluarInt(&M[i],stdin) );
+        dato[i] = (Relacion*)malloc(M[i] * sizeof(Relacion));
     }
 
     // Relacion Input
     for(int i = 0; i < N; i++){
-        for(int j = 0; j < M; j++){
+        for(int j = 0; j < M[i]; j++){
             inputRelacion(&dato[i][j]);
         }
     }
 
     // Relacion Output
     for(int i = 0; i < N; i++){
-        for(int j = 0; j < M; j++){
-            writeRelacion(dato[i][j], stdout);
+        for(int j = 0; j < M[i]; j++){
+            writeRelacion(dato[i][j], stdout,1);
         }
     }
     
     // Memory free
     {
         for(int i = 0; i < N; i++){
-            for(int j = 0; j < M; j++){
+            for(int j = 0; j < M[i]; j++){
                 free(dato[i][j].empleado.nombre.str);
                 free(dato[i][j].departamento.nombre.str);
                 free(dato[i][j].departamento.projecto.str);
