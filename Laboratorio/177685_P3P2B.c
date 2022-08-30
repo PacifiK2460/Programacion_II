@@ -33,7 +33,7 @@ void llenado(LList* list, LList* pares){
 int main(){
     printInfo();
 
-    time(0);
+    srand(time(0));
 
     LList *list = LList_new();
     LList *pares = LList_new();
