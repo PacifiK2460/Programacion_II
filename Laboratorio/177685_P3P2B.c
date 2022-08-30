@@ -10,7 +10,7 @@
 int main(){
     printInfo();
 
-    time(0);
+    srand(time(NULL));
 
     LList *list = LList_new();
     LList *pares = LList_new();
@@ -25,7 +25,7 @@ int main(){
             // Esta memoria la vamos a dejar "volando", no queremos
             // que se libere, por eso no usamos malloc()
             int *numero = malloc(sizeof(int));
-            *numero = rand() % 'a' + 'a';
+            *numero = 'a' + rand() % ('z' - 'a');
 
             if(*numero % 2 == 0){
                 LList_add(pares, numero);
@@ -39,12 +39,13 @@ int main(){
     printf("Vector original, %d elementos: \n", list->size);
     for(int i = 0; i < list->size; i++){
         int *numero = LList_get(list, i);
-        printf("%c [%c]\t", *numero, *numero);
+        printf("%c [%d]\t", *numero, *numero);
     }
 
     printf("\nVector de elementos pares, %d elementos: \n", pares->size);
-    for(int i = pares->size; i >= 0 ; i--){
+    for(int i = pares->size-1; i != 0 ; i--){
         int *numero = LList_get(pares, i);
-        printf("%c [%c]\t", *numero, *numero);
+        printf("%c [%d]\t", *numero, *numero);
     }
+  printf("\n");
 }

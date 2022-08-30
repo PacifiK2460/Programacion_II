@@ -22,6 +22,6 @@ struct automovil{
 
 struct registro{
     int id;
-    *venta vendedor;
-    *auto vehiculo;
+    vendedor* vendedor;
+    automovil* vehiculo;
 };
