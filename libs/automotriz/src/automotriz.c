@@ -5,23 +5,23 @@ typedef struct address{
     int number;
 } address;
 
-typedef struct vendedor{
+struct vendedor{
     int id;
     String nombre;
     String apellido;
     String correo;
     String telefono;
     address direccion;
-} vendedor;
+};
 
-typedef struct auto{
+struct automovil{
     int id;
     double precio;
     String descripcion;
-} auto;
+};
 
-typedef struct registro{
+struct registro{
     int id;
     *venta vendedor;
-    *auto auto;
-} registro;
+    *auto vehiculo;
+};
