@@ -7,15 +7,8 @@
 
 #include <time.h>
 
-int main(){
-    printInfo();
-
-    time(0);
-
-    LList *list = LList_new();
-    LList *pares = LList_new();
-
-    // Hacemos la actividad, dejamos a largo como una variable temporal
+void llenado(LList* list, LList* pares){
+        // Hacemos la actividad, dejamos a largo como una variable temporal
     {
         // Creamos de largo aleatorio de entre 6 y 25
         int largo = rand() % 25 + 6;
@@ -35,6 +28,17 @@ int main(){
             LList_add(list, numero);
         }
     }
+}
+
+int main(){
+    printInfo();
+
+    time(0);
+
+    LList *list = LList_new();
+    LList *pares = LList_new();
+
+    llenado(list, pares);
 
     printf("Vector original, %d elementos: \n", list->size);
     for(int i = 0; i < list->size; i++){
