@@ -1,6 +1,6 @@
 #include "../automotriz.h"
 
-typedef struct _address {
+typedef struct address{
     String street;
     int number;
 } address;
@@ -14,13 +14,13 @@ typedef struct vendedor{
     address direccion;
 } vendedor;
 
-typedef struct{
+typedef struct auto{
     int id;
     double precio;
     String descripcion;
 } auto;
 
-typedef struct {
+typedef struct registro{
     int id;
     *venta vendedor;
     *auto auto;

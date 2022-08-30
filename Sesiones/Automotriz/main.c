@@ -5,8 +5,8 @@
 
 int main(){
 
-    auto Catalogo[100];
-    vendedor Vendedores[100];
+    auto* Catalogo;
+    vendedor* Vendedores;
 
     // Inicializado de catalogo
     // ...
