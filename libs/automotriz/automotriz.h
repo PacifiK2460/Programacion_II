@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include "string/string.h"
 
-typedef struct _vendedor vendedor;
-typedef struct _auto auto;
-typedef struct _registro registro;
+typedef struct vendedor;
+typedef struct auto;
+typedef struct registro;
 
 #endif
