@@ -47,7 +47,7 @@ int main(){
     }
 
     printf("\nVector de elementos pares, %d elementos: \n", pares->size);
-    for(int i = pares->size-1; i != 0 ; i--){
+    for(int i = pares->size-1; i > -1 ; i--){
         int *numero = LList_get(pares, i);
         printf("%c [%d]\t", *numero, *numero);
     }
