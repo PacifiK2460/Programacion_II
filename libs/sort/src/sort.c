@@ -6,20 +6,23 @@
     Continue till left is less than right
     Then call merge function to perform merge sort.
 */
-void merge(int* arr, int* mid, int* size){
+void mergesort(void* arr, void* size, int(*compar)(const void *, const void *)){
     int i = 0, j = mid, k = 0;
     int left = *arr;
     int right = *mid;
     int rear = *size;
     int temp[rear];
+    
     while(i < right && j < rear){
-        if(arr[i] < arr[j]){
-            temp[k] = arr[i];
-            i++;
-        }
-        else{
-            temp[k] = arr[j];
-            j++;
+        switch(compare(arr[i], arr[j])){
+            case -1:
+                temp[k] = arr[i];
+                i++;
+                break;
+            default:
+                temp[k] = arr[j];
+                j++;
+                break;
         }
         k++;
     }
