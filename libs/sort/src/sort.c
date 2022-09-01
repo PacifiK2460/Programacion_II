@@ -6,33 +6,34 @@
     Continue till left is less than right
     Then call merge function to perform merge sort.
 */
-void mergesort(void* arr, void* size, int(*compar)(const void *, const void *)){
+void mergesort(void* arr, int size, int(*compar)(const void *, const void *)){
+    int mid = size/2;
     int i = 0, j = mid, k = 0;
-    int left = *arr;
-    int right = *mid;
-    int rear = *size;
-    int temp[rear];
+    int left = 0;
+    int right = mid;
+    int rear = size;
+    void* temp[rear];
     
     while(i < right && j < rear){
-        switch(compare(arr[i], arr[j])){
+        switch(compar(arr + i, arr + j)){
             case -1:
-                temp[k] = arr[i];
+                temp[k] = arr + i;
                 i++;
                 break;
             default:
-                temp[k] = arr[j];
+                temp[k] = arr + j;
                 j++;
                 break;
         }
         k++;
     }
     while(i < right){
-        temp[k] = arr[i];
+        temp[k] = arr + i;
         i++;
         k++;
     }
     while(j < rear){
-        temp[k] = arr[j];
+        temp[k] = arr + j;
         j++;
         k++;
     }
@@ -41,11 +42,12 @@ void mergesort(void* arr, void* size, int(*compar)(const void *, const void *)){
     }
 }
 
-void mergesort(int* arr, int* size){
+void mergesort(int* arr, int size, int(*compar)(const void *, const void *)){
     if(arr < size){
         int* mid = (arr+size)/2;
-        mergesort(arr,mid);
-        mergesort(arr,mid+1,size);
+        mergesort(arr,mid,compar);
+        mergesort(arr,mid+1,size,compar);
+      // WRONG
         merge(arr,mid,size);
     }
     return;
