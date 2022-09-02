@@ -94,11 +94,11 @@ int main(){
         for(int j = 0; j < registros[i]; j++){
             printf("Introduzca la noticia %d:  (del la lista %d) ", j+1, i+1);
 
-            registro[i]->iDNoticia = rand() % 50 + j;
+            registro[i][j]->iDNoticia = rand() % 50 + j;
 
-            input("Introduzca la noticia: ", evaluarString(&registro[i]->noticia, stdin));
-            input("Introduzca el encabezado: ", evaluarString(&registro[i]->encabezado, stdin));
-            input("Introduzca el nombre del autor: ", evaluarString(&registro[i]->nombreAutor, stdin));
+            input("Introduzca la noticia: ", evaluarString(&registro[i][j]->noticia, stdin));
+            input("Introduzca el encabezado: ", evaluarString(&registro[i][j]->encabezado, stdin));
+            input("Introduzca el nombre del autor: ", evaluarString(&registro[i][j]->nombreAutor, stdin));
             
             printf("Clasificaciones disponibles: \n");
             printf("1. Social\n");
@@ -106,12 +106,12 @@ int main(){
             printf("3. Economica\n");
             printf("4. Cultural\n");
             printf("5. Cientifica\n");
-            input("Introduzca la clasificacion [1 - 5]: ", evaluarInt(&registro[i]->clasificacion, stdin));
+            input("Introduzca la clasificacion [1 - 5]: ", evaluarInt(&registro[i][j]->clasificacion, stdin));
             
             printf("Tipos disponibles: \n");
             printf("1. Nacional\n");
             printf("2. Internacional\n");
-            input("Introduzca el tipo [1 - 2]: ", evaluarInt(&registro[i]->tipo, stdin));
+            input("Introduzca el tipo [1 - 2]: ", evaluarInt(&registro[i][j]->tipo, stdin));
         }
     }
 
@@ -120,7 +120,7 @@ int main(){
         printf("Listado %d: \n", i+1);
         for(int j = 0; j < registros[i]; j++){
             printf("\tNoticia %d: \n", j+1);
-            printNoticia(registro[i]);
+            printNoticia(registro[j]);
         }
     }
 
@@ -149,7 +149,7 @@ int main(){
         printf("Listado %d: \n", i+1);
         for(int j = 0; j < registros[i]; j++){
             printf("\tNoticia %d: \n", j+1);
-            printNoticia(registro[i]);
+            printNoticia(registro[j]);
         }
     }
 }
