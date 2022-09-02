@@ -63,6 +63,19 @@ void printNoticia(Noticia* registro){
     printf("\t\tNombre del autor: %s\n", registro->nombreAutor.str);
 }
 
+void sortd(Noticia* registro, int registros){
+    // Ordenamos el arreglo de registros
+    for(int i = 0; i < registros; i++){
+        for(int j = 0; j < registros; j++){
+            if(registro[i].iDNoticia < registro[j].iDNoticia){
+                Noticia temp = registro[i];
+                registro[i] = registro[j];
+                registro[j] = temp;
+            }
+        }
+    }
+}
+
 int main(){
     srand(time(NULL));
     Noticia** registro;
@@ -125,15 +138,7 @@ int main(){
 
     // Ordenamos solo las filas de la matriz
     for(int i = 0; i < nRegistros; i++){
-        for(int j = 0; j < registros[i]; j++){
-            for(int k = 0; k < registros[i]; k++){
-                if(registro[i][j].iDNoticia < registro[i][k].iDNoticia){
-                    Noticia aux = registro[i][j];
-                    registro[i][j] = registro[i][k];
-                    registro[i][k] = aux;
-                }
-            }
-        }
+        sortd(registro[i], registros[i]);
     }
 
     printf("Noticias ordenadas: \n");
