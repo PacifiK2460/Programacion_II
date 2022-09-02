@@ -57,17 +57,6 @@ int main(){
         alumnos[2][0].edad = 26;
         alumnos[2][1].edad = 27;
         alumnos[2][2].edad = 28;
-
-        alumnos[0][0].nombre = "Juan";
-        alumnos[0][1].nombre = "Pedro";
-        alumnos[1][0].nombre = "Maria";
-        alumnos[1][1].nombre = "Luis";
-        alumnos[1][2].nombre = "Ana";
-        alumnos[1][3].nombre = "Jose";
-        alumnos[2][0].nombre = "Luisa";
-        alumnos[2][1].nombre = "Rosa";
-        alumnos[2][2].nombre = "Lorena";
-        
     }
 
     // Impresión de datos antes de ordenas
