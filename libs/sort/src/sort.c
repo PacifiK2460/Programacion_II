@@ -6,12 +6,10 @@
     Continue till left is less than right
     Then call merge function to perform merge sort.
 */
-void mergesort(void* arr, int size, int(*compar)(const void *, const void *)){
+void mergesort(void* left,void* mid ,void* rear, int(*compar)(const void *, const void *)){
     int mid = size/2;
-    int i = 0, j = mid, k = 0;
-    int left = 0;
+    int i = left, j = mid, k = 0;
     int right = mid;
-    int rear = size;
     void* temp[rear];
     
     while(i < right && j < rear){
@@ -45,7 +43,7 @@ void mergesort(void* arr, int size, int(*compar)(const void *, const void *)){
 void mergesort(int* arr, int size, int(*compar)(const void *, const void *)){
     if(arr < size){
         int* mid = (arr+size)/2;
-        mergesort(arr,mid,compar);
+        mergesort(arr,mid,size,compar);
         mergesort(arr,mid+1,size,compar);
       // WRONG
         merge(arr,mid,size);
