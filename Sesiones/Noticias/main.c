@@ -80,9 +80,9 @@ int main(){
 
             registro[i]->iDNoticia = rand() % 1000;
 
-            input("Introduzca la noticia: ", evaluarString(registro[i]->noticia, stdin));
-            input("Introduzca el encabezado: ", evaluarString(registro[i]->encabezado, stdin));
-            input("Introduzca el nombre del autor: ", evaluarString(registro[i]->nombreAutor, stdin));
+            input("Introduzca la noticia: ", evaluarString(&registro[i]->noticia, stdin));
+            input("Introduzca el encabezado: ", evaluarString(&registro[i]->encabezado, stdin));
+            input("Introduzca el nombre del autor: ", evaluarString(&registro[i]->nombreAutor, stdin));
             
             printf("Clasificaciones disponibles: \n");
             printf("1. Social\n");
@@ -96,6 +96,21 @@ int main(){
             printf("1. Nacional\n");
             printf("2. Internacional\n");
             input("Introduzca el tipo [1 - 2]: ", evaluarInt(&registro[i]->tipo, stdin));
+        }
+    }
+
+    // Preguntamos por la noticia  mostrar
+    while(1){
+        int noticia;
+        input("Introduzca el numero de noticia a mostrar, 0 para salir: ", evaluarInt(&noticia, stdin));
+        if(noticia == 0) break;
+        for(int i = 0; i < nRegistros; i++){
+            for(int j = 0; j < registros[i]; j++){
+                if(noticia == registro[i]->iDNoticia){
+                    printNoticia(registro[i]);
+                    break;
+                }
+            }
         }
     }
 
