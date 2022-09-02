@@ -76,9 +76,9 @@ int main(){
         registro[i] = (Noticia*) malloc(sizeof(Noticia));
 
         for(int j = 0; j < registros[i]; j++){
-            printf("Introduzca la noticia %d:  (del la lista %d)", j+1, i+1);
+            printf("Introduzca la noticia %d:  (del la lista %d) ", j+1, i+1);
 
-            registro[i]->iDNoticia = rand() % 1000;
+            registro[i]->iDNoticia = rand() % 50;
 
             input("Introduzca la noticia: ", evaluarString(&registro[i]->noticia, stdin));
             input("Introduzca el encabezado: ", evaluarString(&registro[i]->encabezado, stdin));
@@ -123,8 +123,7 @@ int main(){
         }
     }
 
-
-    // ordenamos las noticias por ID
+    // Ordenamos solo las filas de la matriz
     for(int i = 0; i < nRegistros; i++){
         for(int j = 0; j < registros[i]; j++){
             for(int k = 0; k < registros[i]; k++){
@@ -136,6 +135,7 @@ int main(){
             }
         }
     }
+
     printf("Noticias ordenadas: \n");
     for(int i = 0; i < nRegistros; i++){
         printf("Listado %d: \n", i+1);
