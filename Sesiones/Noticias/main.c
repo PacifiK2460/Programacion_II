@@ -64,16 +64,19 @@ void printNoticia(Noticia* registro){
 }
 
 void sortd(Noticia* registro, int registros){
-    // Ordenamos el arreglo de registros
-    for(int i = 0; i < registros; i++){
-        for(int j = 0; j < registros; j++){
-            if(registro[i].iDNoticia < registro[j].iDNoticia){
-                Noticia temp = registro[i];
-                registro[i] = registro[j];
-                registro[j] = temp;
-            }
+    // insertion sort
+    int i, j;
+    Noticia key;
+    for(i = 1; i < registros; i++){
+        key = registro[i];
+        j = i - 1;
+        while(j >= 0 && registro[j].iDNoticia > key.iDNoticia){
+            registro[j + 1] = registro[j];
+            j = j - 1;
         }
+        registro[j + 1] = key;
     }
+    return;
 }
 
 int main(){
@@ -91,7 +94,7 @@ int main(){
         for(int j = 0; j < registros[i]; j++){
             printf("Introduzca la noticia %d:  (del la lista %d) ", j+1, i+1);
 
-            registro[i]->iDNoticia = rand() % 50;
+            registro[i]->iDNoticia = rand() % 50 + j;
 
             input("Introduzca la noticia: ", evaluarString(&registro[i]->noticia, stdin));
             input("Introduzca el encabezado: ", evaluarString(&registro[i]->encabezado, stdin));
