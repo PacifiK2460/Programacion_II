@@ -42,10 +42,9 @@ void mergesort(void* left,void* mid ,void* rear, int(*compar)(const void *, cons
 
 void mergesort(void* arr, int size, int(*compar)(const void *, const void *)){
     if(arr < size){
-        int* mid = (arr+size)/2;
-        mergesort(arr,mid,size,compar);
-        mergesort(arr,mid+1,size,compar);
-      // WRONG
+        void* mid = (arr+size)/2;
+        mergesort(arr,size/2,compar);
+        mergesort(mid+1,size/2,compar);
         merge(arr,mid,size);
     }
     return;
