@@ -7,9 +7,9 @@
     Then call merge function to perform merge sort.
 */
 void mergesort(void* left,void* mid ,void* rear, int(*compar)(const void *, const void *)){
-    int mid = size/2;
-    int i = left, j = mid, k = 0;
-    int right = mid;
+    void* i = left, j = mid;
+    int k = 0;
+    void* right = mid;
     void* temp[rear];
     
     while(i < right && j < rear){
