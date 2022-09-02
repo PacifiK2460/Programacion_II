@@ -5,30 +5,29 @@
 #include "io/io.h"
 
 enum clasificacion {
-    1 = social,
+    social = 1,
     deportiva,
-    economica
+    economica,
     cultural,
     cientifica
 };
 
 enum tipo{
-    1 = nacional,
+    nacional = 1,
     internacional
 };
 
 
 typedef struct {
     int iDNoticia;
-    clasificacion clasificacion;
-    tipo tipo;
+    int clasificacion;
+    int tipo;
     char noticia[100];
     char encabezado[100];
     char nombreAutor[100];
 } Noticia;
 
 void printNoticia(Noticia* registro){
-    printf("\tNoticia %d: \n", j+1);
     // imprimimos la noticia
     printf("\t\tID: %d\n", registro->iDNoticia);
 
@@ -67,12 +66,12 @@ int main(){
     srand(time(NULL));
     Noticia** registro;
     int nRegistros;
-    input("Introduzca el numero de registros: ", "%d", &nRegistros);
+    input("Introduzca el numero de registros: ", &nRegistros);
     registro = (Noticia**) malloc(nRegistros * sizeof(Noticia*));
     int registros[nRegistros];
 
     for(int i = 0; i < nRegistros; i++){
-        input("Numero de noticia: ", "%d", &registros[i]);
+        input("Numero de noticia: ", &registros[i]);
         registro[i] = (Noticia*) malloc(sizeof(Noticia));
 
         for(int j = 0; j < registros[i]; j++){
@@ -80,9 +79,9 @@ int main(){
 
             registro[i]->iDNoticia = rand() % 1000;
 
-            input("Introduzca la noticia: ", "%s", registro[i]->noticia);
-            input("Introduzca el encabezado: ", "%s", registro[i]->encabezado);
-            input("Introduzca el nombre del autor: ", "%s", registro[i]->nombreAutor);
+            input("Introduzca la noticia: ", registro[i]->noticia);
+            input("Introduzca el encabezado: ", registro[i]->encabezado);
+            input("Introduzca el nombre del autor: ", registro[i]->nombreAutor);
             
             printf("Clasificaciones disponibles: \n");
             printf("1. Social\n");
@@ -90,7 +89,7 @@ int main(){
             printf("3. Economica\n");
             printf("4. Cultural\n");
             printf("5. Cientifica\n");
-            input("Introduzca la clasificacion [1 - 5]: ", "%d", &registro[i]->clasificacion);
+            input("Introduzca la clasificacion [1 - 5]: ", &registro[i]->clasificacion);
             
             printf("Tipos disponibles: \n");
             printf("1. Nacional\n");
@@ -103,6 +102,7 @@ int main(){
     for(int i = 0; i < nRegistros; i++){
         printf("Listado %d: \n", i+1);
         for(int j = 0; j < registros[i]; j++){
+            printf("\tNoticia %d: \n", j+1);
             printNoticia(registro[i]);
         }
     }
@@ -123,6 +123,7 @@ int main(){
     for(int i = 0; i < nRegistros; i++){
         printf("Listado %d: \n", i+1);
         for(int j = 0; j < registros[i]; j++){
+            printf("\tNoticia %d: \n", j+1);
             printNoticia(registro[i]);
         }
     }
