@@ -99,6 +99,15 @@ int main(){
         }
     }
 
+    printf("Noticias no ordenadas: \n");
+    for(int i = 0; i < nRegistros; i++){
+        printf("Listado %d: \n", i+1);
+        for(int j = 0; j < registros[i]; j++){
+            printf("\tNoticia %d: \n", j+1);
+            printNoticia(registro[i]);
+        }
+    }
+
     // Preguntamos por la noticia  mostrar
     while(1){
         int noticia;
@@ -114,14 +123,6 @@ int main(){
         }
     }
 
-    printf("Noticias no ordenadas: \n");
-    for(int i = 0; i < nRegistros; i++){
-        printf("Listado %d: \n", i+1);
-        for(int j = 0; j < registros[i]; j++){
-            printf("\tNoticia %d: \n", j+1);
-            printNoticia(registro[i]);
-        }
-    }
 
     // ordenamos las noticias por ID
     for(int i = 0; i < nRegistros; i++){
