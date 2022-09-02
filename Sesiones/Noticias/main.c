@@ -3,6 +3,7 @@
 #include <time.h>
 
 #include "io/io.h"
+#include "string/string.h"
 
 enum clasificacion {
     social = 1,
@@ -22,9 +23,9 @@ typedef struct {
     int iDNoticia;
     int clasificacion;
     int tipo;
-    char noticia[100];
-    char encabezado[100];
-    char nombreAutor[100];
+    String noticia;
+    String encabezado;
+    String nombreAutor;
 } Noticia;
 
 void printNoticia(Noticia* registro){
@@ -57,21 +58,21 @@ void printNoticia(Noticia* registro){
             break;
     }
     
-    printf("\t\tNoticia: %s\n", registro->noticia);
-    printf("\t\tEncabezado: %s\n", registro->encabezado);
-    printf("\t\tNombre del autor: %s\n", registro->nombreAutor);
+    printf("\t\tNoticia: %s\n", registro->noticia.str);
+    printf("\t\tEncabezado: %s\n", registro->encabezado.str);
+    printf("\t\tNombre del autor: %s\n", registro->nombreAutor.str);
 }
 
 int main(){
     srand(time(NULL));
     Noticia** registro;
     int nRegistros;
-    input("Introduzca el numero de registros: ", &nRegistros);
+    input("Introduzca el numero de registros: ", evaluarInt(&nRegistros, stdin));
     registro = (Noticia**) malloc(nRegistros * sizeof(Noticia*));
     int registros[nRegistros];
 
     for(int i = 0; i < nRegistros; i++){
-        input("Numero de noticia: ", &registros[i]);
+        input("Numero de noticia: ", evaluarInt(&registros[i], stdin));
         registro[i] = (Noticia*) malloc(sizeof(Noticia));
 
         for(int j = 0; j < registros[i]; j++){
@@ -79,9 +80,9 @@ int main(){
 
             registro[i]->iDNoticia = rand() % 1000;
 
-            input("Introduzca la noticia: ", registro[i]->noticia);
-            input("Introduzca el encabezado: ", registro[i]->encabezado);
-            input("Introduzca el nombre del autor: ", registro[i]->nombreAutor);
+            input("Introduzca la noticia: ", evaluarString(registro[i]->noticia, stdin));
+            input("Introduzca el encabezado: ", evaluarString(registro[i]->encabezado, stdin));
+            input("Introduzca el nombre del autor: ", evaluarString(registro[i]->nombreAutor, stdin));
             
             printf("Clasificaciones disponibles: \n");
             printf("1. Social\n");
@@ -89,12 +90,12 @@ int main(){
             printf("3. Economica\n");
             printf("4. Cultural\n");
             printf("5. Cientifica\n");
-            input("Introduzca la clasificacion [1 - 5]: ", &registro[i]->clasificacion);
+            input("Introduzca la clasificacion [1 - 5]: ", evaluarInt(&registro[i]->clasificacion, stdin));
             
             printf("Tipos disponibles: \n");
             printf("1. Nacional\n");
             printf("2. Internacional\n");
-            input("Introduzca el tipo [1 - 2]: ", &registro[i]->tipo);
+            input("Introduzca el tipo [1 - 2]: ", evaluarInt(&registro[i]->tipo, stdin));
         }
     }
 
