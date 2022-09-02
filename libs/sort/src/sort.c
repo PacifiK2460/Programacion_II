@@ -40,7 +40,7 @@ void mergesort(void* left,void* mid ,void* rear, int(*compar)(const void *, cons
     }
 }
 
-void mergesort(int* arr, int size, int(*compar)(const void *, const void *)){
+void mergesort(void* arr, int size, int(*compar)(const void *, const void *)){
     if(arr < size){
         int* mid = (arr+size)/2;
         mergesort(arr,mid,size,compar);
