@@ -13,7 +13,8 @@
         "sqs.h": "c",
         "stdlib.h": "c",
         "io.h": "c",
-        "bidi.h": "c"
+        "bidi.h": "c",
+        "automotriz.h": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "makefile.extensionOutputFolder": "./.vscode"

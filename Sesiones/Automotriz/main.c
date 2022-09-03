@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "io/io.h"
-#include "automotriz/automotriz.h"
+#include "../../libs/io/io.h"
+#include "../../libs/automotriz/automotriz.h"
 
 int main(){
 
@@ -9,39 +9,19 @@ int main(){
     vendedor* Vendedores;
 
     // Inicializado de 3 vehiculos en catalogo
-    Catalogo = (automovil*) malloc(3 * sizeof(automovil));
+    Catalogo = (automovil*) malloc(3 * automovilSize());
     {
-        Catalogo[0].id = 1;
-        Catalogo[0].precio = 500000;
-        setStringFromChar(Catalogo[0].descripcion, "Ford F-550");
-
-        Catalogo[1].id = 2;
-        Catalogo[1].precio = 1000000;
-        setStringFromChar(Catalogo[1].descripcion, "Chevrolet Silverado");
-
-        Catalogo[2].id = 3;
-        Catalogo[2].precio = 1500000;
-        setStringFromChar(Catalogo[2].descripcion, "Dodge Ram");
+        setAutomovil(&Catalogo[0], 1, 10000, newFrom("Ford Fiesta"));
+        setAutomovil(&Catalogo[1], 2, 20000, newFrom("Ford Focus"));
+        setAutomovil(&Catalogo[2], 3, 30000, newFrom("Ford Fusion"));
     }
 
     // Inicializado de 2 vendedores
     Vendedores = (vendedor*) malloc(2 * sizeof(vendedor));
     {
-        Vendedores[0].id = 1;
-        setStringFromChar(Vendedores[0].nombre, "Juan");
-        setStringFromChar(Vendedores[0].apellido, "Perez");
-        setStringFromChar(Vendedores[0].correo, "juanperez@hotmail.com");
-        setStringFromChar(Vendedores[0].telefono = "1234567890");
-        setStringFromChar(Vendedores[0].direccion.street = "Calle X");
-        Vendedores[0].direccion.number = 123;
+        setVendedor(&Vendedores[0], 1, newFrom("Juan"), newFrom("Perez"), newFrom("juanperez@hotmail.com"), newFrom("123456789"), 0);
 
-        Vendedores[1].id = 2;
-        setStringFromChar(Vendedores[1].nombre, "Maria");
-        setStringFromChar(Vendedores[1].apellido, "Gomez");
-        setStringFromChar(Vendedores[1].correo, "mariagomez@hotmail.com");
-        setStringFromChar(Vendedores[1].telefono = "0987654321");
-        setStringFromChar(Vendedores[1].direccion.street = "Calle Y");
-        Vendedores[1].direccion.number = 456;
+        setVendedor(&Vendedores[1], 2, newFrom("Maria"), newFrom("Gomez"), newFrom("mariagomez@hotmail.com"), newFrom("987654321"), 0);
     }
 
     registro* RegistrosDeVentas;

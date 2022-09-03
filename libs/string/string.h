@@ -2,9 +2,6 @@
 #ifndef STRING_H
 #define STRING_H
 
-#include <stdlib.h>
-#include <string.h>
-
 typedef struct String {
     char *str;
     int len;
@@ -15,5 +12,5 @@ String *newFrom(char *str);
 int setStringFromChar(String* dest,char* src);
 int setStringFromString(String* Dest, String* Src);
 void freeString(String* s);
-
+    
 #endif // STRING_H

@@ -1,5 +1,7 @@
 // Include header file
 #include "../string.h"
+#include <stdlib.h>
+#include <string.h>
 
 String *newString(){
     String* s = malloc(sizeof(String));
