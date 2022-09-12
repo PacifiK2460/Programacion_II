@@ -4,18 +4,10 @@
 #include <stdlib.h>
 
 // Linked List
-typedef struct LListNode {
-    void *data;
-    struct LListNode *next;
-} LListNode;
+struct LList;
+typedef struct LList LList;
 
-typedef struct LList {
-    LListNode *head;
-    LListNode *tail;
-    int size;
-} LList;
-
-LList *LList_new();
+void LList_new(LList *base);
 int LList_add(LList *list, void *data);
 void *LList_get(LList *list, int index);
 int LList_remove_at(LList *list, int index);

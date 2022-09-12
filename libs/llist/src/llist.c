@@ -1,11 +1,20 @@
 #include "../llist.h"
 
-LList* LList_new() {
-  LList* list = malloc(sizeof(LList));
-  list->head = 0;
-  list->tail = 0;
-  list->size = 0;
-  return list;
+struct LListNode {
+    void *data;
+    struct LListNode *next;
+};
+
+typedef struct LList {
+    LListNode *head;
+    LListNode *tail;
+    int size;
+} LList;
+
+void LList_new(LList* base) {
+  base->head = 0;
+  base->tail = 0;
+  base->size = 0;
 }
 
 int LList_add(LList* list, void* data) {
@@ -67,6 +76,12 @@ int LList_size(LList* list) {
 void* LList_get(LList* list, int index) {
   if (index < 0 || index >= list->size) {
     return 0;
+  }
+  if(index == 0) {
+    return list->head->data;
+  }
+  if(index == list->size - 1) {
+    return list->tail->data;
   }
   LListNode* current = list->head;
   for (int i = 0; i < index; i++) {
