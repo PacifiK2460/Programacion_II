@@ -3,7 +3,7 @@
 int main(){
     int ZONA = 0;
     double CANTIDAD = 0;
-    scanf("%d,%lf\n", &ZONA, &CANTIDAD);
+    scanf("%d,%lf", &ZONA, &CANTIDAD);
     switch (ZONA){
     case 12:
         CANTIDAD *= 2;
@@ -27,7 +27,7 @@ int main(){
         CANTIDAD *= 5;
         break;
     }
-    printf("%d", CANTIDAD);
+    printf("%lf", CANTIDAD);
 
     return 0;
 }
