@@ -1,8 +1,9 @@
 #include <stdio.h>
 
 int main(){
-    int ZONA = 0, CANTIDAD = 0;
-    scanf("%d,%d\n", &ZONA, &CANTIDAD);
+    int ZONA = 0;
+    double CANTIDAD = 0;
+    scanf("%d,%lf\n", &ZONA, &CANTIDAD);
     switch (ZONA){
     case 12:
         CANTIDAD *= 2;
