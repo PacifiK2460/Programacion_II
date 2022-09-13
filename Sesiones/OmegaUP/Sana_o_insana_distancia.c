@@ -5,11 +5,12 @@ int main(){
     long X1, Y1, X2, Y2;
     scanf("%ld %ld %ld %ld", &X1, &Y1, &X2, &Y2);
 
-    // Distancia entre dos puntos
-    long distancia = sqrt((X2-X1)*(X2-X1) + (Y2-Y1)*(Y2-Y1));
-    if(distancia <= 150){
-        printf("Sana");
-    }else{
-        printf("Insana");
-    }
+    long deltaX = X2 - X1;
+    long deltaY = Y2 - Y1;
+
+    long distancia = sqrt((deltaX * deltaX) + (deltaY * deltaY));
+    if(distancia < 150)
+        printf("insana");
+    else 
+        printf("sana");
 }
