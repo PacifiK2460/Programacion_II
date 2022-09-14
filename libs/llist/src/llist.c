@@ -1,16 +1,5 @@
 #include "../llist.h"
 
-struct LListNode {
-    void *data;
-    struct LListNode *next;
-};
-
-typedef struct LList {
-    LListNode *head;
-    LListNode *tail;
-    int size;
-} LList;
-
 void LList_new(LList* base) {
   base->head = 0;
   base->tail = 0;
