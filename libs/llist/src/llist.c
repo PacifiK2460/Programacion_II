@@ -78,3 +78,38 @@ void* LList_get(LList* list, int index) {
   }
   return current->data;
 }
+
+int Llist_add_at(LList* list, void* data, int index) {
+  if (index < 0 || index > list->size) {
+    return -2;
+  }
+  if (index == 0) {
+    LListNode* new_node = malloc(sizeof(LListNode));
+    if(new_node == 0) {
+      return -1;
+    }
+    new_node->data = data;
+    new_node->next = list->head;
+    list->head = new_node;
+    list->size++;
+    return 1;
+  }
+  if (index == list->size) {
+    return LList_add(list, data);
+  }
+  LListNode* current = list->head;
+  LListNode* previous = 0;
+  for (int i = 0; i < index; i++) {
+    previous = current;
+    current = current->next;
+  }
+  LListNode* new_node = malloc(sizeof(LListNode));
+  if(new_node == 0) {
+    return -1;
+  }
+  new_node->data = data;
+  new_node->next = current;
+  previous->next = new_node;
+  list->size++;
+  return 1;
+}
