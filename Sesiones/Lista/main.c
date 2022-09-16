@@ -21,7 +21,7 @@ int main(){
 
     while (1){
         printf("Presiona CTRL+D para salir, cualquier tecla para agregar un empleado");
-        if (evaluarInt(0, stdin) == -1){
+        if (getchar() == EOF){
             break;
         }
         addEmpleado(&lista);
