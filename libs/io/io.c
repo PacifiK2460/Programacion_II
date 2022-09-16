@@ -1,4 +1,4 @@
-#include "../io.h"
+#include "io.h"
 
 //dummy funcs for testing
 int evaluarInt(int* dest, FILE* stream) {
@@ -73,22 +73,16 @@ int evaluarDouble(double* dest, FILE* stream) {
     return 1;
 }
 
-int evaluarString(String* dest, FILE* stream) {
-    if(dest->str != 0){
-        free(dest->str);
+int evaluarString(char* dest, FILE* stream) {
+    if(dest != 0){
+        free(dest);
     }
     
-    dest->str = malloc(1024 * sizeof(char));
+    dest = malloc(1024 * sizeof(char));
 
-    if(!fgets(dest->str, 1024, stream)){
+    if(!fgets(dest, 1024, stream)){
         return -1;
     }
-
-
-    dest->str[1024] = '\0';
-    dest->str[strcspn(dest->str, "\r\n")] = 0;
-
-    dest->len = strlen(dest->str);
 
     return 1;
 }

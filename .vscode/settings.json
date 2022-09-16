@@ -14,8 +14,12 @@
         "stdlib.h": "c",
         "io.h": "c",
         "bidi.h": "c",
-        "automotriz.h": "c"
+        "automotriz.h": "c",
+        "sstring.h": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled",
-    "makefile.extensionOutputFolder": "./.vscode"
+    "makefile.extensionOutputFolder": "./.vscode",
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+    ]
 }

@@ -1,4 +1,4 @@
-#include "../llist.h"
+#include "llist.h"
 
 void LList_new(LList* base) {
   base->head = 0;

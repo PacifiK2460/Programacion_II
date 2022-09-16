@@ -1,14 +1,12 @@
 #include <stdio.h>
-#include <string.h>
-
-#include "../libs/llist/llist.h"
-#include "../libs/io/io.h"
-#include "../libs/string/string.h"
+#include "../../libs/io/io.h"
+#include "../../libs/llist/llist.h"
+#include "../../libs/sstring/sstring.h"
 
 typedef struct Empleado{
     int id;
-    String* nombre;
-    String* puesto;
+    String nombre;
+    String puesto;
     double salario;
 }Empleado;
 
@@ -32,7 +30,7 @@ int main(){
 void printList(LList *lista){
     for(int i = 0; i < LList_size(lista); i++){
         Empleado *empleado = (Empleado*)LList_get(lista, i);
-        printf("ID: %d\tNombre: %s\tPuesto: %s\tSalario: %lf", empleado->id, empleado->nombre->str, empleado->puesto->str, empleado->salario);    
+        printf("ID: %d\tNombre: %s\tPuesto: %s\tSalario: %lf", empleado->id, empleado->nombre, empleado->puesto, empleado->salario);    
     }
 }
 
