@@ -2,80 +2,13 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Debug",
             "type": "shell",
-            "label": "g++ build proyect to windows",
-            "command": "i686-w64-mingw32-cc",
-            "args": [
-                "-I${workspaceFolder}${pathSeparator}libs${pathSeparator}",
-                "${workspaceFolder}${pathSeparator}libs${pathSeparator}io${pathSeparator}src${pathSeparator}io.c",
-                "${workspaceFolder}${pathSeparator}libs${pathSeparator}llist${pathSeparator}src${pathSeparator}llist.c",
-                "${workspaceFolder}${pathSeparator}libs${pathSeparator}project${pathSeparator}src${pathSeparator}zona.c",
-                "${workspaceFolder}${pathSeparator}libs${pathSeparator}queue${pathSeparator}src${pathSeparator}queue.c",
-                "${workspaceFolder}${pathSeparator}libs${pathSeparator}string${pathSeparator}src${pathSeparator}string.c",
-                "${file}",
-                "-o",
-                "${workspaceFolder}${pathSeparator}bin${pathSeparator}${fileBasenameNoExtension}.exe"
-            ],
-            "options": {
-                "cwd": "bin"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": "build"
-        },
-        {
+            "command": "cd debug && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build ."
+        },{
+            "label": "Build",
             "type": "shell",
-            "label": "g++ debug proyect",
-            "command": "gcc",
-            "args": [
-                "-g",
-                "-I${workspaceFolder}${pathSeparator}libs${pathSeparator}",
-                "${workspaceFolder}${pathSeparator}libs${pathSeparator}io${pathSeparator}src${pathSeparator}io.c",
-                "${workspaceFolder}${pathSeparator}libs${pathSeparator}llist${pathSeparator}src${pathSeparator}llist.c",
-                "${workspaceFolder}${pathSeparator}libs${pathSeparator}project${pathSeparator}src${pathSeparator}zona.c",
-                "${workspaceFolder}${pathSeparator}libs${pathSeparator}queue${pathSeparator}src${pathSeparator}queue.c",
-                "${workspaceFolder}${pathSeparator}libs${pathSeparator}string${pathSeparator}src${pathSeparator}string.c",
-                "${file}",
-                "-o",
-                "${workspaceFolder}${pathSeparator}bin${pathSeparator}${fileBasenameNoExtension}.exe"
-            ],
-            "options": {
-                "cwd": "bin"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            }
-        },
-        {
-            "type": "shell",
-            "label": "g++ build proyect",
-            "command": "gcc",
-            "args": [
-                "-I${workspaceFolder}${pathSeparator}libs${pathSeparator}",
-                "${workspaceFolder}${pathSeparator}libs${pathSeparator}io${pathSeparator}src${pathSeparator}io.c",
-                "${workspaceFolder}${pathSeparator}libs${pathSeparator}llist${pathSeparator}src${pathSeparator}llist.c",
-                "${workspaceFolder}${pathSeparator}libs${pathSeparator}project${pathSeparator}src${pathSeparator}zona.c",
-                "${workspaceFolder}${pathSeparator}libs${pathSeparator}queue${pathSeparator}src${pathSeparator}queue.c",
-                "${workspaceFolder}${pathSeparator}libs${pathSeparator}string${pathSeparator}src${pathSeparator}string.c",
-                "${file}",
-                "-o",
-                "${workspaceFolder}${pathSeparator}bin${pathSeparator}${fileBasenameNoExtension}.exe"
-            ],
-            "options": {
-                "cwd": "bin"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            }
+            "command": "cd build && cmake .. && cmake --build ."
         }
     ]
 }

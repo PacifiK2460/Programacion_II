@@ -1,63 +1,34 @@
 {
     "version": "0.2.0",
     "configurations": [
-      {
-        "name": "g++ debug proyect",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}.exe",
-        "args": [],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}${pathSeparator}bin",
-        "environment": [],
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "setupCommands": [
-          {
-            "description": "Enable pretty-printing for gdb",
-            "text": "-enable-pretty-printing",
-            "ignoreFailures": false
-          }
-        ],
-        "preLaunchTask": "g++ debug proyect",
-        "miDebuggerPath": "gdb",
-      },
-      {
-        "name": "g++ build proyect",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}.exe",
-        "args": [],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}${pathSeparator}bin",
-        "environment": [],
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "setupCommands": [
-          {
-            "description": "Enable pretty-printing for gdb",
-            "text": "-enable-pretty-printing",
-            "ignoreFailures": false
-          }
-        ],
-        "preLaunchTask": "g++ build proyect",
-        "miDebuggerPath": "gdb",
-      },
-      {
-        "name": "g++ build proyect to windows",
-        "type": "cppdbg",
-        "request": "attach",
-        "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}.exe",
-        "MIMode": "gdb",
-        "setupCommands": [
-          {
-            "description": "Enable pretty-printing for gdb",
-            "text": "-enable-pretty-printing",
-            "ignoreFailures": false
-          }
-        ],
-        "preLaunchTask": "g++ build proyect to windows",
-        "miDebuggerPath": "gdb",
-      }
+        {
+          "program": "${command:cmake.launchTargetPath}",
+          "name": "Debug",
+          "type": "cppdbg",
+          "request": "launch",
+          "cwd": "${workspaceFolder}",
+          "preLaunchTask": "Debug",
+          "MIMode": "gdb",
+          "setupCommands": [
+            {
+              "description": "Enable pretty-printing for gdb",
+              "text": "-enable-pretty-printing",
+              "ignoreFailures": true
+            }
+          ]
+        },{
+          "program": "${command:cmake.launchTargetPath}",
+          "name": "Build & Run",
+          "type": "cppdbg",
+          "request": "launch",
+          "cwd": "${workspaceRoot}",
+          "preLaunchTask": "Build"
+        }, {
+          "program": "${command:cmake.launchTargetPath}",
+          "name": "Build",
+          "type": "cppdbg",
+          "request": "attach",
+          "preLaunchTask": "Build"
+        }
     ]
   }

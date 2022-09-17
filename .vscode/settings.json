@@ -15,7 +15,8 @@
         "io.h": "c",
         "bidi.h": "c",
         "automotriz.h": "c",
-        "sstring.h": "c"
+        "sstring.h": "c",
+        "list": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "makefile.extensionOutputFolder": "./.vscode",

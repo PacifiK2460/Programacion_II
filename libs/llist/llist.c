@@ -1,9 +1,12 @@
 #include "llist.h"
 
-void LList_new(LList* base) {
+LList* LList_new() {
+  LList* base = malloc(sizeof(LList));
   base->head = 0;
   base->tail = 0;
   base->size = 0;
+
+  return base;
 }
 
 int LList_add(LList* list, void* data) {

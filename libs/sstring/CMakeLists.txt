@@ -1,2 +1,2 @@
-add_library(string OBJECT "sstring.h" "sstring.c")
-target_include_directories(string PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+add_library(sstring OBJECT "sstring.h" "sstring.c")
+target_include_directories(sstring PUBLIC ${CMAKE_CURRENT_LIST_DIR})
