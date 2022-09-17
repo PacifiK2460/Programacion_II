@@ -49,7 +49,7 @@ void printList(LList *lista)
         for (int j = 0; j < LList_size(list); j++)
         {
             Empleado* empleado = LList_get(list, j);
-            printf("\t\t[Empleado %d] (ID = %d): %p -> %p)\n", j, empleado->id, empleado, LList_get(list, j+1));
+            printf("\t\t[Empleado %d] (ID = %2d): %p -> %p)\n", j, empleado->id, empleado, LList_get(list, j+1));
         }
     }
 }
