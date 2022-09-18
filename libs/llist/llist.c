@@ -1,7 +1,8 @@
 #include "llist.h"
 
-LList* LList_new() {
-  LList* base = malloc(sizeof(LList));
+LList *LList_new()
+{
+  LList *base = malloc(sizeof(LList));
   base->head = 0;
   base->tail = 0;
   base->size = 0;
@@ -9,18 +10,24 @@ LList* LList_new() {
   return base;
 }
 
-int LList_add(LList* list, void* data) {
-  if (list->size == 0) {
+int LList_add(LList *list, void *data)
+{
+  if (list->size == 0)
+  {
     list->head = malloc(sizeof(LListNode));
-    if(list->head == 0) {
+    if (list->head == 0)
+    {
       return -1;
     }
     list->head->data = data;
     list->head->next = 0;
     list->tail = list->head;
-  } else {
+  }
+  else
+  {
     list->tail->next = malloc(sizeof(LListNode));
-    if(list->tail->next == 0) {
+    if (list->tail->next == 0)
+    {
       return -1;
     }
     list->tail->next->data = data;
@@ -31,19 +38,25 @@ int LList_add(LList* list, void* data) {
   return 1;
 }
 
-int LList_remove_at(LList* list, int index) {
-  if (index < 0 || index >= list->size) {
+int LList_remove_at(LList *list, int index)
+{
+  if (index < 0 || index >= list->size)
+  {
     return -2;
   }
-  LListNode* current = list->head;
-  LListNode* previous = 0;
-  for (int i = 0; i < index; i++) {
+  LListNode *current = list->head;
+  LListNode *previous = 0;
+  for (int i = 0; i < index; i++)
+  {
     previous = current;
     current = current->next;
   }
-  if (previous == 0) {
+  if (previous == 0)
+  {
     list->head = current->next;
-  } else {
+  }
+  else
+  {
     previous->next = current->next;
   }
   free(current);
@@ -51,66 +64,104 @@ int LList_remove_at(LList* list, int index) {
   return 1;
 }
 
-void LList_free(LList* list) {
-  LListNode* current = list->head;
-  while (current != 0) {
-    LListNode* next = current->next;
+void LList_free(LList *list)
+{
+  LListNode *current = list->head;
+  while (current != 0)
+  {
+    LListNode *next = current->next;
     free(current);
     current = next;
   }
   free(list);
 }
 
-int LList_size(LList* list) {
+int LList_size(LList *list)
+{
   return list->size;
 }
 
-void* LList_get(LList* list, int index) {
-  if (index < 0 || index >= list->size) {
+void *LList_get(LList *list, int index)
+{
+  if (index < 0 || index >= list->size)
+  {
     return 0;
   }
-  if(index == 0) {
+  if (index == 0)
+  {
     return list->head->data;
   }
-  if(index == list->size - 1) {
+  if (index == list->size - 1)
+  {
     return list->tail->data;
   }
-  LListNode* current = list->head;
-  for (int i = 0; i < index; i++) {
+  LListNode *current = list->head;
+  for (int i = 0; i < index; i++)
+  {
     current = current->next;
   }
   return current->data;
 }
-
-int Llist_add_at(LList* list, void* data, int index) {
-  if (index < 0 || index > list->size) {
+/*
+ Agrega la informacion en el index especificado
+*/
+int Llist_add_at(LList *list, void *data, int index)
+{
+  // Si el index esta fuera de rango, regresamos un error
+  if (index < 0 || index > list->size)
+  {
     return -2;
   }
-  if (index == 0) {
-    LListNode* new_node = malloc(sizeof(LListNode));
-    if(new_node == 0) {
+  // Si el index es 0, vamos a agregar al inicio, 
+  // recorriendo la demas información
+  if (index == 0)
+  {
+    // Creamos un nuevo nodo...
+    LListNode *new_node = malloc(sizeof(LListNode));
+    // Si hubo un error al momento de crear el nodo, regresamos un error
+    if (new_node == 0)
+    {
       return -1;
     }
+    // Asingamos la informacion al nodo
     new_node->data = data;
+    /* 
+      Del nuevo nodo, hacemos que apunte a la cabeza de la lista
+      y hacemos que la cabeza de la lista apunte al nuevo nodo
+
+      recorriendo la informacion
+    */
     new_node->next = list->head;
     list->head = new_node;
     list->size++;
     return 1;
   }
-  if (index == list->size) {
+  // Si el index es el tamaño de la lista, vamos a agregar al final
+  if (index == list->size)
+  {
+    // Como se supone que tenemos una funcion que ya lo hace,
+    // vamos a usarla
     return LList_add(list, data);
   }
-  LListNode* current = list->head;
-  LListNode* previous = 0;
-  for (int i = 0; i < index; i++) {
+
+  // Sino, vamos a agregar en el index especificado:
+  // recorremos la lista hasta llegar al index
+  LListNode *current = list->head;
+  LListNode *previous = 0;
+  for (int i = 0; i < index; i++)
+  {
     previous = current;
     current = current->next;
   }
-  LListNode* new_node = malloc(sizeof(LListNode));
-  if(new_node == 0) {
+  // Creamos un nuevo nodo
+  LListNode *new_node = malloc(sizeof(LListNode));
+  if (new_node == 0)
+  {
     return -1;
   }
+  // Asignamos la informacion al nodo
   new_node->data = data;
+  // Hacemos que el nodo anterior apunte al nuevo nodo
   new_node->next = current;
   previous->next = new_node;
   list->size++;
