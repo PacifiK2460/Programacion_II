@@ -35,6 +35,11 @@ int main()
         addList(lista);
     }
     printList(lista);
+
+    int temp = 52;
+    LList_add_at(lista, &temp, 0 );
+
+    printf("%d", (int*)Llist_get_at(lista, 0));
 }
 
 void printList(LList *lista)
