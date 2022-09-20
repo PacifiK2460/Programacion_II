@@ -4,6 +4,8 @@
 #include "../../libs/io/io.h"
 #include "../../libs/llist/llist.h"
 
+#define DEBUG 0
+
 // random ranged number generator
 int randomRange(int min, int max) {
     return rand() % (max - min + 1) + min;
@@ -26,21 +28,32 @@ int main()
     srand(time(0));
     LList* lista = LList_new();
 
-    printf("Base list: %p\n", lista);
-
     int listas = randomRange(3,5);
-    printf("Añadiendo %d listas de empleados\n", listas);
+    #if DEBUG
+        printf("Añadiendo %d listas de empleados\n", listas);
+    #endif
     for(int i = 0; i < listas; i++) {
-        printf("[List %d]: ", i);
+        #if DEBUG
+            printf("[List %d]: ", i);
+        #endif
         addList(lista);
     }
     printList(lista);
 
-    int temp = 52;
-    Llist_add_at(lista, &temp, 0 );
+    int idDel;
 
-    int *ge = (int*)LList_get(lista,0);
-    printf("%p = %d\n", LList_get(lista, 0), *ge );
+    input("Id del empleado a eliminar: ", evaluarInt(&idDel, stdin));
+    for(int i = 0; i < LList_size(lista); i++) {
+        for(int j = 0; j < LList_size(LList_get(lista, i)); j++) {
+            Empleado* emp = LList_get(LList_get(lista, i), j);
+            if(emp->id == idDel) {
+                LList_remove_at(LList_get(lista, i), j);
+                break;
+            }
+        }
+    }
+    printList(lista);
+
 }
 
 void printList(LList *lista)
@@ -64,12 +77,18 @@ void addList(LList *lista)
 {
     LList* list = LList_new();
 
-    printf("%p\n", list);
+    #if DEBUG
+        printf("%p\n", list);
+    #endif
 
     int empleados = randomRange(3,5);
-    printf("\tAñadiendo %d empleados a la lista\n", empleados);
+    #if DEBUG
+        printf("\tAñadiendo %d empleados a la lista\n", empleados);
+    #endif
     for(int i = 0; i < empleados; i++) {
-        printf("\t\t[Empleado %d]: ",i);
+        #if DEBUG
+            printf("\t\t[Empleado %d]: ",i);
+        #endif
         addEmpleado(list);
     }
 
@@ -79,8 +98,10 @@ void addList(LList *lista)
 void addEmpleado(LList *lista)
 {
     Empleado *empleado = malloc(sizeof(Empleado));
-    printf("%p", empleado);
     empleado->id = randomRange(1, 100);
-    printf("\tID: %d\n", empleado->id);
+    #if DEBUG
+        printf("%p", empleado);
+        printf("\tID: %d\n", empleado->id);
+    #endif
     LList_add(lista, empleado);
 }
