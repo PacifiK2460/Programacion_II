@@ -71,7 +71,11 @@ void agregarGrupo(LList* grupos){
 void agregarAlumno(grupo* grupo){
     alumno* current = (alumno*)malloc(sizeof(alumno));
     current->nombre = malloc(50);
-    input("Nombre del alumno: ", evaluarString(current->nombre, stdin));
+    printf("Nombre del alumno: ");
+    scanf(" %s", current->nombre);
+ getchar();
+  //input("Nombre del alumno: ", evaluarString(name, stdin));
+    //printf("Alumno: %s\n", current->nombre);
     current->edad = ranged_rand(21,35);
     current->id = generarID(grupo);
 
