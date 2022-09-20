@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "../libs/llist/llist.h"
-#include "../libs/io/io.h"
-#include "../libs/sstring/sstring.h"
+#include "../../libs/llist/llist.h"
+#include "../../libs/io/io.h"
+#include "../../libs/sstring/sstring.h"
 
 int ranged_rand(int min, int max){
     return min + rand() % (max - min);
@@ -30,7 +30,7 @@ typedef struct{
 
 
 int main(){
-    LList* Grupos = llist_new();
+    LList* Grupos = LList_new();
 
     int continuar = 1;
     do{
@@ -42,13 +42,13 @@ int main(){
 
     printf("Grupos: %d\n", LList_size(Grupos));
     for(int i = 0; i < LList_size(Grupos); i++){
-        grupo* current = (grupo*)llist_get(Grupos, i);
+        grupo* current = (grupo*)LList_get(Grupos, i);
         
         printf("\tGrupo %d: %s %d alumnos\n", i,clases[current->clase], LList_size(current->alumnos));
 
         for(int j = 0; j < LList_size(current->alumnos); j++){
-            alumno* currentAlumno = (alumno*)llist_get(current->alumnos, j);
-            printf("\t\tAlumno %d: %s, %d, %d\n", j, currentAlumno->nombre->str, currentAlumno->edad, currentAlumno->id);
+            alumno* currentAlumno = (alumno*)LList_get(current->alumnos, j);
+            printf("\t\tAlumno %d: %s, %d, %d\n", j, currentAlumno->nombre, currentAlumno->edad, currentAlumno->id);
         }
     }
 
@@ -56,7 +56,7 @@ int main(){
 
 void agregarGrupo(LList* grupos){
     grupo* current = (grupo*)malloc(sizeof(grupo));
-    current->alumnos = llist_new();
+    current->alumnos = LList_new();
     current->clase = ranged_rand(0,4);
     int continuar = 1;
     do{
@@ -70,6 +70,7 @@ void agregarGrupo(LList* grupos){
 
 void agregarAlumno(grupo* grupo){
     alumno* current = (alumno*)malloc(sizeof(alumno));
+    current->nombre = malloc(50);
     input("Nombre del alumno: ", evaluarString(current->nombre, stdin));
     current->edad = ranged_rand(21,35);
     current->id = generarID(grupo);

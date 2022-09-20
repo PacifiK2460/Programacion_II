@@ -1,6 +1,6 @@
 #add executable
 set(SOURCES main.c)
-set(LIBS )
+set(LIBS llist io sstring)
 FOREACH(lib ${LIBS})
     add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../../libs/${lib}" "${CMAKE_CURRENT_BINARY_DIR}/${lib}")
 ENDFOREACH()
