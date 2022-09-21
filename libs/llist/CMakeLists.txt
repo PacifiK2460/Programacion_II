@@ -1,3 +1,2 @@
-
-add_library(llist OBJECT "llist.h" "llist.c")
-target_include_directories(llist PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+add_library(llist llist.c)
+target_compile_definitions(llist PUBLIC LLIST)
