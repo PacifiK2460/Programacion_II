@@ -1,0 +1,6 @@
+set(LIBS io llist sstring)
+FOREACH(lib ${LIBS})
+    file(GLOB SRC_FILES "/${lib}/*.c")
+    add_library(libs ${SRC_FILES})
+    #add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../../libs/${lib}" "${CMAKE_CURRENT_BINARY_DIR}/${lib}")
+ENDFOREACH()
