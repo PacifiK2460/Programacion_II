@@ -13,9 +13,15 @@ String newStringFrom(String str){
 }
 
 int setString(String str, String newStr){
-    if (str == 0){
+    if (newStr == 0){
         return -1;
     }
+
+    if (str != 0){
+        free(str);
+    }
+
+    str = malloc(strlen(newStr) + 1);
 
     strcpy(str, newStr);
     return 1;
