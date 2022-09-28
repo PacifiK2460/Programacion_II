@@ -9,6 +9,7 @@ endforeach()
 
 
 # add_subdirectory("${CMAKE_SOURCE_DIR}/libs/")
+add_subdirectory("${CMAKE_SOURCE_DIR}/Proyecto/")
 add_subdirectory("${CMAKE_SOURCE_DIR}/Sesiones/Lista")
 add_subdirectory("${CMAKE_SOURCE_DIR}/Sesiones/ListaSimple")
 add_subdirectory("${CMAKE_SOURCE_DIR}/Laboratorio/20-09-22")
