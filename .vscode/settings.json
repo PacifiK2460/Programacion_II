@@ -16,7 +16,14 @@
         "bidi.h": "c",
         "automotriz.h": "c",
         "sstring.h": "c",
-        "list": "c"
+        "list": "c",
+        "*.tcc": "c",
+        "cerrno": "c",
+        "system_error": "c",
+        "cstring": "c",
+        "auth.h": "c",
+        "locale.h": "c",
+        "errno.h": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "makefile.extensionOutputFolder": "./.vscode",

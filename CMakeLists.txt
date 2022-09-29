@@ -7,6 +7,12 @@ foreach(lib ${LIBS})
     link_libraries("${CMAKE_SOURCE_DIR}/libs/${lib}/${lib}.c")
 endforeach()
 
+include_directories("${CMAKE_SOURCE_DIR}/libs/proyecto/")
+set(LIBS auth routes)
+foreach(lib ${LIBS})
+    link_libraries("${CMAKE_SOURCE_DIR}/libs/proyecto/${lib}.c")
+endforeach()
+
 
 # add_subdirectory("${CMAKE_SOURCE_DIR}/libs/")
 add_subdirectory("${CMAKE_SOURCE_DIR}/Proyecto/")

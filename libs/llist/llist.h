@@ -18,7 +18,7 @@ typedef struct LList{
 LList* LList_new();
 int LList_add(LList *list, void *data);
 int Llist_add_at(LList *list, void *data, int index);
-int LList_remove_at(LList *list, int index);
+void* LList_remove_at(LList *list, int index);
 void *LList_get(LList *list, int index);
 int LList_size(LList *list);
 void LList_free(LList *list);

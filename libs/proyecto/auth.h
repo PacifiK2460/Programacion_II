@@ -1,14 +1,20 @@
 #ifndef AUTH_H
 #define AUTH_H
 
-#include "proyecto.h"
+#ifndef PROYECTO_H
+    #include "proyecto.h"
+#endif
+
+// #include "../sstring/sstring.h"
+#include <wchar.h>
+#include "../llist/llist.h"
 
 // [!] User Management structures
 
 enum UserErrors
 {
     OK = 0,
-    USER_NOT_FOUND = ErrorType::User,
+    USER_NOT_FOUND = UserERR,
     INCORRECT_PASSWORD,
     USER_DISABLED,
     USER_ALREADY_EXISTS,
@@ -34,13 +40,15 @@ typedef enum Type
 
 typedef struct User
 {
-    String name;
-    String pass;
+    wchar_t* name;
+    wchar_t* pass;
     Sate state;
     Type type;
     // if the user is an admin, this field will be null
     LList* queued_routes;
 } User;
+
+Result loadAllUsers();
 
 // [!] User Management functions
 
@@ -59,7 +67,7 @@ typedef struct User
     If the password is incorrect, the function returns INCORRECT_PASSWORD.
     If the user is disabled, the function returns USER_DISABLED.
 */
-Result login(String name, String pass);
+Result login(const wchar_t* name, const wchar_t* pass);
 
 /*
     Attempts to create a new user with the given credentials.
@@ -67,7 +75,7 @@ Result login(String name, String pass);
 
     If the user already exists, the function returns USER_ALREADY_EXISTS.
 */
-Result add_user(User Requester, String NewUserName, String NewUserPass, Type NewUserType);
+Result add_user(const User Requester,const wchar_t* NewUserName, const wchar_t* NewUserPass, const Type NewUserType);
 
 /*
     Attempts to modify the user with the given credentials.
@@ -75,15 +83,15 @@ Result add_user(User Requester, String NewUserName, String NewUserPass, Type New
 
     If the user does not exists, the function returns USER_NOT_FOUND.
 */
-Result modify_user(User Requester, String UserName, String NewUserPass, Type NewUserType);
+Result modify_user(const User Requester, const wchar_t* UserName, const wchar_t* NewUserPass, Type NewUserType);
 
 /*
-    Attempts to delete the user with the given credentials.
+    Attempts to disable the user with the given credentials.
     If the user is deleted successfully, the function returns the deleted user.
 
     If the user does not exists, the function returns USER_NOT_FOUND.
 */
-Result remove_user(User Requester, String UserName);
+Result remove_user(const User Requester, const wchar_t* UserName);
 
 /*
     Attempts to query the user with the given username.
@@ -91,6 +99,6 @@ Result remove_user(User Requester, String UserName);
 
     If the user does not exists, the function returns USER_NOT_FOUND.
 */
-Result query_user(User Requester, String UserName);
+Result query_user(const User Requester, const wchar_t* UserName);
 
 #endif

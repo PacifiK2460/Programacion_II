@@ -39,7 +39,7 @@ int LList_add(LList *list, void *data)
 }
 
 // FIX: Remove last element
-int LList_remove_at(LList *list, int index)
+void* LList_remove_at(LList *list, int index)
 {
   // Check if index is valid
   if (index < 0 || index >= list->size)
@@ -48,22 +48,26 @@ int LList_remove_at(LList *list, int index)
   }
   // Check if it's going to remove the first element
   if (index == 0){
-    LListNode* temp = list->head;
+    LListNode* node = list->head;
     list->head = list->head->next;
     list->size--;
-    return 1;
+    free(node);
+    return node->data;
   }
   // Check if it's going to remove the last element
   if (index == list->size - 1){
     LListNode* temp = list->head;
+    LListNode* to_return = list->tail;
     while(temp->next != list->tail){
       temp = temp->next;
     }
     temp->next = 0;
     list->tail = temp;
     list->size--;
-    return 1;
+    free(to_return);
+    return to_return->data;
   }
+  
   LListNode *current = list->head;
   LListNode *previous = 0;
   for (int i = 0; i < index; i++)
@@ -71,10 +75,11 @@ int LList_remove_at(LList *list, int index)
     previous = current;
     current = current->next;
   }
+  LListNode* temp = current;
   previous->next = current->next;
-  free(current);
   list->size--;
-  return 1;
+  free(temp);
+  return temp->data;
 }
 
 void LList_free(LList *list)

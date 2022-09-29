@@ -2,14 +2,16 @@
 #define ROUTES_H
 
 #include "proyecto.h"
+#include "../sstring/sstring.h"
+#include "../llist/llist.h"
 
 // [!] Routes Management structures
 
-enum RouteErrors
-{
-    OK = 0,
-    // = ErrorType::Route,
-};
+// enum RouteErrors
+// {
+//     // OK = 0,
+//     // = ErrorType::Route,
+// };
 
 typedef enum Weekday
 {
