@@ -2,14 +2,20 @@
 #define ROUTES_H
 
 #include "proyecto.h"
+#include "auth.h"
+
 #include "../sstring/sstring.h"
 #include "../llist/llist.h"
+
+#include <errno.h>
+#include <stdio.h>
+#include <wchar.h>
 
 // [!] Routes Management structures
 
 // enum RouteErrors
 // {
-//     // OK = 0,
+//     // OK = OK,
 //     // = ErrorType::Route,
 // };
 
@@ -32,9 +38,23 @@ typedef struct Time
 
 typedef struct Route
 {
-    String name;
-    String destination;
+    wchar_t* name;
+    wchar_t* destination;
     LList* scheduled_times;
 } Route;
+
+typedef struct UserRoute{
+    // The UseRoute is a compressed version of the Route wich consists of the first 2 leters of the name and the destination and the time
+    // the time is in the format "XX:XX" where XX is a maximum of 2 digits
+    wchar_t ID[2 + 2 + 2 + 1 + 2 + 1];
+    // First 2 letters of the name
+    // First 2 letters of the destination
+    // Day (0 - 7)
+    // ':'
+    // Hour (0 - 23)
+} UserRoute;
+
+Result loadAllRoutes();
+void freeUserRoutes(const struct User* user);
 
 #endif

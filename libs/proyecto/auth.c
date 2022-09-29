@@ -12,8 +12,8 @@ static LList* users;
 void freeUsers(){
     while(LList_size(users) > 0){
         User* user = LList_remove_at(users, 0);
-        free(user->name);
-        free(user->pass);
+        // free(user->name);
+        // free(user->pass);
 
         if(user->type == NORMAL){
             while(LList_size(user->queued_routes) > 0){
@@ -35,18 +35,18 @@ Result loadAllUsers() {
     Result result;
 
     users = LList_new();
-    if (users == NULL) {
+    if (users == 0) {
         result.Error_state = MALLOC_FAULT;
         return result;
     }
 
-    FILE* file = fopen(USERS_FILE, "r");
-    if (file == NULL) {
+    FILE* file = fopen(USERS_FILE, "r, ccs=UTF-8");
+    if (file == 0) {
         // check for errors produced by fopen
         if (errno == ENOENT) {
             // if the file was not found, create it
-            file = fopen(USERS_FILE, "a+");
-            if (file == NULL) {
+            file = fopen(USERS_FILE, "a+, ccs=UTF-8");
+            if (file == 0) {
                 if(errno == EACCES) {
                     result.Error_state = FILE_PERMISSION_DENIED;
                 } else {
@@ -78,69 +78,72 @@ Result loadAllUsers() {
     }
 
     int number_of_users = 0;
-    wscanf(file, L"%d", &number_of_users);
-
+    if( fwscanf(file, L"%d", &number_of_users) != 1){
+        result.Error_state = FILE_READ_ERROR;
+        freeUsers();
+        return result;
+    }
+    if( fwscanf(file, L"\n") != 0){
+        result.Error_state = FILE_READ_ERROR;
+        freeUsers();
+        return result;
+    }
     for (int i = 0; i < number_of_users; i++) {
         User* user = malloc(sizeof(User));
-        if (user == NULL) {
+        if (user == 0) {
             result.Error_state = MALLOC_FAULT;
             freeUsers();
             return result;
         }
 
-        wscanf(file, L"%ls %ls %d %d", user->name, user->pass, &user->state, &user->type);
+        if(fwscanf(file, L"%ls %ls %d %d", user->name, user->pass, &user->state, &user->type) != 4){
+            result.Error_state = FILE_READ_ERROR;
+            freeUsers();
+            return result;
+        }
         
         // if the user isn't an admin, we read all the queued rouutes
         if(user->type == NORMAL){
             int number_of_routes = 0;
-            wscanf(file, L" %d", &number_of_routes);
+            if(fwscanf(file, L" %d", &number_of_routes) != 1){
+                result.Error_state = FILE_READ_ERROR;
+                freeUsers();
+                return result;
+            }
             
             user->queued_routes = LList_new();
-            if(user->queued_routes == NULL){
+            if(user->queued_routes == 0){
                 result.Error_state = MALLOC_FAULT;
                 freeUsers();
                 return result;
             }
 
-            for(int i = 0; i < number_of_routes; i++){
-                Route* route = malloc(sizeof(Route));
-                if(route == NULL){
+            for(int j = 0; j < number_of_routes; j++){
+                // Read route id
+                wchar_t* route_id = malloc(sizeof(wchar_t) * 10);
+                if(route_id == 0){
                     result.Error_state = MALLOC_FAULT;
                     freeUsers();
                     return result;
                 }
 
-                wscanf(file, L" %ls %ls", route->name, route->destination);
-
-                int number_of_times = 0;
-                wscanf(file, L" %d", &number_of_times);
-
-                route->scheduled_times = LList_new();
-                if(route->scheduled_times == NULL){
-                    result.Error_state = MALLOC_FAULT;
+                if(fwscanf(file, L" %ls", route_id) != 1){
+                    result.Error_state = FILE_READ_ERROR;
                     freeUsers();
                     return result;
                 }
 
-                for(int i = 0; i < number_of_times; i++){
-                    Time* time = malloc(sizeof(Time));
-                    if(time == NULL){
-                        result.Error_state = MALLOC_FAULT;
-                        freeUsers();
-                        return result;
-                    }
-
-                    wscanf(file, L" %d %d", &time->day, &time->hour);
-                    LList_add(route->scheduled_times, time);
-                }
-
-                LList_add(user->queued_routes, route);
+                LList_add(user->queued_routes, route_id);
             }
         }
         
         LList_add(users, user);
 
-        wscanf(file, L"\n");
+        if(fwscanf(file, L"\n") != 0){
+            result.Error_state = FILE_READ_ERROR;
+            freeUsers();
+            return result;
+        }
     }
 
     return result;
@@ -189,20 +192,20 @@ Result add_user(const User Requester,const wchar_t* NewUserName, const wchar_t* 
     }
 
     User* user = malloc(sizeof(User));
-    if(user == NULL){
+    if(user == 0){
         result.Error_state = MALLOC_FAULT;
         return result;
     }
 
     user->name = malloc(sizeof(wchar_t) * (wcslen(NewUserName) + 1));
-    if(user->name == NULL){
+    if(user->name == 0){
         result.Error_state = MALLOC_FAULT;
         return result;
     }
     wcscpy(user->name, NewUserName);
 
     user->pass = malloc(sizeof(wchar_t) * (wcslen(NewUserPass) + 1));
-    if(user->pass == NULL){
+    if(user->pass == 0){
         result.Error_state = MALLOC_FAULT;
         return result;
     }
@@ -213,7 +216,7 @@ Result add_user(const User Requester,const wchar_t* NewUserName, const wchar_t* 
 
     if(user->type == NORMAL){
         user->queued_routes = LList_new();
-        if(user->queued_routes == NULL){
+        if(user->queued_routes == 0){
             result.Error_state = MALLOC_FAULT;
             return result;
         }
@@ -239,7 +242,7 @@ Result modify_user(const User Requester, const wchar_t* UserName, const wchar_t*
 
             free(user->pass);
             user->pass = malloc(sizeof(wchar_t) * (wcslen(NewUserPass) + 1));
-            if(user->pass == NULL){
+            if(user->pass == 0){
                 result.Error_state = MALLOC_FAULT;
                 return result;
             }
@@ -248,7 +251,7 @@ Result modify_user(const User Requester, const wchar_t* UserName, const wchar_t*
             user->type = NewUserType;
 
             if(user->type == ADMIN){
-                freeRoutes(user);
+                freeUserRoutes(user);
             }
 
             result.Error_state = OK;

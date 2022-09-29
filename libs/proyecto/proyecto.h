@@ -1,14 +1,6 @@
 #ifndef PROYECTO_H
 #define PROYECTO_H
 
-// #ifndef AUTH_H
-    // #include "auth.h"
-// #endif
-// 
-// #ifndef ROUTES_H
-    // #include "routes.h"
-// #endif
-
 enum ErrorType{
     UserERR = 0x100,
     RouteERR = 0x200,
@@ -22,7 +14,8 @@ enum SystemErrors
     FILE_NOT_FOUND,
     FILE_PERMISSION_DENIED,
     FILE_OPEN_ERROR,
-    FOPEN_FAULT
+    FOPEN_FAULT,
+    FILE_READ_ERROR,
 };
 
 typedef struct Result{

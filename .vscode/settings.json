@@ -23,7 +23,8 @@
         "cstring": "c",
         "auth.h": "c",
         "locale.h": "c",
-        "errno.h": "c"
+        "errno.h": "c",
+        "proyecto.h": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "makefile.extensionOutputFolder": "./.vscode",

@@ -44,19 +44,21 @@ void* LList_remove_at(LList *list, int index)
   // Check if index is valid
   if (index < 0 || index >= list->size)
   {
-    return -2;
+    return 0;
   }
   // Check if it's going to remove the first element
   if (index == 0){
     LListNode* node = list->head;
+    void* data = list->head->data;
     list->head = list->head->next;
     list->size--;
     free(node);
-    return node->data;
+    return data;
   }
   // Check if it's going to remove the last element
   if (index == list->size - 1){
     LListNode* temp = list->head;
+    void* data = list->tail->data;
     LListNode* to_return = list->tail;
     while(temp->next != list->tail){
       temp = temp->next;
@@ -65,7 +67,7 @@ void* LList_remove_at(LList *list, int index)
     list->tail = temp;
     list->size--;
     free(to_return);
-    return to_return->data;
+    return data;
   }
   
   LListNode *current = list->head;
@@ -75,11 +77,12 @@ void* LList_remove_at(LList *list, int index)
     previous = current;
     current = current->next;
   }
+  void* data = current->data;
   LListNode* temp = current;
   previous->next = current->next;
   list->size--;
   free(temp);
-  return temp->data;
+  return data;
 }
 
 void LList_free(LList *list)

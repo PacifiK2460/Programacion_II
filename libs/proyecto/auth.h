@@ -1,11 +1,9 @@
 #ifndef AUTH_H
 #define AUTH_H
 
-#ifndef PROYECTO_H
-    #include "proyecto.h"
-#endif
+#include "proyecto.h"
+// #include "routes.h"
 
-// #include "../sstring/sstring.h"
 #include <wchar.h>
 #include "../llist/llist.h"
 
@@ -44,7 +42,7 @@ typedef struct User
     wchar_t* pass;
     Sate state;
     Type type;
-    // if the user is an admin, this field will be null
+    // if the user is an admin, this field will be 0
     LList* queued_routes;
 } User;
 
