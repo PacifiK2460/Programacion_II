@@ -33,6 +33,7 @@ void freeUsers(){
 // TODO: #1 Save users to file
 Result loadAllUsers() {
     Result result;
+    result.Error_state = OK;
 
     users = LList_new();
     if (users == 0) {
@@ -54,6 +55,8 @@ Result loadAllUsers() {
                 }
             } else {
                 result.Error_state = OK;
+                // Because the file was created, we need to set the number of users to 0
+                fwprintf(file, L"%d\n", 0);
             }
         } else if(errno == EACCES){
             result.Error_state = FILE_PERMISSION_DENIED;
@@ -64,6 +67,7 @@ Result loadAllUsers() {
         // We were able to open the file, but there was an error.
         if(result.Error_state != OK){
             freeUsers();
+            fclose(file);
             return result;
         }
     }
@@ -78,9 +82,10 @@ Result loadAllUsers() {
     }
 
     int number_of_users = 0;
-    if( fwscanf(file, L"%d", &number_of_users) != 1){
+    if( fwscanf(file, L" %d ", &number_of_users) != 1){
         result.Error_state = FILE_READ_ERROR;
         freeUsers();
+        fclose(file);
         return result;
     }
     if( fwscanf(file, L"\n") != 0){
@@ -93,12 +98,14 @@ Result loadAllUsers() {
         if (user == 0) {
             result.Error_state = MALLOC_FAULT;
             freeUsers();
+            fclose(file);
             return result;
         }
 
         if(fwscanf(file, L"%ls %ls %d %d", user->name, user->pass, &user->state, &user->type) != 4){
             result.Error_state = FILE_READ_ERROR;
             freeUsers();
+            fclose(file);
             return result;
         }
         
@@ -108,6 +115,7 @@ Result loadAllUsers() {
             if(fwscanf(file, L" %d", &number_of_routes) != 1){
                 result.Error_state = FILE_READ_ERROR;
                 freeUsers();
+                fclose(file);
                 return result;
             }
             
@@ -115,6 +123,7 @@ Result loadAllUsers() {
             if(user->queued_routes == 0){
                 result.Error_state = MALLOC_FAULT;
                 freeUsers();
+                fclose(file);
                 return result;
             }
 
@@ -124,12 +133,14 @@ Result loadAllUsers() {
                 if(route_id == 0){
                     result.Error_state = MALLOC_FAULT;
                     freeUsers();
+                    fclose(file);
                     return result;
                 }
 
                 if(fwscanf(file, L" %ls", route_id) != 1){
                     result.Error_state = FILE_READ_ERROR;
                     freeUsers();
+                    fclose(file);
                     return result;
                 }
 
@@ -142,10 +153,12 @@ Result loadAllUsers() {
         if(fwscanf(file, L"\n") != 0){
             result.Error_state = FILE_READ_ERROR;
             freeUsers();
+            fclose(file);
             return result;
         }
     }
 
+    fclose(file);
     return result;
 }
 

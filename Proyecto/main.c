@@ -9,17 +9,19 @@
 int main() {
     setlocale(LC_CTYPE, "");
 
-    Result usersLoad = loadAllUsers();
-    Result routesLoad = loadAllRoutes();
+    {// Load routes and users
+        Result usersLoad = loadAllUsers();
+        Result routesLoad = loadAllRoutes();
 
-    if(usersLoad.Error_state != OK){
-        wprintf(L"📛 Error loading users (%d): ", usersLoad.Error_state);
-        printf("%s\n", strerror_l(usersLoad.Error_state, LC_CTYPE));
-        return 1;
+        if(usersLoad.Error_state != OK){
+            wprintf(L"📛 Error loading users (%d): ", usersLoad.Error_state);
+            return 0;
+        }
+        if(routesLoad.Error_state != OK){
+            wprintf(L"📛 Error loading routes (%d): ", usersLoad.Error_state);
+            return 0;
+        }
     }
-    if(routesLoad.Error_state != OK){
-        wprintf(L"📛 Error loading routes (%d): ", usersLoad.Error_state);
-        printf("%s\n", strerror_l(usersLoad.Error_state, LC_CTYPE));
-        return 1;
-    }
+
+    
 }
