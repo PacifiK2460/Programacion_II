@@ -2,7 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-int random(int min, int max){
+int random1(int min, int max){
     return min + rand() % (max - min + 1);
 }
 
@@ -54,16 +54,35 @@ int main(){
     DLList *head = NULL;
 
     printf("%d cantidad de elementos bi direccionados.\n", 10);
-    for(int i = 0; i < 10; i++){
-        int m = random(1, 100);
+    for(int i = 0; i < 9; i++){
+        int m = random1(1, 100);
         if( add_at(&head, m, 0) ){
             printf("Elemento %d (%d) agregado correctamente.\n", i + 1, m);
         }
     }
 
+    add_at(&head,0,9);
+   add_at(&head,0,0);
+
     printf("Data table:\n");
-    for(int j = 0; j < 10; j++){
-        printf("%d(%p) <- %d(%p) -> %d(%p)\n", head->prev->data, head->prev, head->data, head, head->next->data, head->next);
+    for(int j = 0; j < 11; j++){
+      if(head->prev != NULL)
+      {
+        printf("%4d(%p)\t <- ",head->prev->data, head->prev);
+      } else {
+        printf("NULL(NULL)\t <-");
+      }
+      if(head != NULL){
+        printf("%4d(%p)\t -> ",head->data, head);
+      } else {
+        printf("NULL(NULL)\t ->");
+      }
+      if(head->next != NULL){
+        printf("%4d(%p)\n",head->next->data, head->next);
+      } else {
+        printf("NULL(NULL)\n");
+        
+      }
 
         head = head->next;
     }
