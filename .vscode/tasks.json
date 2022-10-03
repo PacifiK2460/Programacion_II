@@ -4,11 +4,11 @@
         {
             "label": "Debug",
             "type": "shell",
-            "command": "cd debug && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build ."
+            "command": "cd debug && cmake -DCMAKE_BUILD_TYPE=Debug -G \"MinGW Makefiles\" .. && cmake --build ."
         },{
             "label": "Build",
             "type": "shell",
-            "command": "cd build && cmake .. && cmake --build ."
+            "command": "cd build && cmake .. -G \"MinGW Makefiles\" && cmake --build ."
         }
     ]
 }
