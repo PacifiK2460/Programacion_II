@@ -1,5 +1,6 @@
 #include "../libs/proyecto/routes.h"
 #include "../libs/proyecto/auth.h"
+#include "../libs/proyecto/tui.h"
 
 #include <stdio.h>
 #include <wchar.h>
@@ -7,21 +8,30 @@
 
 
 int main() {
-    setlocale(LC_CTYPE, "");
 
-    {// Load routes and users
-        Result usersLoad = loadAllUsers();
-        Result routesLoad = loadAllRoutes();
-
-        if(usersLoad.Error_state != OK){
-            wprintf(L"📛 Error loading users (%d): ", usersLoad.Error_state);
-            return 0;
-        }
-        if(routesLoad.Error_state != OK){
-            wprintf(L"📛 Error loading routes (%d): ", usersLoad.Error_state);
-            return 0;
+    {// TUI initialization
+        Result result = initTUI();
+        if (result.Error_state != OK) {
+            printf("Error: %d\n", result.Error_state);
+            return 1;
         }
     }
 
+    {// User Management initialization
+        Result result = loadAllUsers();
+        if (result.Error_state != OK) {
+            printf("Error: %d\n", result.Error_state);
+            return 1;
+        }
+    }
+
+    {// Routes Management initialization
+        Result result = loadAllRoutes();
+        if (result.Error_state != OK) {
+            printf("Error: %d\n", result.Error_state);
+            return 1;
+        }
+
+    }
     
 }

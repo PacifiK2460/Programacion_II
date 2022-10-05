@@ -24,7 +24,8 @@
         "auth.h": "c",
         "locale.h": "c",
         "errno.h": "c",
-        "proyecto.h": "c"
+        "proyecto.h": "c",
+        "tui.h": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "makefile.extensionOutputFolder": "./.vscode",
