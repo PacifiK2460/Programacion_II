@@ -4,7 +4,6 @@
 #include "proyecto.h"
 #include "auth.h"
 
-#include "../sstring/sstring.h"
 #include "../llist/llist.h"
 
 #include <errno.h>

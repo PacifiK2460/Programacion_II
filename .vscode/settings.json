@@ -25,7 +25,8 @@
         "locale.h": "c",
         "errno.h": "c",
         "proyecto.h": "c",
-        "tui.h": "c"
+        "tui.h": "c",
+        "routes.h": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "makefile.extensionOutputFolder": "./.vscode",

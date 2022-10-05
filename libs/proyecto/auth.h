@@ -11,7 +11,7 @@
 
 enum UserErrors
 {
-    OK = 0,
+    //OK = 0,
     USER_NOT_FOUND = UserERR,
     INCORRECT_PASSWORD,
     USER_DISABLED,
@@ -23,25 +23,21 @@ enum UserErrors
 // Those structures define the level of users available in the system
 // and the level of access to the system that each user has.
 
-// The level of access is defined by the following values.
-typedef enum Sate
-{
-    ENABLED,
-    DISABLED
-} Sate;
-
-typedef enum Type
-{
-    NORMAL,
-    ADMIN
-} Type;
 
 typedef struct User
 {
     wchar_t* name;
     wchar_t* pass;
-    Sate state;
-    Type type;
+    enum Sate
+    {
+        ENABLED,
+        DISABLED
+    }  state;
+    enum Type
+    {
+        NORMAL,
+        ADMIN
+    }  type;
     // if the user is an admin, this field will be 0
     LList* queued_routes;
 } User;

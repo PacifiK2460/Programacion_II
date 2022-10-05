@@ -8,13 +8,44 @@
 #include <locale.h>
 
 // if in linux, use termios.h
-#ifdef __linux__
-
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+   //define something for Windows (32-bit and 64-bit, this part is common)
+    #include <conio.h>
+    #include <windows.h>
+   #ifdef _WIN64
+      //define something for Windows (64-bit only)
+   #else
+      //define something for Windows (32-bit only)
+   #endif
+#elif __APPLE__
+    #include <TargetConditionals.h>
+    #if TARGET_IPHONE_SIMULATOR
+         // iOS, tvOS, or watchOS Simulator
+    #elif TARGET_OS_MACCATALYST
+         // Mac's Catalyst (ports iOS API into Mac, like UIKit).
+    #elif TARGET_OS_IPHONE
+        // iOS, tvOS, or watchOS device
+    #elif TARGET_OS_MAC
+        // Other kinds of Apple platforms
+    #else
+    #   error "Unknown Apple platform"
+    #endif
+#elif __ANDROID__
+    // Below __linux__ check should be enough to handle Android,
+    // but something may be unique to Android.
+#elif __linux__
+    // linux
     #include <termios.h>
     #include <unistd.h>
     #include <sys/ioctl.h>
-
+#elif __unix__ // all unices not caught above
+    // Unix
+#elif defined(_POSIX_VERSION)
+    // POSIX
+#else
+#   error "Unknown compiler"
 #endif
+
 
 /**
  * @brief The TUI class
@@ -137,7 +168,7 @@ typedef struct inputWidget
     // Focus / Unfocus handlers
     Result (*on_focus)(void *opcional_data);
     Result (*on_unfocus)(void *opcional_data);
-};
+} inputWidget;
 
 /**
  * @brief Focusable list widget definition
@@ -171,7 +202,7 @@ typedef struct listWidget
     // Focus / Unfocus handlers
     Result (*on_focus)(void *opcional_data);
     Result (*on_unfocus)(void *opcional_data);
-};
+} listWidget;
 
 /**
  * @brief Focusable button widget definition
@@ -193,7 +224,7 @@ typedef struct buttonWidget
     // Focus / Unfocus handlers
     Result (*on_focus)(void *opcional_data);
     Result (*on_unfocus)(void *opcional_data);
-};
+} buttonWidget;
 
 /**
  * @brief Focus the first widget in the list.
@@ -215,13 +246,13 @@ typedef struct Widget
     // Type of widget
     enum widget_type
     {
-        INPUT,
+        TEXT_INPUT,
         LIST,
         BUTTON,
     } type;
 
     // Pointer to the widget
-    Result *widget;
-};
+    void *widget;
+} Widget;
 
 #endif
