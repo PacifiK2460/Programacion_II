@@ -2,7 +2,6 @@
 #define ROUTES_H
 
 #include "proyecto.h"
-// #include "auth.h"
 
 #include "../llist/llist.h"
 
@@ -54,6 +53,8 @@ typedef struct UserRoute{
 } UserRoute;
 
 Result loadAllRoutes();
-void freeUserRoutes(const struct User* user);
+
+typedef struct User;
+void freeUserRoutes(const User* user);
 
 #endif
