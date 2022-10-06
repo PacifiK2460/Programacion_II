@@ -15,7 +15,7 @@ void freeUsers(){
         // free(user->name);
         // free(user->pass);
 
-        if(user->type == NORMAL){
+        if(user->type == PASSANGER){
             while(LList_size(user->queued_routes) > 0){
                 Route* route = LList_remove_at(user->queued_routes, 0);
                 free(route->name);
@@ -110,7 +110,7 @@ Result loadAllUsers() {
         }
         
         // if the user isn't an admin, we read all the queued rouutes
-        if(user->type == NORMAL){
+        if(user->type == PASSANGER){
             int number_of_routes = 0;
             if(fwscanf(file, L" %d", &number_of_routes) != 1){
                 result.Error_state = FILE_READ_ERROR;
@@ -227,7 +227,7 @@ Result add_user(const User Requester,const wchar_t* NewUserName, const wchar_t* 
     user->state = ENABLED;
     user->type = NewUserType;
 
-    if(user->type == NORMAL){
+    if(user->type == PASSANGER){
         user->queued_routes = LList_new();
         if(user->queued_routes == 0){
             result.Error_state = MALLOC_FAULT;
@@ -264,7 +264,7 @@ Result modify_user(const User Requester, const wchar_t* UserName, const wchar_t*
             user->type = NewUserType;
 
             if(user->type == ADMIN){
-                freeUserRoutes(user);
+                freeUserRoutes(query_user(Requester, UserName).result);
             }
 
             result.Error_state = OK;

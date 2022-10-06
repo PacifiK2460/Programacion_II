@@ -28,6 +28,8 @@ Result initTUI(){
 
     setlocale(LC_CTYPE, "");
 
+    NEW_SCREEN();
+
     return result;
 }
 

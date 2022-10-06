@@ -23,21 +23,22 @@ enum UserErrors
 // Those structures define the level of users available in the system
 // and the level of access to the system that each user has.
 
+typedef enum {
+    ENABLED,
+    DISABLED
+} State;
+
+typedef enum{
+    PASSANGER,
+    ADMIN
+} Type;
 
 typedef struct User
 {
     wchar_t* name;
     wchar_t* pass;
-    enum Sate
-    {
-        ENABLED,
-        DISABLED
-    }  state;
-    enum Type
-    {
-        NORMAL,
-        ADMIN
-    }  type;
+    State  state;
+    Type  type;
     // if the user is an admin, this field will be 0
     LList* queued_routes;
 } User;

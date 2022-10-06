@@ -1,6 +1,7 @@
-#include "../libs/proyecto/routes.h"
 #include "../libs/proyecto/auth.h"
+#include "../libs/proyecto/routes.h"
 #include "../libs/proyecto/tui.h"
+#include "../libs/proyecto/proyecto.h"
 
 #include <stdio.h>
 #include <wchar.h>

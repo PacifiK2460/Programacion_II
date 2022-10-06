@@ -66,13 +66,13 @@ void gotoxy(int x, int y);
  * @brief Creates a new window.
  *
  */
-#define NEW_SCREEN() printf("\e[?1049h")
+#define NEW_SCREEN() wprintf(L"\e[?1049h")
 
 /**
  * @brief Deletes the current window.
  *
  */
-#define CLOSE_SCREEN() printf("\e[?1049l")
+#define CLOSE_SCREEN() wprintf(L"\e[?1049l")
 
 /**
  * @brief Prints the status bar at the bottom of the screen.
@@ -81,11 +81,11 @@ void gotoxy(int x, int y);
 void print_status_bar();
 
 // Text styles
-#define NORMAL "\e[0m"
-#define BOLD "\e[1m"
-#define DIM "\e[2m"
-#define ITALIC "\e[3m"
-#define INVERSE "\e[7m"
+#define NORMAL  L"\e[0m"
+#define BOLD    L"\e[1m"
+#define DIM     L"\e[2m"
+#define ITALIC  L"\e[3m"
+#define INVERSE L"\e[7m"
 
 // Colors
 
@@ -112,8 +112,8 @@ wchar_t *FRGB(int r, int g, int b);
 wchar_t *BRGB(int r, int g, int b);
 
 // MISC
-#define HIDE_CURSOR "\e[?25l"
-#define SHOW_CURSOR "\e[?25h"
+#define HIDE_CURSOR L"\e[?25l"
+#define SHOW_CURSOR L"\e[?25h"
 
 // Cursor echo
 Result noEcho();
