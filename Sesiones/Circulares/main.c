@@ -1,23 +1,62 @@
 #include <stdio.h>
 #include <time.h>
+#include <stdlib.h>
 
-int random(int min, int max) {
+int rangedrandom(int min, int max) {
     return rand() % (max - min + 1) + min;
 }
 
-typedef struct{
+typedef struct Node{
     int Data;
-    Node* prev;
-    Node* next;
+    struct Node* prev;
+    struct Node* next;
 } Node;
 
 typedef struct{
     Node* head;
     int size;
-} List;
+} CircularList;
 
-int insert_at(List base, int index, int data)
+int insert_at(CircularList* base, int index, int data){
+    if(index < 0 || index > base->size) return 0;
+    Node* new_node = (Node*) malloc(sizeof(Node));
+    new_node->Data = data;
+    if(index == 0){
+        if(base->size == 0){
+            new_node->next = new_node;
+            new_node->prev = new_node;
+            base->head = new_node;
+        }else{
+            new_node->next = base->head;
+            new_node->prev = base->head->prev;
+            base->head->prev->next = new_node;
+            base->head->prev = new_node;
+            base->head = new_node;
+        }
+    }else{
+        Node* temp = base->head;
+        for(int i = 0; i < index; i++) temp = temp->next;
+        new_node->next = temp;
+        new_node->prev = temp->prev;
+        temp->prev->next = new_node;
+        temp->prev = new_node;
+    }
+    base->size++;
+    return 1;
+}
+
+int append(CircularList* base, int data){
+    return insert_at(base, base->size, data);
+}
 
 int main(){
-    List lsita;
+    CircularList lsita = {0};
+    for(int i = 0; i < 10; i++){
+        append(&lsita, rangedrandom(0, 100));
+    }
+    printf("Prev \t<-\t Current \t->\t Next\n");
+    for(int i = 0; i < 10; i++){
+        printf("%d (%p) <- %d (%p) -> %d (%p)\n", lsita.head->prev->Data, lsita.head->prev, lsita.head->Data, lsita.head, lsita.head->next->Data, lsita.head->next);
+        lsita.head = lsita.head->next;
+    }
 }
