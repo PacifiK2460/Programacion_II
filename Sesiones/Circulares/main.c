@@ -52,11 +52,16 @@ int append(CircularList* base, int data){
 int main(){
     CircularList lsita = {0};
     for(int i = 0; i < 10; i++){
-        append(&lsita, rangedrandom(0, 100));
+        append(&lsita, rangedrandom(5, 100));
     }
-    printf("Prev \t<-\t Current \t->\t Next\n");
-    for(int i = 0; i < 10; i++){
-        printf("%d (%p) <- %d (%p) -> %d (%p)\n", lsita.head->prev->Data, lsita.head->prev, lsita.head->Data, lsita.head, lsita.head->next->Data, lsita.head->next);
+
+    insert_at(&lsita, 0, 0);
+    insert_at(&lsita, lsita.size / 2, 1);
+    insert_at(&lsita, lsita.size, 2);
+  
+    printf("Prev \t\t<-\t\t Current \t\t->\t\t Next\n");
+    for(int i = 0; i < 13; i++){
+        printf("%3d (%p) <- %3d (%p) -> %3d (%p)\n", lsita.head->prev->Data, lsita.head->prev, lsita.head->Data, lsita.head, lsita.head->next->Data, lsita.head->next);
         lsita.head = lsita.head->next;
     }
 }
