@@ -27,11 +27,16 @@
         "proyecto.h": "c",
         "tui.h": "c",
         "routes.h": "c",
-        "functional": "c"
+        "functional": "c",
+        "algorithm": "c",
+        "random": "c",
+        "numeric": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "makefile.extensionOutputFolder": "./.vscode",
     "C_Cpp.default.includePath": [
         "${workspaceFolder}/**",
-    ]
+    ],
+    "editor.fontFamily": "'Fira Code'",
+    "editor.fontLigatures": true,
 }
