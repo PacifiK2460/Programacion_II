@@ -45,62 +45,37 @@ int insert_at(CircularList* base, int index, int data){
     return 1;
 }
 
-int insert_at(List base, int index, int data){
-    if(index > base.size || index < 0){
-        return -1;
-    }
 
-    Node* new_node = (Node*)malloc(sizeof(Node));
-    if(new_node == 0){
-        return -2;
-    }
-    new_node->Data = data;
-
-    if(base.size == 0){
-        base.head = new_node;
-        new_node->next = new_node;
-        new_node->prev = new_node;
-    } else if(index == 0){
-        new_node->next = base.head;
-        new_node->prev = base.head->prev;
-        base.head->prev = new_node;
-        base.head = new_node;
-    }else{
-        Node* current = base.head;
-        for(int i = 0; i < index - 1; i++){
-            current = current->next;
-        }
-        new_node->next = current->next;
-        new_node->prev = current;
-        current->next->prev = new_node;
-        current->next = new_node;
-    }
-    base.size++;
-    return 0;
-}
-
-int delete_at(List base, int index){
-    if(index > base.size || index < 0){
+int delete_at(CircularList* base, int index){
+    if(index > base->size || index < 0){
         return -1;
     }
     if(index == 0){
-        base.head->next->prev = base.head->prev;
-        base.head->prev->next = base.head->next;
-        base.head = base.head->next;
+        base->head->next->prev = base->head->prev;
+        base->head->prev->next = base->head->next;
+        base->head = base->head->next;
     }else{
-        Node* current = base.head;
+        Node* current = base->head;
         for(int i = 0; i < index; i++){
             current = current->next;
         }
         current->prev->next = current->next;
         current->next->prev = current->prev;
     }
-    base.size--;
+    base->size--;
     return 0;
 }
 
-int append(List base, int data){
-    return insert_at(base, base.size, data);
+int append(CircularList* base, int data){
+    return insert_at(base, base->size, data);
+}
+
+void print(CircularList* base){
+    printf("Prev \t\t<-\t\t Current \t\t->\t\t Next\n");
+    for(int i = 0; i < base->size; i++){
+        printf("%3d (%p) <- %3d (%p) -> %3d (%p)\n", base->head->prev->Data, base->head->prev, base->head->Data, base->head, base->head->next->Data, base->head->next);
+        base->head = base->head->next;
+    }
 }
 
 int main(){
@@ -113,9 +88,12 @@ int main(){
     insert_at(&lsita, lsita.size / 2, 1);
     insert_at(&lsita, lsita.size, 2);
   
-    printf("Prev \t\t<-\t\t Current \t\t->\t\t Next\n");
-    for(int i = 0; i < 13; i++){
-        printf("%3d (%p) <- %3d (%p) -> %3d (%p)\n", lsita.head->prev->Data, lsita.head->prev, lsita.head->Data, lsita.head, lsita.head->next->Data, lsita.head->next);
-        lsita.head = lsita.head->next;
-    }
+    print(&lsita);
+  
+    delete_at(&lsita, 0);
+    delete_at(&lsita, lsita.size / 2);
+    delete_at(&lsita, lsita.size - 1);
+
+    print(&lsita);
+
 }
