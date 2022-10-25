@@ -1,8 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
 #include <string.h>
-// #include <windows.h>
+#include <stdlib.h>
 
 #define LEFT_UPPER_CORNER "┌"
 #define RIGHT_UPPER_CORNER "┐"
@@ -32,6 +31,47 @@ int rangedRand(int min, int max)
 	return rand() % (max - min + 1) + min;
 }
 
+/* -------------------------------------- PRACTICA 11 ---------------------------------------------------*/
+/*Estructura para el nodo de la lista doblemente enlazada circular*/
+struct DLNode
+{
+	int positionList;
+	char stringNode[10];
+	struct DLNode *next;
+	struct DLNode *prev;
+} *DLhead = NULL;
+
+struct DLNodeHead
+{
+	DLNode *entry;
+};
+
+DLNodeHead eliminados = {0};
+DLNodeHead insertados = {0};
+DLNodeHead DoubleLinkdeList = {0};
+
+void DLNode_append(DLNodeHead *head, DLNode *data)
+{
+	if (head->entry == NULL)
+	{
+		head->entry = data;
+		head->entry->next = head->entry;
+		head->entry->prev = head->entry;
+	}
+	else
+	{
+		DLNode *temp = head->entry;
+		while (temp->next != head->entry)
+		{
+			temp = temp->next;
+		}
+		temp->next = data;
+		data->prev = temp;
+		data->next = head->entry;
+		head->entry->prev = data;
+	}
+}
+
 struct Node
 {
 	int data;
@@ -46,6 +86,8 @@ char sp_car[] = {"#$%&/?+!._"};
 char sp_num[] = {"0123456789"};
 char sp_may[] = {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
 char sp_min[] = {"abcdefghijklmnopqrstuvwxyz"};
+
+char vocales[] = {"aeiou\0"};
 
 /*---------------------------------DESARROLLO DE FUNCIONES ---------------------------------------*/
 
@@ -101,9 +143,14 @@ void insertaNodo()
 {
 	// Genero un nuevo nodo
 	Node *newNode = new Node;
+
 	Node *temp = NULL;
 	newNode = GeneraNodo();
+
 	temp = head;
+
+	int position = 0;
+	int DLposition = 0;
 
 	// Si la lista esta vacia, el nuevo nodo sera el primero
 	if (head == NULL)
@@ -114,11 +161,36 @@ void insertaNodo()
 	{
 		// Mientras exista un siguiente nodo, me muevo a el.
 		while (temp->next != NULL)
+		{
 			temp = temp->next;
+			position++;
+			DLposition++;
+		}
 
 		// Al llegar al ultimo nodo, el siguiente sera el nuevo nodo.
 		temp->next = newNode;
 		newNode->prev = temp;
+	}
+
+	{
+
+		DLNode *Newtemp = new DLNode;
+		Newtemp->positionList = position;
+		strcpy(Newtemp->stringNode, newNode->user);
+		DLNode_append(&insertados, Newtemp);
+	}
+
+	{
+		for (char *c = vocales; *c != '\0'; c++)
+		{
+			if (*c == newNode->user[0])
+			{
+				DLNode *newDLNode = new DLNode;
+				newDLNode->positionList = 0;
+				strcpy(newDLNode->stringNode, newNode->user);
+				DLNode_append(&DoubleLinkdeList, newDLNode);
+			}
+		}
 	}
 }
 
@@ -130,6 +202,8 @@ void eliminaNodo()
 {
 	int del_data = 0;
 
+	int position = 0;
+
 	// SetConsoleTextAttribute(hCon, 14);
 	printf("\n\tDato: ");
 	scanf("%d", &del_data);
@@ -139,6 +213,13 @@ void eliminaNodo()
 	{
 		if (head->data == del_data)
 		{
+			{
+				DLNode *temp = new DLNode;
+				temp->positionList = position;
+				strcpy(temp->stringNode, head->user);
+				DLNode_append(&eliminados, temp);
+			}
+
 			// Si el nodo a eliminar es el primero, enlazo head al siguiente nodo
 			head = head->next;
 
@@ -149,11 +230,18 @@ void eliminaNodo()
 		else
 		{
 			// Recorro la lista hasta encontrar el nodo a eliminar
-			for (Node *i = head; i != NULL; i = i->next)
+			for (Node *i = head; i != NULL; i = i->next, position++)
 			{
 				// Una vez encontrado
 				if (i->data == del_data)
 				{
+					{
+						DLNode *temp = new DLNode;
+						temp->positionList = position;
+						strcpy(temp->stringNode, i->user);
+						DLNode_append(&eliminados, temp);
+					}
+
 					// Si el nodo a eliminar es el ultimo, el previo del siguiente sera NULL
 					if (i->next == NULL)
 						i->prev->next = NULL;
@@ -163,7 +251,7 @@ void eliminaNodo()
 						i->prev->next = i->next;
 						i->next->prev = i->prev;
 					}
-					free(i);
+					// free(i);
 					break;
 				}
 			}
@@ -239,11 +327,12 @@ void imprimir()
 	gotoxy(22, 4);
 	printf("▶");
 
-	x+= 23;
+	x += 23;
 
 	// Print next node inside box
-	Node* temp = head;
-	while(temp != NULL){
+	Node *temp = head;
+	while (temp != NULL)
+	{
 		// gotoxy(x++, 4);
 		// printf("▶");
 
@@ -274,7 +363,7 @@ void imprimir()
 		gotoxy(x, y++);
 		printf(VERTICAL_LINE);
 		printf(RESET);
-		printf("N[0x%+09x]", temp->next);
+		printf("N[0x%9p]", temp->next);
 		printf(YELLOW);
 		printf(VERTICAL_LINE);
 
@@ -293,7 +382,7 @@ void imprimir()
 			printf(HORIZONTAL_LINE);
 		printf(RIGHT_T);
 
-		gotoxy(x-1, y++);
+		gotoxy(x - 1, y++);
 		if (temp->prev != NULL)
 		{
 			printf(RESET);
@@ -302,12 +391,13 @@ void imprimir()
 
 			printf(YELLOW);
 		}
-		else{
+		else
+		{
 			printf(" ");
 		}
 		printf(VERTICAL_LINE);
 		printf(RESET);
-		printf("P[0x%+09x]", temp->prev);
+		printf("P[0x%9p]", temp->prev);
 		printf(YELLOW);
 		printf(VERTICAL_LINE);
 
@@ -320,7 +410,7 @@ void imprimir()
 		printf(RESET);
 
 		gotoxy(x, y++);
-		printf("0x%+014x", temp);
+		printf("0x%14p", temp);
 
 		temp = temp->next;
 
@@ -328,6 +418,82 @@ void imprimir()
 		x += 18;
 	}
 	printf("\n");
+}
+
+/* Genera una nueva lista que sera doblemente circular, en esta inserta los nodos que en la inserción de la lista principal contengan como primera
+mayúscula alguna vocal.
+ El nodo contiene la cadena y un número que corresponde al lugar que ocupa en la lista original
+ desarrollar el codigo de insercion doble circular con base en el código de listas simples de esta práctica
+*/
+void DoublylinkedList()
+{
+	{
+		for (DLNode *temp = DoubleLinkdeList.entry; temp != 0; temp = temp->next)
+		{
+			printf("[%d,%s]->", temp->positionList, temp->stringNode);
+		}
+	}
+}
+/* Realiza impresiones despues de que el proceso de inserción y eliminación concluyo */
+void AfterList()
+{
+
+	printf("\nNodos Insertados: "); // Menciona cuantos nodos se insertaron en todo el proceso de ejecución
+	{
+		int i = 0;
+		for (DLNode *temp = insertados.entry; (temp != insertados.entry || i != 0); temp = temp->next, i++)
+		{
+			printf("[%d,%s]->", temp->positionList, temp->stringNode);
+		}
+		exit(1);
+	}
+	printf("\nNodos Eliminados: "); // Menciona cuantos nodos se eliminaron en todo el proceso de ejecución
+	{
+		for (DLNode *temp = eliminados.entry; temp != 0; temp = temp->next)
+		{
+			printf("[%d,%s]->", temp->positionList, temp->stringNode);
+		}
+	}
+	printf("\nNodos Finales: "); // Menciona con cuantos nodos termino la lista
+	{
+		int size = 0;
+		if (head != 0)
+		{
+			size++;
+			for (Node *temp = head->next; temp != 0 && temp != head; temp = temp->next)
+			{
+				size++;
+			}
+		}
+		printf("%d", size);
+	}
+	printf("\nDatos eliminados ordenados: "); // Muestra en orden descendente el valor de data de los nodos que se eliminaron
+	{
+		// Sort the list
+		for (DLNode *temp = eliminados.entry; temp != 0; temp = temp->next)
+		{
+			for (DLNode *temp2 = temp->next; temp2 != 0; temp2 = temp2->next)
+			{
+				if (temp->positionList < temp2->positionList)
+				{
+					DLNode temp3 = *temp;
+					temp->positionList = temp2->positionList;
+					strcpy(temp->stringNode, temp2->stringNode);
+
+					temp2->positionList = temp3.positionList;
+					strcpy(temp2->stringNode, temp3.stringNode);
+				}
+			}
+		}
+
+		// Print the list
+		for (DLNode *temp = eliminados.entry; temp != 0; temp = temp->next)
+		{
+			printf("[%d,%s]->", temp->positionList, temp->stringNode);
+		}
+	}
+	printf("\nNueva lista generada: "); // muestra la lista en base a las condiciones de la función DoublylinkedList
+	DoublylinkedList();
 }
 
 /*--------------------------------------------------------------------------------------------------------*/
@@ -357,6 +523,8 @@ int main()
 			break;
 		}
 	} while (op_user != 0); // cero para terminar
+
+	AfterList();
 
 	while (head != NULL)
 	{
