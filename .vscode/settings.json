@@ -30,7 +30,8 @@
         "functional": "c",
         "algorithm": "c",
         "random": "c",
-        "numeric": "c"
+        "numeric": "c",
+        "stree.h": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "makefile.extensionOutputFolder": "./.vscode",
@@ -39,4 +40,5 @@
     ],
     "editor.fontFamily": "'Fira Code'",
     "editor.fontLigatures": true,
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
 }
