@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.8)
 project("Programacion II")
 
-set(LIBS io sstring llist tree)
+set(LIBS io sstring llist stree)
 foreach(lib ${LIBS})
     include_directories("${CMAKE_SOURCE_DIR}/libs/${lib}/")
     link_libraries("${CMAKE_SOURCE_DIR}/libs/${lib}/${lib}.c")

@@ -14,5 +14,4 @@ typedef struct _sorted_tree {
 } Tree;
 
 extern int tree_insert(Tree *tree, void* data, int (*compare)(void*, void*));
-extern int tree_get(Tree *tree, void* data, int (*compare)(void*, void*));
-extern int tree_get_index(Tree *tree, int index, int (*compare)(void*, void*));
+extern void* pop(Tree *tree);

@@ -31,7 +31,8 @@
         "algorithm": "c",
         "random": "c",
         "numeric": "c",
-        "stree.h": "c"
+        "stree.h": "c",
+        "time.h": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "makefile.extensionOutputFolder": "./.vscode",
