@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct _sorted_tree_node {
     void* data;
@@ -15,3 +16,7 @@ typedef struct _sorted_tree {
 
 extern int tree_insert(Tree *tree, void* data, int (*compare)(void*, void*));
 extern void* pop(Tree *tree);
+
+extern void* tree_search(Tree *tree, void* data, int (*compare)(void*, void*));
+
+extern void tree_print(Tree *tree);

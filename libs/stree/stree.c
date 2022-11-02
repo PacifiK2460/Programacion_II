@@ -64,20 +64,22 @@ int tree_insert(Tree *tree, void *data, int (*compare)(void *, void *))
 
 void *_pop(sorted_tree_node *node)
 {
-    if(node == NULL)
+    if (node == NULL)
         return NULL;
 
-    if(node->minor == NULL && node->major == NULL){
+    if (node->minor == NULL && node->major == NULL)
+    {
         void *data = node->data;
         // free(node);
         return data;
     }
 
-    if(node->minor == NULL){
+    if (node->minor == NULL)
+    {
         sorted_tree_node *major = node->major;
 
         void *data = node->data;
-        
+
         free(node);
 
         node = major;
@@ -96,4 +98,62 @@ extern void *pop(Tree *tree)
     }
 
     return _pop(tree->root);
+}
+
+extern void *tree_search(Tree *tree, void *data, int (*compare)(void *, void *))
+{
+    if (tree->root == NULL)
+        return NULL;
+
+    sorted_tree_node *current = tree->root;
+    while (1)
+    {
+        if (compare(data, current->data) < 0)
+        {
+            if (current->minor == NULL)
+                return NULL;
+            current = current->minor;
+        }
+        else if (compare(data, current->data) > 0)
+        {
+            if (current->major == NULL)
+                return NULL;
+            current = current->major;
+        }
+        else
+        {
+            return current->data;
+        }
+    }
+}
+
+void _print(sorted_tree_node *node)
+{
+    if (node->minor == NULL && node->major == NULL)
+    { 
+        printf("%d , %f \n", *(int *)node->data, *(float *)(node->data + sizeof(int)));
+    }
+    if (node->minor != NULL)
+        _print(node->minor);
+
+    if (node->major != NULL)
+        _print(node->major);
+}
+void tree_print(Tree *tree)
+{
+    if (tree->root == NULL)
+    {
+        return;
+    }
+
+    sorted_tree_node *current = tree->root;
+    if (current->minor != NULL)
+    {
+        _print(current->minor);
+    }
+
+    if (current->major != NULL)
+    {
+        _print(current->major);
+    }
 }
