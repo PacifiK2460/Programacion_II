@@ -127,19 +127,19 @@ extern void *tree_search(Tree *tree, void *data, int (*compare)(void *, void *))
     }
 }
 
-void _print(sorted_tree_node *node)
+void _print(sorted_tree_node *node, void (*print)(void *))
 {
     if (node->minor == NULL && node->major == NULL)
     { 
-        printf("%d , %f \n", *(int *)node->data, *(float *)(node->data + sizeof(int)));
+        print(node->data);
     }
     if (node->minor != NULL)
-        _print(node->minor);
+        _print(node->minor, print);
 
     if (node->major != NULL)
-        _print(node->major);
+        _print(node->major, print);
 }
-void tree_print(Tree *tree)
+void tree_print(Tree *tree, void (*print)(void *))
 {
     if (tree->root == NULL)
     {
@@ -149,11 +149,11 @@ void tree_print(Tree *tree)
     sorted_tree_node *current = tree->root;
     if (current->minor != NULL)
     {
-        _print(current->minor);
+        _print(current->minor, print);
     }
 
     if (current->major != NULL)
     {
-        _print(current->major);
+        _print(current->major, print);
     }
 }

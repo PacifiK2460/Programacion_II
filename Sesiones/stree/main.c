@@ -8,6 +8,12 @@ typedef struct {
     float flotant;
 } Nodo;
 
+void print(void *nodo) {
+    Nodo* data = (Nodo*) nodo;
+
+    printf("%d, %f\n", data->integer, data->flotant);
+}
+
 int random_int(int min, int max){
     int n = min + rand() / (RAND_MAX / (max - min + 1) + 1);
     return n;
@@ -38,22 +44,19 @@ int main(){
         tree_insert(&arbol, nodo, compare_int);
     }
 
-    tree_print(&arbol);
+    tree_print(&arbol, print);
 
-    int search;
-    scanf("%d", &search);
-    printf("\nSearching for: %d\n", search);
-    float new_float;
+    int id;
+    printf("\nIngrese un id a modificar: ");
+    scanf("%d", &id);
 
-    getc(stdin);
+    int new_flotant;
+    printf("Ingrese un nuevo flotante: ");
+    scanf("%d", &new_flotant);
 
-    scanf("%f", &new_float);
-    Nodo* encontrado = (Nodo*)tree_search(&arbol, &search, compare_int);
-    encontrado->flotant = new_float;
+    Nodo* to_modify = tree_search(&arbol, &id, compare_int);    
 
-    encontrado = (Nodo*)tree_search(&arbol, &search, compare_int);
-    if(encontrado != NULL)
-        printf("Encontrado: %f", encontrado->flotant);
-    else
-        printf("No encontrado");
+    to_modify->flotant = new_flotant;
+
+    tree_print(&arbol, print);
 }

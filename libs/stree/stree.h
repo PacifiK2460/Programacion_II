@@ -19,4 +19,4 @@ extern void* pop(Tree *tree);
 
 extern void* tree_search(Tree *tree, void* data, int (*compare)(void*, void*));
 
-extern void tree_print(Tree *tree);
+extern void tree_print(Tree *tree, void (*print)(void *));
