@@ -24,11 +24,11 @@ typedef struct Menu {
     String title;
     String subtitle;
     Options options;
+    size_t selected;
 } Menu;
 
-extern Menu* newMenu(const wchar_t* title, const wchar_t* subtitle);
-extern int addOption(Menu* menu, const wchar_t* title, const wchar_t* subtitle, int (*onFocus)(MenuOption* self, ...), int (*onSelect)(MenuOption* self, ...));
-extern int removeOption(Menu* menu, size_t index);
-extern int drawMenu(Menu* menu);
-
-extern int freeMenu(Menu *menu);
+Menu* newMenu(const wchar_t* title, const wchar_t* subtitle);
+int addOption(Menu* menu, const wchar_t* title, const wchar_t* subtitle, int (*onFocus)(MenuOption* self, ...), int (*onSelect)(MenuOption* self, ...));
+int removeOption(Menu* menu, size_t index);
+int displayMenu(Menu* menu);
+int freeMenu(Menu *menu);
