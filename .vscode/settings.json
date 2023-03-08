@@ -1,6 +1,11 @@
 {
     "files.associations": {
         "string.h": "c",
-        "menu.h": "c"
+        "menu.h": "c",
+        "initializer_list": "c",
+        "type_traits": "c",
+        "xstring": "c",
+        "xutility": "c",
+        "list.h": "c"
     }
 }

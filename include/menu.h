@@ -6,6 +6,8 @@
 
 #include "colors.h"
 #include "string.h"
+#include "movement.h"
+
 #include <stdarg.h>
 
 typedef struct MenuOption {

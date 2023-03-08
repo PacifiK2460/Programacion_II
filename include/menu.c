@@ -122,7 +122,13 @@ int displayMenu(Menu *menu)
     if (menu == NULL)
         return -1;
 
-    drawMenu(menu);
+    wprintf(HIDE_CURSOR);
+
+    if(drawMenu(menu) == -1){
+        return -1;
+        wprintf(SHOW_CURSOR);
+    }
+
 
     // Read input and handle it in wchar
     wchar_t input;
@@ -152,7 +158,10 @@ int displayMenu(Menu *menu)
         }
         else if (input == L'\x1B')
         {
+            wprintf(SHOW_CURSOR);
             return -2;
+        } else {
+            continue;
         }
 
         if (menu->options.option[menu->selected].onFocus != NULL)
@@ -167,6 +176,7 @@ int displayMenu(Menu *menu)
 
         drawMenu(menu);
     }
+    wprintf(SHOW_CURSOR);
 
     return 0;
 }
