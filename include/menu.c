@@ -45,7 +45,7 @@ Menu *newMenu(const wchar_t *title, const wchar_t *subtitle)
     return menu;
 }
 
-int addOption(Menu *menu, const wchar_t *title, const wchar_t *subtitle, int (*onFocus)(MenuOption *self, ...), int (*onSelect)(MenuOption *self, ...))
+int addOption(Menu* menu, const wchar_t* title, const wchar_t* subtitle,size_t onFocusArgumentsSize ,int (*onFocus)(MenuOption* self, va_list args), size_t onSelectArgumentsSize, int (*onSelect)(MenuOption* self, va_list args), size_t total_args,...)
 {
     if (menu == NULL)
         return -1;
@@ -67,6 +67,21 @@ int addOption(Menu *menu, const wchar_t *title, const wchar_t *subtitle, int (*o
 
     menu->options.option[menu->options.size].onFocus = onFocus;
     menu->options.option[menu->options.size].onSelect = onSelect;
+
+    total_args = onFocusArgumentsSize;
+
+    va_list onFocusArguments;
+    va_start(total_args, onFocusArgumentsSize);
+    va_copy(menu->options.option[menu->options.size].onFocusArguments, onFocusArguments);
+    va_end(onFocusArguments);
+
+    total_args = onSelectArgumentsSize;
+
+    va_list onSelectArguments;
+    va_start(total_args, onSelectArgumentsSize);
+    va_copy(menu->options.option[menu->options.size].onSelectArguments, onSelectArguments);
+    va_end(onSelectArguments);
+
     menu->options.size++;
     return 0;
 }
@@ -152,8 +167,7 @@ int displayMenu(Menu *menu)
         else if(input == L'\r')
         {
             if (menu->options.option[menu->selected].onSelect != NULL)
-                menu->options.option[menu->selected].onSelect(&menu->options.option[menu->selected]);
-
+                menu->options.option[menu->selected].onSelect(&menu->options.option[menu->selected], menu->options.option[menu->selected].onSelectArguments);
             break;
         }
         else if (input == L'\x1B')
@@ -165,7 +179,7 @@ int displayMenu(Menu *menu)
         }
 
         if (menu->options.option[menu->selected].onFocus != NULL)
-            menu->options.option[menu->selected].onFocus(&menu->options.option[menu->selected]);
+            menu->options.option[menu->selected].onFocus(&menu->options.option[menu->selected], menu->options.option[menu->selected].onFocusArguments);
 
         // Clear the only the lines printed
         int i;
