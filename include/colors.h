@@ -15,5 +15,8 @@
 #define WHITE       L"\033[37m"      /* White */
 
 #define BOLD        L"\033[1m"         /* Bold */
+#define DIM         L"\033[2m"         /* Dim */
 #define UNDERLINE   L"\033[4m"    /* Underline */
 #define ITALIC      L"\033[3m"       /* Italic */
+
+#define INVERTED   L"\033[7m"    /* Inverted */
