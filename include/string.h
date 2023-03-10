@@ -1,12 +1,12 @@
 #pragma once
 
 #include<stdlib.h>
-#include<wchar.h>
+#include<string.h>
 
 typedef struct String {
-    wchar_t* str;
+    char* str;
     size_t len;
 } String;
 
-extern String* newString(const wchar_t* str);
+extern int newStringFrom(const char* src, String* dest);
 extern void freeString(String* str);

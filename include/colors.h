@@ -4,19 +4,19 @@
     Colors to use in terminal
 */
 
-#define RESET       L"\033[0m"
-#define BLACK       L"\033[30m"      /* Black */
-#define RED         L"\033[31m"      /* Red */
-#define GREEN       L"\033[32m"      /* Green */
-#define YELLOW      L"\033[33m"      /* Yellow */
-#define BLUE        L"\033[34m"      /* Blue */
-#define MAGENTA     L"\033[35m"     /* Magenta */
-#define CYAN        L"\033[36m"      /* Cyan */
-#define WHITE       L"\033[37m"      /* White */
+#define RESET       "\033[0m"
+#define BLACK       "\033[30m"      /* Black */
+#define RED         "\033[31m"      /* Red */
+#define GREEN       "\033[32m"      /* Green */
+#define YELLOW      "\033[33m"      /* Yellow */
+#define BLUE        "\033[34m"      /* Blue */
+#define MAGENTA     "\033[35m"     /* Magenta */
+#define CYAN        "\033[36m"      /* Cyan */
+#define WHITE       "\033[37m"      /* White */
 
-#define BOLD        L"\033[1m"         /* Bold */
-#define DIM         L"\033[2m"         /* Dim */
-#define UNDERLINE   L"\033[4m"    /* Underline */
-#define ITALIC      L"\033[3m"       /* Italic */
+#define BOLD        "\033[1m"         /* Bold */
+#define DIM         "\033[2m"         /* Dim */
+#define UNDERLINE   "\033[4m"    /* Underline */
+#define ITALIC      "\033[3m"       /* Italic */
 
-#define INVERTED   L"\033[7m"    /* Inverted */
+#define INVERTED   "\033[7m"    /* Inverted */

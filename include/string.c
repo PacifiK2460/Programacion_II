@@ -1,12 +1,23 @@
 #include "string.h"
 
-String* newString(const wchar_t* str){
-    size_t len = wcslen(str);
-    String* newStr = calloc(len ,sizeof(String));
-    newStr->len = len;
-    newStr->str = calloc(len ,sizeof(wchar_t));
-    wcscpy(newStr->str, str);
-    return newStr;
+int newStringFrom(const char* src, String* dest){
+    if(src == NULL)
+        return -1;
+
+    dest->len = strlen(src);
+
+    if(dest->str != NULL)
+        free(dest->str);
+
+    dest->str = calloc(dest->len + 1, sizeof(char));
+    if(dest->str == NULL)
+        return -1;
+
+    strcpy(dest->str, src);
+    
+    // Null terminate it
+    dest->str[dest->len] = '\0';
+    return 0;
 }
 
 void freeString(String* str){

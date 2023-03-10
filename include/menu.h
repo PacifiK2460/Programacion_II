@@ -13,10 +13,6 @@
 typedef struct MenuOption {
     String title;
     String subtitle;
-    va_list onFocusArguments;
-    va_list onSelectArguments;
-    int (*onFocus)(struct MenuOption* self, va_list args);
-    int (*onSelect)(struct MenuOption* self, va_list args);
 } MenuOption;
 
 typedef struct Options{
@@ -31,8 +27,8 @@ typedef struct Menu {
     size_t selected;
 } Menu;
 
-Menu* newMenu(const wchar_t* title, const wchar_t* subtitle);
-int addOption(Menu* menu, const wchar_t* title, const wchar_t* subtitle);
+Menu* newMenu(const char* title, const char* subtitle);
+int addOption(Menu* menu, const char* title, const char* subtitle);
 int removeOption(Menu* menu, size_t index);
 int displayMenu(Menu* menu);
 int freeMenu(Menu *menu);

@@ -5,62 +5,47 @@ int freeMenu(Menu *menu)
     if (menu == NULL)
         return -1;
 
-    freeString(&menu->title);
-    freeString(&menu->subtitle);
-
-    int i;
-    for (i = 0; i < menu->options.size; i++)
-    {
-        freeString(&menu->options.option[i].title);
-        freeString(&menu->options.option[i].subtitle);
-    }
-
     free(menu);
     return 0;
 }
 
-Menu *newMenu(const wchar_t *title, const wchar_t *subtitle)
+Menu *newMenu(const char *title, const char *subtitle)
 {
     Menu *menu = calloc(1, sizeof(Menu));
     if (menu == NULL)
         return NULL;
 
-    menu->title = *newString(title);
-    if (menu->title.str == NULL)
-    {
+    if (newStringFrom(title, &menu->title) == -1){
+        free(menu);
+        return NULL;
+    }
+    if (newStringFrom(subtitle, &menu->subtitle) == -1){
         free(menu);
         return NULL;
     }
 
-    menu->subtitle = *newString(subtitle);
-    if (menu->subtitle.str == NULL)
-    {
-        freeString(&menu->title);
-        free(menu);
-        return NULL;
-    }
-
-    menu->options.size = 0;
-    menu->options.option = NULL;
     return menu;
 }
 
-int addOption(Menu* menu, const wchar_t* title, const wchar_t* subtitle){
+int addOption(Menu *menu, const char *title, const char *subtitle)
+{
     if (menu == NULL)
         return -1;
 
-    menu->options.option = realloc(menu->options.option, (menu->options.size + 1) * sizeof(MenuOption));
-    if (menu->options.option == NULL)
+    MenuOption *new = realloc(menu->options.option, (menu->options.size + 1) * sizeof(MenuOption));
+    if (new == NULL){
         return -1;
+    }
 
-    menu->options.option[menu->options.size].title = *newString(title);
-    if (menu->options.option[menu->options.size].title.str == NULL)
+    // Go to that new memory block and clean it up
+    new[menu->options.size] = (MenuOption){0};
+
+    menu->options.option = new;
+    if( newStringFrom(title, &menu->options.option[menu->options.size].title) == -1){
         return -1;
+    }
 
-    menu->options.option[menu->options.size].subtitle = *newString(subtitle);
-    if (menu->options.option[menu->options.size].subtitle.str == NULL)
-    {
-        freeString(&menu->options.option[menu->options.size].title);
+    if( newStringFrom(subtitle, &menu->options.option[menu->options.size].subtitle) == -1){
         return -1;
     }
 
@@ -99,18 +84,21 @@ int drawMenu(Menu *menu)
         return -1;
 
     // Print title and subtitle in bold and dimmed
-    wprintf(BOLD L"%ls" DIM ITALIC L" %ls\n" RESET, menu->title.str, menu->subtitle.str);
+    printf(BOLD "%s" DIM ITALIC " %s\n" RESET, menu->title.str, menu->subtitle.str);
     // Print help
-    wprintf(L" Usa " BOLD L"<w>" RESET L" y " BOLD L"<s>" RESET L" para navegar, " BOLD L"<enter>" RESET L" para seleccionar una opción, " BOLD L"<esc>" RESET L" para salir.\n");
+    // printf("🆘 Usa " BOLD "w" RESET " }y " BOLD "s" RESET " para navegar, " BOLD "enter" RESET " para seleccionar una opción, " BOLD "esc" RESET " para salir.\n");
 
     int i;
     for (i = 0; i < menu->options.size; i++)
     {
-        if (i == menu->selected)
-            wprintf(BOLD L"> %ls - " RESET ITALIC "%ls\n" RESET, menu->options.option[i].title.str, menu->options.option[i].subtitle.str);
-        else
-            wprintf(BOLD L"  %ls - " RESET ITALIC "%ls\n" RESET, menu->options.option[i].title.str, menu->options.option[i].subtitle.str);
+        printf(INVERTED" %-d " RESET BOLD " %s - " RESET ITALIC "%s\n" RESET,i, menu->options.option[i].title.str, menu->options.option[i].subtitle.str);
+        // if (i == menu->selected)
+        //     printf(BOLD "> %s - " RESET ITALIC "%s\n" RESET, menu->options.option[i].title.str, menu->options.option[i].subtitle.str);
+        // else
+        //     printf(BOLD "  %s - " RESET ITALIC "%s\n" RESET, menu->options.option[i].title.str, menu->options.option[i].subtitle.str);
     }
+
+    printf("Selecciona una opción: ");
     return 0;
 }
 
@@ -119,55 +107,25 @@ int displayMenu(Menu *menu)
     if (menu == NULL)
         return -1;
 
-    wprintf(HIDE_CURSOR);
-
-    if(drawMenu(menu) == -1){
-        return -1;
-        wprintf(SHOW_CURSOR);
-    }
-
-
-    // Read input and handle it in wchar
-    wchar_t input;
-    while (1)
+    if (drawMenu(menu) == -1)
     {
-        input = _getwch();
-        if (input == L'w' || input == L'W')
-        {
-            if (menu->selected > 0)
-                menu->selected--;
-            else
-                menu->selected = menu->options.size - 1;
-        }
-        else if (input == L's' || input == L'S')
-        {
-            if (menu->selected < menu->options.size - 1)
-                menu->selected++;
-            else
-                menu->selected = 0;
-        }
-        else if(input == L'\r')
-        {
-            return menu->selected;
-        }
-        else if (input == L'\x1B')
-        {
-            wprintf(SHOW_CURSOR);
-            return -2;
-        } else {
-            continue;
-        }
-
-        // Clear the only the lines printed
-        int i;
-        for (i = 0; i < menu->options.size + 2; i++)
-        {
-            wprintf(L"\033[A\033[2K");
-        }
-
-        drawMenu(menu);
+        return -1;
+        printf(SHOW_CURSOR);
     }
-    wprintf(SHOW_CURSOR);
+
+    // Read input
+    int numero;
+    char buffer[1000];
+    if (fgets(buffer, sizeof(buffer), stdin))
+    {
+        if (1 == sscanf(buffer, "%d", &numero))
+        {
+            menu->selected = numero;
+        }
+    }
+    else {
+        printf(RED BOLD "Error al leer el número.\n" RESET);
+    }
 
     return 0;
 }

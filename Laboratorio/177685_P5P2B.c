@@ -20,30 +20,30 @@ int rangedrand(int min, int max){
 typedef struct Datap{
     int longitud;
     int vocales[5];
-    wchar_t *palabra_ordenada;
+    char *palabra_ordenada;
 } Datap;
 
-void leerPalabras(wchar_t **ptrPal, int nPal){
+void leerPalabras(char **ptrPal, int nPal){
     int i;
     for(i = 0; i < nPal; i++){
         /*
             Leemos la palabra bajo un buffer temporal
         */
-        wchar_t temp[1000];
-        wprintf(L"Ingresa la palabra " BOLD "%d/%d: " RESET, i+1, nPal);
-        wscanf(L"%ls", temp);
+        char temp[1000];
+        printf("Ingresa la palabra " BOLD "%d/%d: " RESET, i+1, nPal);
+        scanf("%s", temp);
 
         /*
             Obtenemos el tamaño de la palabra y reservamos memoria
             para la palabra en el arreglo de punteros
         */
         int len = wcslen(temp);
-        ptrPal[i] = (wchar_t *)malloc((len+1) * sizeof(wchar_t));
+        ptrPal[i] = (char *)malloc((len+1) * sizeof(char));
         wcscpy(ptrPal[i], temp);
     }
 }
 
-void ordenarPalabra(wchar_t *palabra){
+void ordenarPalabra(char *palabra){
     /*
         Ordenamos la palabra usando el algoritmo de burbuja
     */
@@ -52,7 +52,7 @@ void ordenarPalabra(wchar_t *palabra){
     for(i = 0; i < len; i++){
         for(j = i+1; j < len; j++){
             if(palabra[i] > palabra[j]){
-                wchar_t temp = palabra[i];
+                char temp = palabra[i];
                 palabra[i] = palabra[j];
                 palabra[j] = temp;
             }
@@ -60,7 +60,7 @@ void ordenarPalabra(wchar_t *palabra){
     }
 }
 
-void analizarPalabras(wchar_t **ptrPal, Datap *ptrDatap, int nPal){
+void analizarPalabras(char **ptrPal, Datap *ptrDatap, int nPal){
     int i;
     for(i = 0; i < nPal; i++){
         // Obtenemos la longitud de la palabra
@@ -74,7 +74,7 @@ void analizarPalabras(wchar_t **ptrPal, Datap *ptrDatap, int nPal){
         ptrDatap->vocales[4] = 0;
         
         // Obtenemos la palabra ordenada y la ordenamos
-        ptrDatap[i].palabra_ordenada = (wchar_t *)calloc((ptrDatap[i].longitud+1) , sizeof(wchar_t));
+        ptrDatap[i].palabra_ordenada = (char *)calloc((ptrDatap[i].longitud+1) , sizeof(char));
         wcscpy(ptrDatap[i].palabra_ordenada, ptrPal[i]);
         ordenarPalabra(ptrDatap[i].palabra_ordenada);
 
@@ -96,16 +96,16 @@ void analizarPalabras(wchar_t **ptrPal, Datap *ptrDatap, int nPal){
     }
 }
 
-void imprimirAnalisis(wchar_t **ptrPal, Datap *ptrDatap, int nPal){
-    wprintf(L"Número de Palabras: " BOLD "%d\n" RESET, nPal);
+void imprimirAnalisis(char **ptrPal, Datap *ptrDatap, int nPal){
+    printf("Número de Palabras: " BOLD "%d\n" RESET, nPal);
     { // Imprimimos cada palabra en la lista
         int i;
         for(i = 0; i < nPal; i++){
-            wprintf(L"%d: " BOLD L"%ls\n" RESET, i+1, ptrPal[i]);
+            printf("%d: " BOLD "%s\n" RESET, i+1, ptrPal[i]);
         }
     }
 
-    wprintf(L"\n");
+    printf("\n");
 
     { 
         /*
@@ -139,23 +139,23 @@ void imprimirAnalisis(wchar_t **ptrPal, Datap *ptrDatap, int nPal){
         int tableBorder = (maxLongitud + 1) + (15) + (7) + maxLongitud + 1;
         // Palabra + vocales + tamaño + palabra ordenada
 
-        wprintf(BOLD L"ANÁLISIS DE PALABRAS\n" RESET);
+        printf(BOLD "ANÁLISIS DE PALABRAS\n" RESET);
 
         // Encabezado de la tabla
-        wprintf(L"%-*ls  a  e  i  o  u TAMAÑO PALABRA ORDENADA\n",maxLongitud, L"PALABRA");
+        printf("%-*ls  a  e  i  o  u TAMAÑO PALABRA ORDENADA\n",maxLongitud, "PALABRA");
 
         int i;
         for(i = 0; i < tableBorder; i++){
-            wprintf(L"─");
+            printf("─");
         }
-        wprintf(L"\n");
+        printf("\n");
 
         for(i = 0; i < nPal; i++){
-            wprintf(
-                    L"%-*ls "
-                    L"% 2d % 2d % 2d % 2d % 2d "
-                    L"% 7d "
-                    L"%ls\n",
+            printf(
+                    "%-*ls "
+                    "% 2d % 2d % 2d % 2d % 2d "
+                    "% 7d "
+                    "%s\n",
                     maxLongitud, ptrPal[i],
                     ptrDatap[i].vocales[0],
                     ptrDatap[i].vocales[1],
@@ -174,12 +174,12 @@ int main(){
     // y configuramos el locale para que acepte caracteres unicode (a.k.a la ñ)
     setlocale(LC_ALL, "");
     srand(time(NULL));
-    wprintf(BOLD L"Martinez Lara Santiago de la cruz"  RESET L" | " BOLD L"177685\n" RESET);
+    printf(BOLD "Martinez Lara Santiago de la cruz"  RESET " | " BOLD "177685\n" RESET);
 
-    wchar_t **ptrPal = 0;
+    char **ptrPal = 0;
     Datap *ptrDatap = 0;
     int nPal = rangedrand(3,6);
-    ptrPal = (wchar_t **)calloc(nPal , sizeof(wchar_t *));
+    ptrPal = (char **)calloc(nPal , sizeof(char *));
     ptrDatap = (Datap *)calloc(nPal , sizeof(Datap));
 
     leerPalabras(ptrPal, nPal);

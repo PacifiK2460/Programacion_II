@@ -1,6 +1,7 @@
 #include "list.h"
 
-List newList(){
+List newList()
+{
     List list = malloc(sizeof(List));
     if (list == NULL)
     {
@@ -12,7 +13,8 @@ List newList(){
     return list;
 }
 
-int listAdd(List list, void *data){
+int listAdd(List list, void *data)
+{
     if (list == NULL)
     {
         return -1;
@@ -39,7 +41,8 @@ int listAdd(List list, void *data){
     return 0;
 }
 
-void listFree(List list, void (*freeData)(void *)){
+void listFree(List list, void (*freeData)(void *))
+{
     if (list == NULL)
     {
         return;
@@ -58,7 +61,8 @@ void listFree(List list, void (*freeData)(void *)){
     free(list);
 }
 
-int listAddAt(List list, void *data, size_t index){
+int listAddAt(List list, void *data, int index)
+{
     if (list == NULL)
     {
         return -1;
@@ -66,6 +70,10 @@ int listAddAt(List list, void *data, size_t index){
     if (index > list->size)
     {
         return -1;
+    }
+    if (index == LIST_LAST)
+    {
+        return listAdd(list, data);
     }
     if (index == list->size || index == LIST_LAST)
     {
@@ -96,19 +104,36 @@ int listAddAt(List list, void *data, size_t index){
     return 0;
 }
 
-int listRemoveAt(List list, size_t index, void (*freeData)(void *)){
+int listRemoveAt(List list, int index, void (*freeData)(void *))
+{
     if (list == NULL)
     {
         return -1;
     }
-    if (index >= list->size)
+    if (index >= list->size || index < -1)
     {
-        return -1;
+        return -2;
     }
     ListItem *node = list->first;
-    if (index == 0)
+    if (index == LIST_FIRST)
     {
         list->first = node->next;
+        if (freeData != NULL)
+        {
+            freeData(node->data);
+        }
+        free(node);
+    }
+    else if (index == LIST_LAST)
+    {
+        ListItem *prev = list->first;
+        for (size_t i = 0; i < list->size - 2; i++)
+        {
+            prev = prev->next;
+        }
+        node = prev->next;
+        prev->next = NULL;
+        list->last = prev;
         if (freeData != NULL)
         {
             freeData(node->data);
@@ -134,15 +159,21 @@ int listRemoveAt(List list, size_t index, void (*freeData)(void *)){
     return 0;
 }
 
-void *listGet(List list, size_t index){
+void *listGet(List list, int index)
+{
     if (list == NULL)
     {
         return NULL;
     }
-    if (index >= list->size)
+    if (index >= list->size || index < -1)
     {
         return NULL;
     }
+    if (index == LIST_LAST)
+    {
+        return list->last->data;
+    }
+
     ListItem *node = list->first;
     for (size_t i = 0; i < index; i++)
     {
