@@ -3,6 +3,8 @@
         "string.h": "c",
         "stdlib.h": "c",
         "menu.h": "c",
-        "conio.h": "c"
+        "conio.h": "c",
+        "rpc.h": "c",
+        "typeinfo": "c"
     }
 }
