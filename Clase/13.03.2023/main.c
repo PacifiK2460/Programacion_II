@@ -17,7 +17,7 @@ typedef struct DoubleLinkedList
 
 DoubleLinkedList *createDoubleLinkedList()
 {
-    DoubleLinkedList *list = malloc(sizeof(DoubleLinkedList));
+    DoubleLinkedList *list = calloc(1,sizeof(DoubleLinkedList));
     list->head = NULL;
     list->tail = NULL;
     list->size = 0;
@@ -31,7 +31,7 @@ int addAt(DoubleLinkedList *list, int data, int index)
         return -1;
     }
 
-    DoubleLinkedListNode *newNode = malloc(sizeof(DoubleLinkedListNode));
+    DoubleLinkedListNode *newNode = calloc(1,sizeof(DoubleLinkedListNode));
     newNode->data = data;
 
     if (list->size == 0)
@@ -43,9 +43,9 @@ int addAt(DoubleLinkedList *list, int data, int index)
     }
     else if (index == 0)
     {
+        list->head->prev = newNode;
         newNode->next = list->head;
         newNode->prev = NULL;
-        list->head->prev = newNode;
         list->head = newNode;
     }
     else if (index == list->size)
@@ -292,7 +292,7 @@ int main(){
                 imprimirListaDeInicioAFin(list);
                 break;
             case 9:
-                imprimirListaDeInicioAFin(list);
+                imprimirListaDeFinAInicio(list);
                 break;
             case 0:
                 return 0;
