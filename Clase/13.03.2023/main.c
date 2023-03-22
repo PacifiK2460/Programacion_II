@@ -1,266 +1,133 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct DoubleLinkedListNode
-{
+typedef struct node{
     int data;
-    struct DoubleLinkedListNode *next;
-    struct DoubleLinkedListNode *prev;
-} DoubleLinkedListNode;
+    struct node *next;
+} Node;
 
-typedef struct DoubleLinkedList
-{
-    DoubleLinkedListNode *head;
-    DoubleLinkedListNode *tail;
-    int size;
-} DoubleLinkedList;
+typedef struct circularLinkedList{
+    int data;
+    struct node *head;
+    struct node *tail;
+} CircularLinkedList;
 
-DoubleLinkedList *createDoubleLinkedList()
-{
-    DoubleLinkedList *list = malloc(sizeof(DoubleLinkedList));
+CircularLinkedList *createCircularLinkedList(){
+    CircularLinkedList *list = (CircularLinkedList *)malloc(sizeof(CircularLinkedList));
     list->head = NULL;
     list->tail = NULL;
-    list->size = 0;
     return list;
 }
 
-int addAt(DoubleLinkedList *list, int data, int index)
-{
-    if (index < 0 || index > list->size)
-    {
-        return -1;
+void imprimir(CircularLinkedList *list){
+    Node *temp = list->head;
+    
+    if(temp == NULL){
+        printf("Lista vacia\n");
+        return;
     }
 
-    DoubleLinkedListNode *newNode = malloc(sizeof(DoubleLinkedListNode));
-    newNode->data = data;
+    do{
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }while(temp != list->head);
+    printf("\n");
+}
 
-    if (list->size == 0)
-    {
+void insertarAlInicio(CircularLinkedList *list){
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    printf("Ingrese un numero: ");
+    scanf(" %d", &newNode->data);
+    newNode->next = NULL;
+
+    if(list->head == NULL){
         list->head = newNode;
         list->tail = newNode;
-        newNode->next = NULL;
-        newNode->prev = NULL;
-    }
-    else if (index == 0)
-    {
+        newNode->next = newNode;
+    }else{
         newNode->next = list->head;
-        newNode->prev = NULL;
-        list->head->prev = newNode;
         list->head = newNode;
+        list->tail->next = newNode;
     }
-    else if (index == list->size)
-    {
-        newNode->next = NULL;
-        newNode->prev = list->tail;
+}
+
+void insertarAlFinal(CircularLinkedList *list){
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    printf("Ingrese un numero: ");
+    scanf(" %d", &newNode->data);
+    newNode->next = NULL;
+
+    if(list->head == NULL){
+        list->head = newNode;
+        list->tail = newNode;
+        newNode->next = newNode;
+    }else{
         list->tail->next = newNode;
         list->tail = newNode;
+        list->tail->next = list->head;
     }
-    else
-    {
-        DoubleLinkedListNode *current = list->head;
-        for (int i = 0; i < index; i++)
-        {
-            current = current->next;
+}
+
+void eliminarAlInicio(CircularLinkedList *list){
+    if(list->head == NULL){
+        printf("Lista vacia\n");
+        return;
+    }
+
+    Node *temp = list->head;
+    list->head = list->head->next;
+    list->tail->next = list->head;
+    free(temp);
+}
+
+void eliminarAlFinal(CircularLinkedList *list){
+    if(list->head == NULL){
+        printf("Lista vacia\n");
+        return;
+    }
+
+    Node *temp = list->head;
+    while(temp->next != list->tail){
+        temp = temp->next;
+    }
+    list->tail = temp;
+    list->tail->next = list->head;
+    free(temp->next);
+}
+
+void buscarUnElemento(CircularLinkedList *list){
+    if(list->head == NULL){
+        printf("Lista vacia\n");
+        return;
+    }
+
+    int num = 0;
+    printf("Ingrese un numero: ");
+    scanf(" %d", &num);
+
+    Node *temp = list->head;
+    do{
+        if(temp->data == num){
+            printf("El numero %d se encuentra en la lista\n", num);
+            return;
         }
-        newNode->next = current;
-        newNode->prev = current->prev;
-        current->prev->next = newNode;
-        current->prev = newNode;
-    }
-
-    list->size++;
-    return 0;
-}
-
-int addFirst(DoubleLinkedList *list, int data)
-{
-    return addAt(list, data, 0);
-}
-
-int addLast(DoubleLinkedList *list, int data)
-{
-    return addAt(list, data, list->size);
-}
-
-int deleteAt(DoubleLinkedList *list, int index)
-{
-    if (index < 0 || index >= list->size)
-    {
-        return -1;
-    }
-
-    DoubleLinkedListNode *current = list->head;
-    for (int i = 0; i < index; i++)
-    {
-        current = current->next;
-    }
-
-    if (list->size == 1)
-    {
-        list->head = NULL;
-        list->tail = NULL;
-    }
-    else if (index == 0)
-    {
-        list->head = current->next;
-        list->head->prev = NULL;
-    }
-    else if (index == list->size - 1)
-    {
-        list->tail = current->prev;
-        list->tail->next = NULL;
-    }
-    else
-    {
-        current->prev->next = current->next;
-        current->next->prev = current->prev;
-    }
-
-    free(current);
-    list->size--;
-    return 0;
-}
-
-int deleteFirst(DoubleLinkedList *list)
-{
-    return deleteAt(list, 0);
-}
-
-int deleteLast(DoubleLinkedList *list)
-{
-    return deleteAt(list, list->size - 1);
-}
-
-void insertarAlInicio(DoubleLinkedList *list)
-{
-    int data;
-    printf("Ingrese el dato: ");
-    scanf("%d", &data);
-    if(addFirst(list, data) == 0)
-        printf("Dato insertado correctamente\n");
-    else
-        printf("Error al insertar el dato\n");
-}
-
-void insertarAlFinal(DoubleLinkedList *list)
-{
-    int data;
-    printf("Ingrese el dato: ");
-    scanf("%d", &data);
-    if(addLast(list, data) == 0)
-        printf("Dato insertado correctamente\n");
-    else
-        printf("Error al insertar el dato\n");
-}
-
-void insertarOrdenadamente(DoubleLinkedList *list)
-{
-    int data;
-    printf("Ingrese el dato: ");
-    scanf("%d", &data);
-    if(list->size == 0){
-        addFirst(list, data);
-    }else{
-        DoubleLinkedListNode *current = list->head;
-        int index = 0;
-        while(current != NULL && current->data < data){
-            current = current->next;
-            index++;
-        }
-        if(addAt(list, data, index) == 0)
-            printf("Dato insertado correctamente\n");
-        else
-            printf("Error al insertar el dato\n");
-    }
-}
-
-void eliminarAlInicio(DoubleLinkedList *list)
-{
-    if(deleteFirst(list) == 0)
-        printf("Dato eliminado correctamente\n");
-    else
-        printf("Error al eliminar el dato\n");
-}
-
-void eliminarAlFinal(DoubleLinkedList *list)
-{
-    if(deleteLast(list) == 0)
-        printf("Dato eliminado correctamente\n");
-    else
-        printf("Error al eliminar el dato\n");
-}
-
-void eliminarUnElemento(DoubleLinkedList *list)
-{
-    int data;
-    printf("Ingrese el dato: ");
-    scanf("%d", &data);
-    DoubleLinkedListNode *current = list->head;
-    int index = 0;
-    while(current != NULL && current->data != data){
-        current = current->next;
-        index++;
-    }
-    if(current != NULL){
-        if( deleteAt(list, index) == 0)
-            printf("Dato eliminado correctamente\n");
-        else
-            printf("Se encontro el dato, pero no se pudo eliminar\n");
-    }else{
-        printf("Dato no encontrado\n");
-    }
-}
-
-void buscarUnElemento(DoubleLinkedList *list)
-{
-    int data;
-    printf("Ingrese el dato: ");
-    scanf("%d", &data);
-    DoubleLinkedListNode *current = list->head;
-    int index = NULL;
-    while(current != NULL && current->data != data){
-        current = current->next;
-        index++;
-    }
-
-    if(current != NULL)
-        printf("El dato se encuentra en la posicion %d\n", index);
-    else
-        printf("El dato no se encuentra en la lista\n");
-}
-
-void imprimirListaDeInicioAFin(DoubleLinkedList *list)
-{
-    DoubleLinkedListNode *current = list->head;
-    while(current != NULL){
-        printf("%d ", current->data);
-        current = current->next;
-    }
-    printf("\n");
- }
-
-void imprimirListaDeFinAInicio(DoubleLinkedList *list){
-    DoubleLinkedListNode *current = list->tail;
-    while(current != NULL){
-        printf("%d ", current->data);
-        current = current->prev;
-    }
-    printf("\n");
+        temp = temp->next;
+    }while(temp != list->head);
+    printf("El numero %d no se encuentra en la lista\n", num);
 }
 
 int main(){
     int opcion = 0;
-    DoubleLinkedList *list = createDoubleLinkedList();
+    CircularLinkedList *list = createCircularLinkedList();
     while(1){
         printf("1. Insertar al inicio\n");
         printf("2. Insertar al final\n");
-        printf("3. Insertar ordenadamente\n");
+        //printf("3. Insertar ordenadamente\n");
         printf("4. Eliminar al inicio\n");
         printf("5. Eliminar al final\n");
-        printf("6. Eliminar un elemento\n");
+        //printf("6. Eliminar un elemento\n");
         printf("7. Buscar un elemento\n");
-        printf("8. Imprimir lista de inicio a fin\n");
-        printf("9. Imprimir lista de fin a inicio\n");
+        printf("8. Imprimir lista\n");
         printf("0. Salir\n");
 
         printf("Ingrese una opcion: ");
@@ -274,7 +141,7 @@ int main(){
                 insertarAlFinal(list);
                 break;
             case 3:
-                insertarOrdenadamente(list);
+                //insertarOrdenadamente(list);
                 break;
             case 4:
                 eliminarAlInicio(list);
@@ -283,16 +150,13 @@ int main(){
                 eliminarAlFinal(list);
                 break;
             case 6:
-                eliminarUnElemento(list);
+                //eliminarUnElemento(list);
                 break;
             case 7:
                 buscarUnElemento(list);
                 break;
             case 8:
-                imprimirListaDeInicioAFin(list);
-                break;
-            case 9:
-                imprimirListaDeInicioAFin(list);
+                imprimir(list);
                 break;
             case 0:
                 return 0;
