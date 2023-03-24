@@ -5,6 +5,13 @@
         "menu.h": "c",
         "conio.h": "c",
         "rpc.h": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "stdbool.h": "c",
+        "windows.h": "c",
+        "strsafe.h": "c",
+        "logic.h": "c",
+        "tchar.h": "c",
+        "io.h": "c",
+        "list.h": "c"
     }
 }
