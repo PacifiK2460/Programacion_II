@@ -3,9 +3,10 @@
 #include <windows.h>
 
 typedef struct node{
-    int data;
+    char nombre[20];
+    int id;
     struct node *next;
-} Node;
+} Node; 
 
 typedef struct circularLinkedList{
     int data;
@@ -29,17 +30,25 @@ void imprimir(CircularLinkedList *list){
     }
 
     do{
-        printf("%d ", temp->data);
+        printf("%s: %d\n", temp->nombre, temp->id);
         temp = temp->next;
     }while(temp != list->head);
     printf("\n");
 }
 
-void insertarAlInicio(CircularLinkedList *list){
+Node* leerUsuario(){
     Node *newNode = (Node *)malloc(sizeof(Node));
-    printf("Ingrese un numero: ");
-    scanf(" %d", &newNode->data);
+    printf("Ingrese el nombre: ");
+    scanf(" %s", newNode->nombre);
+    printf("Ingrese el id: ");
+    scanf(" %d", &newNode->id);
     newNode->next = NULL;
+
+    return newNode;
+}
+
+void insertarAlInicio(CircularLinkedList *list){
+    Node *newNode = leerUsuario();
 
     if(list->head == NULL){
         list->head = newNode;
@@ -53,10 +62,7 @@ void insertarAlInicio(CircularLinkedList *list){
 }
 
 void insertarAlFinal(CircularLinkedList *list){
-    Node *newNode = (Node *)malloc(sizeof(Node));
-    printf("Ingrese un numero: ");
-    scanf(" %d", &newNode->data);
-    newNode->next = NULL;
+    Node *newNode = leerUsuario();
 
     if(list->head == NULL){
         list->head = newNode;
@@ -103,43 +109,41 @@ void buscarUnElemento(CircularLinkedList *list){
     }
 
     int num = 0;
-    printf("Ingrese un numero: ");
+    printf("Ingrese un id: ");
     scanf(" %d", &num);
 
     Node *temp = list->head;
     do{
-        if(temp->data == num){
-            printf("El numero %d se encuentra en la lista\n", num);
+        if(temp->id == num){
+            printf("El id %d se encuentra en la lista\n", num);
             return;
         }
         temp = temp->next;
     }while(temp != list->head);
-    printf("El numero %d no se encuentra en la lista\n", num);
+    printf("El id %d no se encuentra en la lista\n", num);
 }
 
 void insertarOrdenadamente(CircularLinkedList *list){
-    Node *newNode = (Node *)malloc(sizeof(Node));
-    printf("Ingrese un numero: ");
-    scanf(" %d", &newNode->data);
-    newNode->next = NULL;
+    Node *newNode = leerUsuario();
+    Node *last, *current;
 
     if(list->head == NULL){
         list->head = newNode;
         list->tail = newNode;
         newNode->next = newNode;
-    }else{
-        Node *temp = list->head;
-        if(newNode->data < temp->data){
-            newNode->next = list->head;
-            list->head = newNode;
-            list->tail->next = newNode;
-        }else{
-            while(temp->next != list->head && temp->next->data < newNode->data){
-                temp = temp->next;
-            }
-            newNode->next = temp->next;
-            temp->next = newNode;
-        }
+    } else if(list->head->id > newNode->id){
+        newNode->next = list->head;
+        list->head = newNode;
+        list->tail->next = newNode;
+    } else {
+        current = list->head;
+        do{
+            last = current;
+            current = current->next;
+
+        }while(current->id < newNode->id && current != list->head);
+        newNode->next = current;
+        last->next = newNode;
     }
 }
 
@@ -150,16 +154,16 @@ void eliminarUnElemento(CircularLinkedList *list){
     }
 
     int num = 0;
-    printf("Ingrese un numero: ");
+    printf("Ingrese un id: ");
     scanf(" %d", &num);
 
     Node *temp = list->head;
-    if(temp->data == num){
+    if(temp->id == num){
         list->head = list->head->next;
         list->tail->next = list->head;
         free(temp);
     }else{
-        while(temp->next != list->head && temp->next->data != num){
+        while(temp->next != list->head && temp->next->id != num){
             temp = temp->next;
         }
         if(temp->next == list->head){
@@ -175,7 +179,7 @@ void eliminarUnElemento(CircularLinkedList *list){
 int main(){
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
-    
+
     int opcion = 0;
     CircularLinkedList *list = createCircularLinkedList();
     while(1){

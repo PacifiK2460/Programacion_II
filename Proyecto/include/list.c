@@ -24,6 +24,45 @@ int addNode(PList list, void* data)
     return 0;
 }
 
+int deleteNode(PList list, void* data){
+    PNode node = list->head;
+
+    while (node != NULL)
+    {
+        if (node->data == data)
+        {
+            if (node->last != NULL)
+            {
+                node->last->next = node->next;
+            }
+            else
+            {
+                list->head = node->next;
+            }
+
+            if (node->next != NULL)
+            {
+                node->next->last = node->last;
+            }
+            else
+            {
+                list->tail = node->last;
+            }
+
+            free(node);
+
+            list->size--;
+
+            return 0;
+        }
+
+        node = node->next;
+    }
+
+    return 1;
+}
+
+
 void* getNode(PList list, int index)
 {
     if(index >= list->size || index < 0)

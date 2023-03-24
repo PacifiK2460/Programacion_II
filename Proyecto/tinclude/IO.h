@@ -39,7 +39,7 @@ typedef struct OutputSubsciption
 {
     char* output;
     int with, height;
-    void (*Render)(void* RenderArgs);
+    DWORD WINAPI (*Render)(void* RenderArgs);
     void* RenderArgs;
 } OutputSubsciption, *POutputSubsciption;
 

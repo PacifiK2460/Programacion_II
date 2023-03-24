@@ -1,28 +1,22 @@
 #pragma once
 
+#include <stdarg.h>
 #include <string.h>
 
-#include "LIST.h"
-#include "ansi.h"
-#include "IO.h"
+#include "list.h"
 
-#define BUF_SIZE 255
+#define BUFFER_SIZE 1024
 
 typedef struct MenuOption{
-    char title[BUF_SIZE];
-    char description[BUF_SIZE];
-
-    void (*callback)();
+    char title[BUFFER_SIZE];
+    void (*Action)(void* args);
+    void* args;
 } MenuOption, *PMenuOption;
 
 typedef struct Menu{
-    char title[BUF_SIZE];
-    char description[BUF_SIZE];
-    POutputSubsciption output;
-
+    char title[BUFFER_SIZE];
+    char description[BUFFER_SIZE];
     List options;
 } Menu, *PMenu;
 
-void showMenu(PMenu menu);
-
-int addMenuOption(PMenu menu, char* title, char* description, void (*callback)());
+PMenu createMenu(char* title, char* description, int optionsCount, ...);

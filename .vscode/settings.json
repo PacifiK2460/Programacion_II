@@ -12,6 +12,7 @@
         "logic.h": "c",
         "tchar.h": "c",
         "io.h": "c",
-        "list.h": "c"
+        "list.h": "c",
+        "varargs.h": "c"
     }
 }

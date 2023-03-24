@@ -1,16 +1,30 @@
 #include "menu.h"
 
-void showMenu(PMenu menu)
-{
-    return NULL;
-}
+PMenu createMenu(char* title, char* description, int optionsCount, ...){
+    PMenu menu = (PMenu)calloc(1, sizeof(Menu));
+    if(menu == NULL)
+        return NULL;
 
-int addMenuOption(PMenu menu, char *title, char *description, void (*callback)())
-{
-    PMenuOption option = (PMenuOption)calloc(1, sizeof(MenuOption));
-    StringCchCopyA(option->title, BUF_SIZE, title);
-    StringCchCopyA(option->description, BUF_SIZE, description);
-    option->callback = callback;
+    strcpy(menu->title, title);
+    strcpy(menu->description, description);
 
-    return addNode(&menu->options, option);
+    va_list args;
+    va_start(args, optionsCount);
+
+    for(int i = 0; i < optionsCount; i++){
+        PMenuOption option = (PMenuOption)calloc(1, sizeof(MenuOption));
+        if(option == NULL)
+            return NULL;
+
+        strcpy(option->title, va_arg(args, char*));
+        option->Action = va_arg(args, void*);
+        option->args = va_arg(args, void*);
+
+        if(addNode(&menu->options, option))
+            return NULL;
+    }
+
+    va_end(args);
+
+    return menu;
 }
