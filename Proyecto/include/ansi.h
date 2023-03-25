@@ -1,17 +1,9 @@
 #pragma once
 
-#define BG_RGB(R,G,B) "\x1b[48;2;" #R ";" #G ";" #B "m"
-#define FG_RGB(R,G,B) "\x1b[38;2;" #R ";" #G ";" #B "m"
-
-#define CURSOR_UP(N) "\x1b[" #N "A"
-#define CURSOR_DOWN(N) "\x1b[" #N "B"
-#define CURSOR_FORWARD(N) "\x1b[" #N "C"
-#define CURSOR_BACKWARD(N) "\x1b[" #N "D"
-
-#define CURSOR_NEXT_LINE(N) "\x1b[" #N "E"
-#define CURSOR_PREVIOUS_LINE(N) "\x1b[" #N "F"
-
-#define CURSOR_GOTO(N,M) "\x1b[" #N ";" #M "H"
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
+#include <string.h>
 
 #define CURSOR_SAVE "\x1b[s"
 #define CURSOR_RESTORE "\x1b[u"
@@ -30,3 +22,25 @@
 #define BLINK "\x1b[5m"
 #define REVERSE "\x1b[7m"
 #define HIDDEN "\x1b[8m"
+#define ITALIC "\x1b[3m"
+
+#define BRIGHT_WHITE "\x1b[97m"
+#define BRIGHT_RED "\x1b[91m"
+#define BRIGHT_GREEN "\x1b[92m"
+#define BRIGHT_YELLOW "\x1b[93m"
+#define BRIGHT_BLUE "\x1b[94m"
+#define BRIGHT_MAGENTA "\x1b[95m"
+#define BRIGHT_CYAN "\x1b[96m"
+
+void CURSOR_GOTO(int x, int y);
+
+void BG_RGB(int R, int G, int B);
+void FG_RGB(int R, int G, int B);
+void CURSOR_UP(int N);
+void CURSOR_DOWN(int N);
+void CURSOR_FORWARD(int N);
+void CURSOR_BACKWARD(int N);
+void CURSOR_NEXT_LINE(int N);
+void CURSOR_PREVIOUS_LINE(int N);
+
+void print_in_the_middle(char *text, int y);

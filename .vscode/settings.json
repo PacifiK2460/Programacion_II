@@ -13,6 +13,10 @@
         "tchar.h": "c",
         "io.h": "c",
         "list.h": "c",
-        "varargs.h": "c"
+        "varargs.h": "c",
+        "tui.h": "c",
+        "users.h": "c",
+        "ansi.h": "c",
+        "stdarg.h": "c"
     }
 }
