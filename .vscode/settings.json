@@ -13,6 +13,7 @@
         "tchar.h": "c",
         "io.h": "c",
         "list.h": "c",
-        "varargs.h": "c"
+        "varargs.h": "c",
+        "MAIN.C": "cpp"
     }
 }
