@@ -1,4 +1,4 @@
-#include "LIST.h"
+#include "list.h"
 
 int addNode(PList list, void* data)
 {

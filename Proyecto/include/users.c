@@ -1,5 +1,7 @@
 #include "users.h"
 
+List users;
+
 int createUser(char* name, char* password, UserType type){
     PUser user = (PUser)calloc(1, sizeof(User));
     if(user == NULL)

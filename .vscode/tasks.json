@@ -50,7 +50,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${workspaceFolder}/Proyecto/include/*.c",
-                "${file}",
+                "${workspaceFolder}/Proyecto/main.c",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],

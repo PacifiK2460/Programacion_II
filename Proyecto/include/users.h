@@ -1,5 +1,5 @@
+#pragma once
 #include <string.h>
-
 #include "list.h"
 
 #define BUFFER_SIZE 1024
@@ -14,8 +14,6 @@ typedef struct User{
     char password[BUFFER_SIZE];
     UserType type;
 } User, *PUser;
-
-List users;
 
 int createUser(char* name, char* password, UserType type);
 void deleteUser(PUser user);
