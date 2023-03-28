@@ -5,5 +5,7 @@
 #include <windows.h>
 
 #include "ansi.h"
+#include "users.h"
 
 void splashScreen();
+PUser login();

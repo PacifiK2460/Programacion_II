@@ -3,6 +3,7 @@
 void splashScreen()
 {
     printf(CLEAR_SCREEN);
+    printf(CURSOR_HIDE);
     // Get console size
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
@@ -23,6 +24,7 @@ void splashScreen()
     print_in_the_middle("Presiona cualquier tecla para continuar...", height);
     printf(RESET);
 
-    getchar();
+    getc(stdin);
+    printf(CURSOR_SHOW);
     printf(CLEAR_SCREEN);
 }

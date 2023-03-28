@@ -41,14 +41,16 @@ int main()
             return 1;
 
         splashScreen();
-            while (1)
+        while (1)
         {
             printf(CLEAR_SCREEN);
             printf(RESET);
+
+            PUser user = login();
             // printStatusBar(user);
             showMenu(menu);
 
-            getchar();
+            getc(stdin);
         }
     }
 }
