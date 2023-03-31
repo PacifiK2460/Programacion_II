@@ -29,7 +29,7 @@ int main()
 
     // Skip login for now
     User user = {"admin", "admin", ADMIN};
-
+    printf("xd");
     { // Menu
         PMenu menu = createMenu("Menu Principal 🍔", "Escoge alguna opción ✅", 4,
                                 "🪙 Cargar Precios", NULL, NULL,
