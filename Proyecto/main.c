@@ -50,7 +50,7 @@ int main()
             PUser user = loginScreen();
             // printStatusBar(user);
             showMenu(menu);
-
+            //santiano se la come
             getc(stdin);
         }
     }
