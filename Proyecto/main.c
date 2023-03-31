@@ -40,6 +40,7 @@ int main()
         if (menu == NULL)
             return 1;
 
+    //sds
         splashScreen();
         while (1)
         {
