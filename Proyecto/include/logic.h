@@ -8,4 +8,4 @@
 #include "users.h"
 
 void splashScreen();
-PUser login();
+PUser loginScreen();

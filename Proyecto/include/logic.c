@@ -28,3 +28,33 @@ void splashScreen()
     printf(CURSOR_SHOW);
     printf(CLEAR_SCREEN);
 }
+
+PUser loginScreen(){
+    while(1){
+        printf(CLEAR_SCREEN);
+        printf(CURSOR_HIDE);
+
+        // Print bottom and top bars
+        {
+            // Get console size
+            CONSOLE_SCREEN_BUFFER_INFO csbi;
+            GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+            int width = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+            int height = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+
+            CURSOR_GOTO(0, 0);
+            for(int i = 0; i < width; i++){
+                BG_RGB(240,190,1);
+                printf(" ");
+            }
+
+            CURSOR_GOTO(0, height);
+            for(int i = 0; i < width; i++){
+                BG_RGB(240,190,1);
+                printf(" ");
+            }
+        }
+
+        system("pause");
+    }
+}

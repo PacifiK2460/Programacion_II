@@ -1,6 +1,10 @@
 #pragma once
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "list.h"
+
 
 #define BUFFER_SIZE 1024
 
@@ -10,6 +14,7 @@ typedef enum UserType{
 } UserType;
 
 typedef struct User{
+    int id;
     char name[BUFFER_SIZE];
     char password[BUFFER_SIZE];
     UserType type;

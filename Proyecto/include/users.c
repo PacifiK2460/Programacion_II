@@ -17,8 +17,21 @@ void deleteUser(PUser user){
     deleteNode(&users, user);
 }
 
-
 PUser login(char* name, char* password){
+    // Read users from file
+    {
+        FILE* file = fopen("users.dat", "rb+");
+        if(file == NULL)
+            return NULL;
+        PUser buffer = (PUser)calloc(1, sizeof(User));
+        while(fread(buffer, sizeof(User), 1, file) == 1){
+            addNode(&users, buffer);
+            buffer = (PUser)calloc(1, sizeof(User));
+        }
+        free(buffer);
+        fclose(file);
+    }
+    
     PUser user;
 
     for(int i = 0; i < users.size; i++){
