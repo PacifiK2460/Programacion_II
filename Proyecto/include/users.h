@@ -4,9 +4,7 @@
 #include <stdio.h>
 
 #include "list.h"
-
-
-#define BUFFER_SIZE 1024
+#include "constants.h"
 
 typedef enum UserType{
     ADMIN,
@@ -18,8 +16,12 @@ typedef struct User{
     char name[BUFFER_SIZE];
     char password[BUFFER_SIZE];
     UserType type;
+    List ordenes; // Tipo producto
+    int timepo_de_preparacion;
 } User, *PUser;
 
 int createUser(char* name, char* password, UserType type);
 void deleteUser(PUser user);
 PUser login(char* name, char* password);
+
+int addUser(PUser user);

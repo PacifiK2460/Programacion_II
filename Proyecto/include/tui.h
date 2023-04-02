@@ -22,3 +22,7 @@ typedef struct Color {
 
 char* monogradient(Color start, Color end, int steps);
 void printStatusBar(User user);
+
+// TUI: Terminal User Interface
+
+char* input(char* message, int maxLength);

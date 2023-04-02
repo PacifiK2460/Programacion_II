@@ -19,6 +19,7 @@
         "ansi.h": "c",
         "stdarg.h": "c",
         "MAIN.C": "cpp",
-        "appearance.c": "cpp"
+        "appearance.c": "cpp",
+        "products.h": "c"
     }
 }

@@ -68,3 +68,33 @@ void printStatusBar(User user)
         b += db;
     }
 }
+
+char* input(char* message, int maxLength){
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+    int width = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+    int height = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+
+    CURSOR_GOTO(2, (height/2)-1);
+    printf(RESET BOLD "%s\n" RESET, message);
+
+    BG_RGB(142,161,159);
+    printf(UNDERLINE);
+    FG_RGB(12,12,12);
+    CURSOR_GOTO(2, (height/2));
+    for(int i = 0; i < maxLength; i++){
+        printf(" ");
+    }
+
+    CURSOR_GOTO(2, (height/2));
+    
+    char* input = calloc(maxLength, sizeof(char));
+    if(input == NULL)
+        return NULL;
+
+    fgets(input, maxLength, stdin);
+    input[strlen(input)-1] = '\0';
+
+    printf(RESET);
+    return input;
+}
