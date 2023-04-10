@@ -149,6 +149,12 @@ void insertarOrdenadamente()
 void recorrerDeInicioAFin()
 {
     PNode aux = list->head;
+    if (aux == NULL)
+    {
+        printf("La lista esta vacia\n");
+        return;
+    }
+
     {
         int i = 0;
         for (i = 0; i < list->size; i++)
@@ -162,6 +168,12 @@ void recorrerDeInicioAFin()
 void recorrerDeFinAInicio()
 {
     PNode aux = list->tail;
+    if (aux == NULL)
+    {
+        printf("La lista esta vacia\n");
+        return;
+    }
+    
     {
         int i;
         for (i = 0; i < list->size; i++)

@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <wchar.h>
 #include <locale.h>
+#include <windows.h>
 
 #ifdef _WIN32
 #define clrscr() system("cls")
@@ -16,7 +17,7 @@
 
 void insertarInicio(List lista)
 {
-    int *numero = calloc(1, sizeof(int));
+    int *numero = (int *)calloc(1, sizeof(int));
     printf("Ingresa el número a insertar: ");
 
     char buffer[1000];
@@ -37,7 +38,7 @@ void insertarInicio(List lista)
 
 void insertarFinal(List lista)
 {
-    int *numero = malloc(sizeof(int));
+    int *numero = (int *)malloc(sizeof(int));
     printf("Ingresa el número a insertar: ");
     char buffer[1000];
     if (fgets(buffer, sizeof(buffer), stdin))
@@ -85,14 +86,14 @@ void eliminarFinal(List lista)
 
 void insertarOrdenado(List lista)
 {
-    int *numero = malloc(sizeof(int));
+    int *numero = (int *)malloc(sizeof(int));
     printf("Ingresa el número a insertar: ");
     char buffer[1000];
     if (fgets(buffer, sizeof(buffer), stdin))
     {
         if (1 == sscanf(buffer, "%d", numero))
         {
-            int *item = listGet(lista, LIST_FIRST);
+            int *item = (int *)listGet(lista, LIST_FIRST);
             int index = 0;
             while (item != NULL)
             {
@@ -100,7 +101,7 @@ void insertarOrdenado(List lista)
                 {
                     break;
                 }
-                item = listGet(lista, index);
+                item = (int *)listGet(lista, index);
                 index++;
             }
 
@@ -124,14 +125,14 @@ void insertarOrdenado(List lista)
 
 void eliminarEspecifico(List lista)
 {
-    int *numero = malloc(sizeof(int));
+    int *numero = (int *)malloc(sizeof(int));
     printf("Ingresa el número a eliminar: ");
     char buffer[1000];
     if (fgets(buffer, sizeof(buffer), stdin))
     {
         if (1 == sscanf(buffer, "%d", numero))
         {
-            int *item = listGet(lista, LIST_FIRST);
+            int *item = (int *)listGet(lista, LIST_FIRST);
             int index = 0;
             while (item != NULL)
             {
@@ -139,7 +140,7 @@ void eliminarEspecifico(List lista)
                 {
                     break;
                 }
-                item = listGet(lista, index);
+                item = (int *)listGet(lista, index);
                 index++;
             }
 
@@ -163,7 +164,7 @@ void buscar(List lista)
     {
         if (1 == sscanf(buffer, "%d", numero))
         {
-            int *item = listGet(lista, LIST_FIRST);
+            int *item = (int *)listGet(lista, LIST_FIRST);
             int index = 0;
             while (item != NULL)
             {
@@ -171,7 +172,7 @@ void buscar(List lista)
                 {
                     break;
                 }
-                item = listGet(lista, index);
+                item = (int *)listGet(lista, index);
                 index++;
             }
 
@@ -195,16 +196,33 @@ void buscar(List lista)
 
 void imprimirLista(List lista)
 {
-    printf(DIM "[ " RESET);
-    // List lista = va_arg(args, List);
-    int index = LIST_FIRST;
-    int *item = listGet(lista, index++);
-    while (item != NULL)
     {
-        printf("%d ", *item);
-        item = listGet(lista, index++);
+
+        printf(DIM "[ " RESET);
+        // List lista = va_arg(args, List);
+        int index = LIST_FIRST;
+        int *item = (int *)listGet(lista, index++);
+        while (item != NULL)
+        {
+            printf("%d ", *item);
+            item = (int *)listGet(lista, index++);
+        }
+        printf(DIM "]\n ");
     }
-    printf(DIM "]\n Presione" RESET BOLD " ENTER " RESET DIM "para continuar..." RESET);
+
+    {
+        printf(DIM "[ " RESET);
+        // List lista = va_arg(args, List);
+        int index = lista->size-1;
+        int *item = (int *)listGet(lista, index--);
+        while (item != NULL)
+        {
+            printf("%d ", *item);
+            item = (int *)listGet(lista, index--);
+        }
+        printf(DIM "]\n ");
+    }
+    printf("Presione" RESET BOLD " ENTER " RESET DIM "para continuar..." RESET);
     getchar();
 }
 
@@ -212,10 +230,11 @@ int main()
 {
     // set locale to universal
     setlocale(LC_ALL, "en_US.UTF-8");
-    List lista;
-    lista = newList();
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
+    List lista = newList();
 
-    Menu *menu = newMenu("🌐 Listas", "Seleccione una opción");
+    Menu *menu = newMenu("🐱‍👤 Listas", "Seleccione una opción");
     {
         if (menu == NULL)
         {

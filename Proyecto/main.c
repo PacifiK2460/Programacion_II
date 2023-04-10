@@ -46,8 +46,8 @@ int main()
             printf(CLEAR_SCREEN);
             printf(RESET);
 
-            PUser user = login();
-            // printStatusBar(user);
+            // PUser user = login();
+            printStatusBar(user);
             showMenu(menu);
 
             getc(stdin);

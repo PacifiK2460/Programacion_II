@@ -8,7 +8,7 @@ typedef struct ListItem {
     void *data;
 } ListItem;
 
-typedef struct List {
+typedef struct _List {
     ListItem *first;
     ListItem *last;
     int size;

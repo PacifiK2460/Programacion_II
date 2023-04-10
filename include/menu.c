@@ -84,7 +84,7 @@ int drawMenu(Menu *menu)
         return -1;
 
     // Print title and subtitle in bold and dimmed
-    printf(BOLD "%s" DIM ITALIC " %s\n" RESET, menu->title.str, menu->subtitle.str);
+    printf(BOLD "%s" DIM ITALIC "\n %s\n" RESET, menu->title.str, menu->subtitle.str);
     // Print help
     // printf("🆘 Usa " BOLD "w" RESET " }y " BOLD "s" RESET " para navegar, " BOLD "enter" RESET " para seleccionar una opción, " BOLD "esc" RESET " para salir.\n");
 
