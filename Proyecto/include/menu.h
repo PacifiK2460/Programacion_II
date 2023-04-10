@@ -5,11 +5,11 @@
 #include <windows.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <conio.h>
 
 #include "ansi.h"
 #include "list.h"
-
-#define BUFFER_SIZE 1024
+#include "constants.h"
 
 typedef struct MenuOption{
     char title[BUFFER_SIZE];

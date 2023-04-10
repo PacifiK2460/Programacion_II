@@ -28,17 +28,16 @@ int main()
     }
 
     // Skip login for now
-    User user = {"admin", "admin", ADMIN};
-
+    // User user = {"admin", "admin", ADMIN};
     { // Menu
-        PMenu menu = createMenu("Menu Principal 🍔", "Escoge alguna opción ✅", 4,
-                                "🪙 Cargar Precios", NULL, NULL,
-                                "✏️ Modificar Precios", NULL, NULL,
-                                "🪪 Agregar Personal", NULL, NULL,
-                                "💻 Generar Reportes", NULL, NULL);
+        // PMenu menu = createMenu("Menu Principal 🍔", "Escoge alguna opción ✅", 4,
+        //                         "🪙 Cargar Precios", NULL, NULL,
+        //                         "✏️ Modificar Precios", NULL, NULL,
+        //                         "🪪 Agregar Personal", NULL, NULL,
+        //                         "💻 Generar Reportes", NULL, NULL);
 
-        if (menu == NULL)
-            return 1;
+        // if (menu == NULL)
+        //     return 1;
 
         splashScreen();
         while (1)
@@ -46,10 +45,17 @@ int main()
             printf(CLEAR_SCREEN);
             printf(RESET);
 
-            // PUser user = login();
-            printStatusBar(user);
-            showMenu(menu);
+            PUser user = loginScreen();
 
+            if(user->type == ADMIN){
+                adminMenu(user);
+            }else{
+                // userMenu(user);
+            };
+
+            // printStatusBar(user);
+            // showMenu(menu);
+            //santiano se la come
             getc(stdin);
         }
     }

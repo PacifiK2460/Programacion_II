@@ -18,6 +18,8 @@
         "users.h": "c",
         "ansi.h": "c",
         "stdarg.h": "c",
-        "MAIN.C": "cpp"
-}
+        "MAIN.C": "cpp",
+        "appearance.c": "cpp",
+        "products.h": "c"
+    }
 }
