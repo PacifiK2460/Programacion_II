@@ -31,11 +31,11 @@ int Push(PPila pila, void *dato)
         return 0;
     }
     node->dato = dato;
+    node->next = NULL;
 
     if(pila->top == NULL)
     {
         pila->top = node;
-        node->next = NULL;
     }
     else
     {
@@ -80,11 +80,10 @@ void Print(PPila pila)
     PNode node = pila->top;
     while (node != NULL)
     {
-        printf("%d ", node->dato);
+        printf("%d ", *(int*)node->dato);
         node = node->next;
     }
     printf(BOLD "]" RESET);
-    system("pause");
 }
 
 void insertar()
@@ -119,8 +118,7 @@ void eliminar()
     }
     else
     {
-        printf(GREEN "Numero eliminado correctamente" RESET);
-        printf("El numero eliminado es: %d", *num);
+        printf(GREEN "El numero eliminado es: %d" RESET, *num);
         free(num);
     }
     system("pause");
@@ -155,8 +153,7 @@ void buscar()
     }
     else
     {
-        printf(GREEN "Numero encontrado correctamente" RESET);
-        printf("El numero encontrado es: %d (%p)", *num2, num2);
+        printf(GREEN "El numero encontrado es: %d (%p)" RESET, *num2, num2);
     }
     system("pause");
 }
