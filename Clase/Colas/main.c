@@ -5,12 +5,11 @@
 typedef struct Node
 {
     void *dato;
-    struct Node *next;
+    struct Node *prev;
 } Node, *PNode;
 
 typedef struct Cola
 {
-    PNode first;
     PNode last;
     int size;
 } Cola, *PCola;
@@ -19,7 +18,8 @@ PCola _Cola;
 
 void insertar()
 {
-    int dato = 0;
+    int *dato = 0;
+    dato = (int *)malloc(sizeof(int));
     printf("Dato: ");
     scanf(" %d", &dato);
 
@@ -30,16 +30,16 @@ void insertar()
         return;
     }
     node->dato = (void *)dato;
-    node->next = NULL;
+    node->prev = NULL;
 
-    if (_Cola->first == NULL)
+    if (_Cola->last == NULL)
     {
-        _Cola->first = node;
         _Cola->last = node;
+        node->prev = NULL;
     }
     else
     {
-        _Cola->last->next = node;
+        node->prev = _Cola->last;
         _Cola->last = node;
     }
 
@@ -50,8 +50,8 @@ void eliminar()
 {
     if (_Cola->size > 0)
     {
-        PNode node = _Cola->first;
-        _Cola->first = node->next;
+        PNode node = _Cola->last;
+        _Cola->last = node->prev;
         _Cola->size--;
         free(node);
     } else {
@@ -71,7 +71,7 @@ void buscar()
     printf("Dato: ");
     scanf(" %d", &dato);
 
-    PNode node = _Cola->first;
+    PNode node = _Cola->last;
     while (node != NULL)
     {
         if (*(int *)node->dato == dato)
@@ -79,7 +79,7 @@ void buscar()
             printf("El dato %d se encuentra en la cola", dato);
             return;
         }
-        node = node->next;
+        node = node->prev;
     }
     printf("El dato %d no se encuentra en la cola", dato);
 }
@@ -93,11 +93,12 @@ void mostrar()
     }
 
     printf("[ ");
-    PNode node = _Cola->first;
+    PNode node = _Cola->last;
     while (node != NULL)
     {
-        printf("%d ", *(int *)node->dato);
-        node = node->next;
+        int dat = *(int *)node->dato;
+        printf("%d ", dat);
+        node = node->prev;
     }
     printf("]");
 }
@@ -118,7 +119,7 @@ int main()
     do
     {
         // clear screen and go to the top left corner
-        printf("\033[2J\033[1;1H");
+        // printf("\033[2J\033[1;1H");
 
         printf(
             "1. Insertar\n"
@@ -148,5 +149,6 @@ int main()
         default:
             break;
         }
+        system("pause");
     } while (opcion != 0);
 }

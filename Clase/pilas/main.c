@@ -2,12 +2,27 @@
 #include <stdlib.h>
 #include <windows.h>
 
+#define COLORS 0
+
+#if COLORS
+
 #define BOLD "\033[1m"
 #define RESET "\033[0m"
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
 #define YELLOW "\033[33m"
+
+#elif !COLORS
+
+#define BOLD ""
+#define RESET ""
+
+#define RED ""
+#define GREEN ""
+#define YELLOW ""
+
+#endif
 
 typedef struct Node
 {
@@ -33,7 +48,7 @@ int Push(PPila pila, void *dato)
     node->dato = dato;
     node->next = NULL;
 
-    if(pila->top == NULL)
+    if (pila->top == NULL)
     {
         pila->top = node;
     }
@@ -80,7 +95,7 @@ void Print(PPila pila)
     PNode node = pila->top;
     while (node != NULL)
     {
-        printf("%d ", *(int*)node->dato);
+        printf("%s ", node->dato);
         node = node->next;
     }
     printf(BOLD "]" RESET);
@@ -88,23 +103,41 @@ void Print(PPila pila)
 
 void insertar()
 {
-    printf("Dame un numero a insertar: ");
-    int *num = (int *)calloc(1, sizeof(int));
-    scanf(" %d", num);
+    printf("Dame un nombre a insertar: ");
+    char *num = (char *)calloc(20, sizeof(char));
+    scanf(" %s", num);
     if (!Push(_Pila, num))
     {
-        printf(RED "No se pudo insertar el numero" RESET);
+        printf(RED "No se pudo insertar el nombre" RESET);
     }
     else
     {
-        printf(GREEN "Numero insertado correctamente" RESET);
+        printf(GREEN "Nombre insertado correctamente" RESET);
+    }
+
+    // Add to file
+    {
+        FILE *file = fopen("data.txt", "w+");
+        if (file == NULL)
+        {
+            printf(RED "No se pudo abrir el archivo" RESET);
+            return;
+        }
+
+        PNode node = _Pila->top;
+        while (node != NULL)
+        {
+            fprintf(file, "%s\n", node->dato);
+            node = node->next;
+        }
+        fclose(file);
     }
     system("pause");
 }
 
 void eliminar()
 {
-    int *num = (int *)Pop(_Pila);
+    char *num = (char *)Pop(_Pila);
     if (_Pila->top == NULL)
     {
         printf(YELLOW "La pila esta vacia" RESET);
@@ -118,7 +151,7 @@ void eliminar()
     }
     else
     {
-        printf(GREEN "El numero eliminado es: %d" RESET, *num);
+        printf(GREEN "El nombre eliminado es: %s" RESET, num);
         free(num);
     }
     system("pause");
@@ -126,7 +159,8 @@ void eliminar()
 
 int cmp(void *a, void *b)
 {
-    return *(int *)a - *(int *)b;
+    // sring compare
+    return strcmp((char *)a, (char *)b);
 }
 
 void buscar()
@@ -139,13 +173,13 @@ void buscar()
     }
 
     printf("Dame un numero a buscar: ");
-    int *num = (int *)calloc(1, sizeof(int));
+    char *num = (char *)calloc(20, sizeof(char));
     if (num == NULL)
     {
         printf(RED "No se pudo crear el numero" RESET);
         return;
     }
-    scanf(" %d", num);
+    scanf(" %s", num);
     int *num2 = (int *)SearchByValue(_Pila, num, &cmp);
     if (num2 == NULL)
     {
@@ -153,7 +187,7 @@ void buscar()
     }
     else
     {
-        printf(GREEN "El numero encontrado es: %d (%p)" RESET, *num2, num2);
+        printf(GREEN "El nombre se encontro en (%p)" RESET, num2);
     }
     system("pause");
 }
@@ -174,6 +208,23 @@ int main()
     {
         printf("No se pudo crear la pila");
         return 1;
+    }
+
+    { // Read File
+        FILE *file = fopen("data.txt", "r");
+        if (file == NULL)
+        {
+            printf(RED "No se pudo abrir el archivo" RESET);
+            return 1;
+        }
+
+        char *num = (char *)calloc(20, sizeof(char));
+        while (fscanf(file, "%s", num) != EOF)
+        {
+            Push(_Pila, num);
+            num = (char *)calloc(20, sizeof(char));
+        }
+        fclose(file);
     }
 
     int opcion = 0;
