@@ -13,19 +13,19 @@
 typedef struct MenuOption {
     String title;
     String subtitle;
-} MenuOption;
+} MenuOption, *PMenuOption;
 
 typedef struct Options{
     size_t size;
     MenuOption *option;   
-} Options;
+} Options, *POptions;
 
 typedef struct Menu {
     String title;
     String subtitle;
     Options options;
     size_t selected;
-} Menu;
+} Menu, *PMenu;
 
 Menu* newMenu(const char* title, const char* subtitle);
 int addOption(Menu* menu, const char* title, const char* subtitle);

@@ -20,6 +20,7 @@
         "stdarg.h": "c",
         "MAIN.C": "cpp",
         "appearance.c": "cpp",
-        "products.h": "c"
+        "products.h": "c",
+        "stdio.h": "c"
     }
 }
