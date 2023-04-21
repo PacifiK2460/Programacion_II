@@ -98,3 +98,7 @@ char* input(char* message, int maxLength){
     printf(RESET);
     return input;
 }
+
+void holdScreen(){
+    while(!kbhit());
+}

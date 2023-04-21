@@ -26,3 +26,5 @@ void printStatusBar(User user);
 // TUI: Terminal User Interface
 
 char* input(char* message, int maxLength);
+
+void holdScreen();

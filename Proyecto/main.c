@@ -50,7 +50,7 @@ int main()
             if(user->type == ADMIN){
                 adminMenu(user);
             }else{
-                // userMenu(user);
+                userMenu(user);
             };
 
             // printStatusBar(user);

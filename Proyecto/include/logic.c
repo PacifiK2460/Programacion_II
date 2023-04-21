@@ -25,7 +25,8 @@ void splashScreen()
     print_in_the_middle("Presiona cualquier tecla para continuar...", height);
     printf(RESET);
 
-    getc(stdin);
+    holdScreen();
+
     printf(CURSOR_SHOW);
     printf(CLEAR_SCREEN);
 }
@@ -158,7 +159,7 @@ void ModificarPrecios()
     }
 }
 
-void adminMenu(user)
+void adminMenu(PUser user)
 {
     PMenu menu = createMenu("Menu Principal 🍔", "Escoge alguna opción ✅", 4,
                             "🪙 Cargar Precios", NULL, NULL,
@@ -185,6 +186,35 @@ void adminMenu(user)
             break;
         case 3:
             // Generar reportes
+            break;
+        default:
+            break;
+        }
+    }
+}
+
+void userMenu(PUser user){
+    PMenu menu = createMenu("Menu Principal 🍔", "Escoge alguna opción ✅", 3,
+                            "🛒 Realizar Pedido", NULL, NULL,
+                            "📝 Ver Pedidos", NULL, NULL,
+                            "📊 Ver Reportes", NULL, NULL);
+
+    while (1)
+    {
+        printf(CLEAR_SCREEN);
+        printf(CURSOR_HIDE);
+        showMenu(menu);
+
+        switch (menu->selectedOption)
+        {
+        case 0:
+            // Realizar pedido
+            break;
+        case 1:
+            // Ver pedidos
+            break;
+        case 2:
+            // Ver reportes
             break;
         default:
             break;

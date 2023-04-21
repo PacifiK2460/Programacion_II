@@ -17,4 +17,5 @@ extern List pedidos;
 void splashScreen();
 PUser loginScreen();
 
-void adminMenu(user);
+void adminMenu(PUser user);
+void userMenu(PUser user);
