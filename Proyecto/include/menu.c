@@ -94,3 +94,30 @@ void showMenu(PMenu menu)
     } while (key != 13);
     printf(CURSOR_SHOW);
 }
+
+void destroyMenu(PMenu menu)
+{
+    if (menu == NULL)
+        return;
+
+    deleteList(&menu->options);
+    free(menu);
+}
+
+int addOption(PMenu menu, char *title)
+{
+    if (menu == NULL)
+        return 1;
+
+    PMenuOption option = (PMenuOption)calloc(1, sizeof(MenuOption));
+    if (option == NULL)
+        return 1;
+
+    strncpy(option->title, title, BUFFER_SIZE);
+
+    if (addNode(&menu->options, option))
+        return 1;
+
+    return 0;
+}
+

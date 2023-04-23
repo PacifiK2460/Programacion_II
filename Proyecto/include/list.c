@@ -79,3 +79,22 @@ void* getNode(PList list, int index)
 
     return node->data;
 }
+
+int deleteList(PList list){
+    if (list == NULL)
+        return 1;
+
+    PNode current = list->head;
+    while (current != NULL)
+    {
+        PNode next = current->next;
+        free(current);
+        current = next;
+    }
+
+    list->head = NULL;
+    list->tail = NULL;
+    list->size = 0;
+
+    return 0;
+}

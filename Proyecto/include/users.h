@@ -28,8 +28,8 @@ typedef struct ListaDeUsuarios{
     int (*addUser)(PUser user);
 
     PUser (*login)(char* name, char* password);
-    int (*serealize)();
-    int (*deserealize)();
+    int (*serialize)();
+    int (*deserialize)();
 } ListaDeUsuarios, *PListaDeUsuarios;
 
 ListaDeUsuarios Usuarios;

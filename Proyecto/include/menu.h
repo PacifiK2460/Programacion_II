@@ -24,3 +24,5 @@ typedef struct Menu{
 
 PMenu createMenu(char* title, char* description, int optionsCount, ...);
 void showMenu(PMenu menu);
+
+int addMenuOption(PMenu menu, char* title);

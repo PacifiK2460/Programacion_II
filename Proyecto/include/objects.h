@@ -50,8 +50,8 @@ typedef struct Personal{
         Vendedor vendedor;
     };
 
-    int (*serealize)();
-    int (*deserealize)();
+    int (*serialize)();
+    int (*deserialize)();
 } _Personal, *PPersonal;
 
 typedef struct Encargo{
@@ -74,22 +74,26 @@ typedef struct Pedido{
 
 typedef struct ListadoDePersonal{
     List personal;
-    int (*serealize)();
-    int (*deserealize)();
+    int (*serialize)();
+    int (*deserialize)();
+
+    int (*addPersonal)(PPersonal personal);
 } ListadoDePersonal, *PListadoDePersonal;
 ListadoDePersonal Personal;
 
 typedef struct ListadoDeProductos{
     List productos;
-    int (*serealize)();
-    int (*deserealize)();
+    int (*serialize)();
+    int (*deserialize)();
+
+    int (*addProducto)(PProducto producto);
 } ListadoDeProductos, *PListadoDeProductos;
 ListadoDeProductos Productos;
 
 typedef struct ListadoDePedidos{
     List pedidos;
-    int (*serealize)();
-    int (*deserealize)();
+    int (*serialize)();
+    int (*deserialize)();
 } ListadoDePedidos, *PListadoDePedidos;
 ListadoDePedidos Pedidos;
 

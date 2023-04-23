@@ -9,7 +9,7 @@ int createUser(char* name, char* password, int type){
     strcpy(user->password, password);
 
     addNode(&Usuarios.usuarios, user);
-    Usuarios.serealize();
+    Usuarios.serialize();
 }
 
 void deleteUser(char* name){
@@ -20,7 +20,7 @@ void deleteUser(char* name){
 
         if(strcmp(user->name, name) == 0){
             deleteNode(&Usuarios.usuarios, user);
-            Usuarios.serealize();
+            Usuarios.serialize();
             return;
         }
     }
@@ -45,10 +45,10 @@ int AddUser(PUser user){
         return -1;
 
     addNode(&Usuarios.usuarios, user);
-    Usuarios.serealize();
+    Usuarios.serialize();
 }
 
-int serealize(){
+int serialize(){
     // Abrir el archivo
     FILE* file = fopen("users.bin", "w+");
     if(file == NULL)
@@ -100,6 +100,6 @@ void CrearListaDeUsuarios(){
     Usuarios.createUser = createUser;
     Usuarios.deleteUser = deleteUser;
     Usuarios.login = login;
-    Usuarios.serealize = serealize;
-    Usuarios.deserealize = deserialize;
+    Usuarios.serialize = serialize;
+    Usuarios.deserialize = deserialize;
 }

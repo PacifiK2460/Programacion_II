@@ -20,6 +20,12 @@ typedef struct Color {
     ColorType type;
 } Color;
 
+enum AlertType {
+    INFO,
+    WARNING,
+    ERR
+};
+
 char* monogradient(Color start, Color end, int steps);
 void printStatusBar();
 
@@ -28,3 +34,5 @@ void printStatusBar();
 char* input(char* message, int maxLength);
 
 void holdScreen();
+
+void alertScreen(char *message, int type);

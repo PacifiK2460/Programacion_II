@@ -1,6 +1,12 @@
 #include "objects.h"
 
-int serealizeProductos(){
+int addProducto(PProducto producto){
+    if(producto == NULL)
+        return 0;
+    return !addNode(&Productos.productos, producto);
+}
+
+int serializeProductos(){
     // Abrir el archivo
     FILE* file = fopen("productos.dat", "w+");
     if(file == NULL)
@@ -47,11 +53,18 @@ int deserealizeProductos(){
 }
 
 void CrearListaDeProductos(){
-    Productos.serealize = serealizeProductos;
-    Productos.deserealize = deserealizeProductos;
+    Productos.serialize = serializeProductos;
+    Productos.deserialize = deserealizeProductos;
+    Productos.addProducto = addProducto;
 }
 
-int serealizrPersonal(){
+int addPersonal(PPersonal personal){
+    if(personal == NULL)
+        return 0;
+    return !addNode(&Personal.personal, personal);
+}
+
+int serializePersonal(){
     // Abrir el archivo
     FILE* file = fopen("personal.dat", "w+");
     if(file == NULL)
@@ -119,11 +132,13 @@ int deserealizePersonal(){
 }
 
 void CrearListaDePersonal(){
-    Personal.serealize = serealizrPersonal;
-    Personal.deserealize = deserealizePersonal;
+    Personal.serialize = serializePersonal;
+    Personal.deserialize = deserealizePersonal;
+
+    Personal.addPersonal = addPersonal;
 }
 
-int serealizePedidos(){
+int serializePedidos(){
     // Abrir el archivo
     FILE* file = fopen("pedidos.dat", "w+");
     if(file == NULL)
@@ -154,7 +169,7 @@ int serealizePedidos(){
     return 1;
 }
 
-int deserealizrPedidos(){
+int deserealizePedidos(){
     // Abrir el archivo
     FILE* file = fopen("pedidos.dat", "r+");
     if(file == NULL)
@@ -195,6 +210,6 @@ int deserealizrPedidos(){
 }
 
 void CrearListaDePedidos(){
-    Pedidos.serealize = NULL;
-    Pedidos.deserealize = NULL;
+    Pedidos.serialize = serializePedidos;
+    Pedidos.deserialize = deserealizePedidos    ;
 }
