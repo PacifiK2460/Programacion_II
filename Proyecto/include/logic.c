@@ -109,6 +109,11 @@ PUser loginScreen()
     } while (1);
 }
 
+void cargarPrecios(){}
+void ModificarPrecios(){}
+void AgregarPersonal(){}
+void GenerarReportes(){}
+
 void adminMenu(PUser user)
 {
     PMenu menu = createMenu("Menu Principal 🍔", "Escoge alguna opción ✅", 4,
@@ -126,22 +131,26 @@ void adminMenu(PUser user)
         switch (menu->selectedOption)
         {
         case 0:
-            // Cargar precios
+            cargarPrecios();
             break;
         case 1:
-            // ModificarPrecios();
+            ModificarPrecios();
             break;
         case 2:
-            // Agregar personal
+            AgregarPersonal();
             break;
         case 3:
-            // Generar reportes
+            GenerarReportes();
             break;
         default:
             break;
         }
     }
 }
+
+void realizarPedido(){}
+void verPedidos(){}
+void verReportes(){}
 
 void userMenu(PUser user)
 {
@@ -159,13 +168,13 @@ void userMenu(PUser user)
         switch (menu->selectedOption)
         {
         case 0:
-            // Realizar pedido
+            realizarPedido();
             break;
         case 1:
-            // Ver pedidos
+            verPedidos();
             break;
         case 2:
-            // Ver reportes
+            verReportes();
             break;
         default:
             break;
@@ -207,7 +216,7 @@ void loadDatabase()
         exit(1);
     }
 
-    // Link pedidos with users, products and personal
+    // Link missing data
     // First we go through all the pedidos and link the Cocinero and Vendedor
     {
         int contador = 0;
