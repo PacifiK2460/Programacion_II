@@ -24,8 +24,6 @@ PMenu createMenu(char *title, char *description, int optionsCount, ...)
             return NULL;
 
         strncpy(option->title, va_arg(args, char *), BUFFER_SIZE);
-        option->Action = va_arg(args, void *);
-        option->args = va_arg(args, void *);
 
         if (addNode(&menu->options, option))
             return NULL;

@@ -13,8 +13,6 @@
 
 typedef struct MenuOption{
     char title[BUFFER_SIZE];
-    void (*Action)(void* args);
-    void* args;
 } MenuOption, *PMenuOption;
 
 typedef struct Menu{

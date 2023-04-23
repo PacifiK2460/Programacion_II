@@ -25,7 +25,7 @@ char *Color2String(Color color)
     return str;
 }
 
-void printStatusBar(User user)
+void printStatusBar()
 {
     ColorType type = BG;
     Color start = {255, 55, 95, type};
@@ -100,5 +100,5 @@ char* input(char* message, int maxLength){
 }
 
 void holdScreen(){
-    while(!kbhit());
+    while(!_kbhit());
 }

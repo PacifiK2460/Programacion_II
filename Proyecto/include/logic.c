@@ -1,5 +1,5 @@
 #include "logic.h"
-
+#include "objects.h"
 
 void splashScreen()
 {
@@ -39,7 +39,7 @@ PUser loginScreen()
     strcpy(fixedAdmin->password, "admin");
     fixedAdmin->type = ADMIN;
 
-    addNode(&users, fixedAdmin);
+    Usuarios.addUser(fixedAdmin);
 
     do
     {
@@ -98,7 +98,7 @@ PUser loginScreen()
         }
 
         char *password = input("Ingresa tu contraseña: ", BUFFER_SIZE);
-        PUser user = login(username, password);
+        PUser user = Usuarios.login(username, password);
 
         printf(CLEAR_SCREEN);
         if (user != NULL)
@@ -109,63 +109,13 @@ PUser loginScreen()
     } while (1);
 }
 
-void ModificarPrecios()
-{
-    {
-        Product *hamburguesa = (Product *)malloc(sizeof(Product));
-        strcpy(hamburguesa->name, "Hamburguesa");
-        hamburguesa->price = 50;
-        hamburguesa->id = 0;
-        addNode(&pedidos, hamburguesa);
-
-        Product *papas = (Product *)malloc(sizeof(Product));
-        strcpy(papas->name, "Papas");
-        papas->price = 30;
-        papas->id = 1;
-        addNode(&pedidos, papas);
-
-        Product *refresco = (Product *)malloc(sizeof(Product));
-        strcpy(refresco->name, "Refresco");
-        refresco->price = 20;
-        refresco->id = 2;
-        addNode(&pedidos, refresco);
-    }
-
-    PMenu menu = createMenu("Modificar Precios", "Escoge alguna opción ✅", 3,
-                            "🍔 Hamburguesa", NULL, NULL,
-                            "🍟 Papas", NULL, NULL,
-                            "🥤 Refresco", NULL, NULL);
-
-    while (1)
-    {
-        printf(CLEAR_SCREEN);
-        printf(CURSOR_HIDE);
-        showMenu(menu);
-
-        switch (menu->selectedOption)
-        {
-        case 0:
-            // Hamburguesa
-            break;
-        case 1:
-            // Papas
-            break;
-        case 2:
-            // Refresco
-            break;
-        default:
-            break;
-        }
-    }
-}
-
 void adminMenu(PUser user)
 {
     PMenu menu = createMenu("Menu Principal 🍔", "Escoge alguna opción ✅", 4,
-                            "🪙 Cargar Precios", NULL, NULL,
-                            "✏️ Modificar Precios", ModificarPrecios, NULL,
-                            "🪪 Agregar Personal", NULL, NULL,
-                            "💻 Generar Reportes", NULL, NULL);
+                            "🪙 Cargar Precios",
+                            "✏️ Modificar Precios",
+                            "🪪 Agregar Personal",
+                            "💻 Generar Reportes");
 
     while (1)
     {
@@ -179,7 +129,7 @@ void adminMenu(PUser user)
             // Cargar precios
             break;
         case 1:
-            ModificarPrecios();
+            // ModificarPrecios();
             break;
         case 2:
             // Agregar personal
@@ -193,7 +143,8 @@ void adminMenu(PUser user)
     }
 }
 
-void userMenu(PUser user){
+void userMenu(PUser user)
+{
     PMenu menu = createMenu("Menu Principal 🍔", "Escoge alguna opción ✅", 3,
                             "🛒 Realizar Pedido", NULL, NULL,
                             "📝 Ver Pedidos", NULL, NULL,
@@ -218,6 +169,115 @@ void userMenu(PUser user){
             break;
         default:
             break;
+        }
+    }
+}
+
+void loadDatabase()
+{
+    CrearListaDeUsuarios();
+    if(!Usuarios.deserealize())
+    {
+        printf("No se pudo cargar la base de datos de usuarios\n");
+        holdScreen();
+        exit(1);
+    }
+
+    CrearListaDePersonal();
+    if(!Personal.deserealize())
+    {
+        printf("No se pudo cargar la base de datos de personal\n");
+        holdScreen();
+        exit(1);
+    }
+
+    CrearListaDeProductos();
+    if(!Productos.deserealize())
+    {
+        printf("No se pudo cargar la base de datos de productos\n");
+        holdScreen();
+        exit(1);
+    }
+
+    CrearListaDePedidos();
+    if(!Pedidos.deserealize())
+    {
+        printf("No se pudo cargar la base de datos de pedidos\n");
+        holdScreen();
+        exit(1);
+    }
+
+    // Link pedidos with users, products and personal
+    // First we go through all the pedidos and link the Cocinero and Vendedor
+    {
+        int contador = 0;
+        for(PPedido pedido = getNode(&Pedidos.pedidos, 0); pedido != NULL; pedido = getNode(&Pedidos.pedidos, ++contador))
+        {
+            int idCocinero = pedido->cocinero;
+            int idVendedor = pedido->vendedor;
+
+            pedido->cocinero = NULL;
+            pedido->vendedor = NULL;
+
+            // Search for the cocinero
+            {
+                int contador = 0;
+                for(PPersonal personal = getNode(&Personal.personal, 0); personal != NULL; personal = getNode(&Personal.personal, ++contador))
+                {
+                    if(personal->id == idCocinero)
+                    {
+                        pedido->cocinero = personal;
+                        break;
+                    }
+                }
+
+                if(pedido->cocinero == NULL)
+                {
+                    printf("No se pudo encontrar el cocinero con id %d\n, hay información corrupta", idCocinero);
+                    holdScreen();
+                    exit(1);
+                }
+            }
+
+            // Search for the vendedor
+            {
+                int contador = 0;
+                for(PPersonal personal = getNode(&Personal.personal, 0); personal != NULL; personal = getNode(&Personal.personal, ++contador))
+                {
+                    if(personal->id == idVendedor)
+                    {
+                        pedido->vendedor = personal;
+                        break;
+                    }
+                }
+
+                if(pedido->vendedor == NULL)
+                {
+                    printf("No se pudo encontrar el vendedor con id %d\n, hay información corrupta", idVendedor);
+                    holdScreen();
+                    exit(1);
+                }
+            }
+        
+            // Search for the producto
+            {
+                int contador = 0;
+                for(PEncargo encargo = getNode(&pedido->productos,0); encargo != NULL; encargo = getNode(&pedido->productos, ++contador)){
+                    // Search for the Producto's Id in the list of products
+                    int idProducto = encargo->producto;
+                    encargo->producto = NULL;
+
+                    int _contador = 0;
+                    for(PProducto producto = getNode(&Productos.productos, 0); producto != NULL; producto = getNode(&Productos.productos, ++_contador))
+                    {
+                        if(producto->id == idProducto)
+                        {
+                            encargo->producto = producto;
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -21,6 +21,11 @@
         "MAIN.C": "cpp",
         "appearance.c": "cpp",
         "products.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "objects.h": "c",
+        "constants.h": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c"
     }
 }

@@ -3,6 +3,8 @@
 int addNode(PList list, void* data)
 {
     PNode node = (PNode)malloc(sizeof(Node));
+    if (node == NULL)
+        return 1;
     node->data = data;
     node->last = NULL;
     node->next = NULL;

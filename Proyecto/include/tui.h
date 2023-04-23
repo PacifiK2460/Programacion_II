@@ -4,8 +4,8 @@
 #include <stdio.h>
 
 #include "ansi.h"
-#include "users.h"
 #include "windows.h"
+#include <conio.h>
 
 
 typedef enum ColorType {
@@ -21,7 +21,7 @@ typedef struct Color {
 } Color;
 
 char* monogradient(Color start, Color end, int steps);
-void printStatusBar(User user);
+void printStatusBar();
 
 // TUI: Terminal User Interface
 

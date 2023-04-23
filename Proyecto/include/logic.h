@@ -9,13 +9,13 @@
 #include "tui.h"
 #include "list.h"
 #include "menu.h"
-#include "products.h"
-
-extern List users;
-extern List pedidos;
+#include "objects.h"
 
 void splashScreen();
 PUser loginScreen();
 
 void adminMenu(PUser user);
 void userMenu(PUser user);
+
+
+void loadDatabase();

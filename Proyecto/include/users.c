@@ -1,8 +1,6 @@
 #include "users.h"
 
-List users;
-
-int createUser(char* name, char* password, UserType type){
+int createUser(char* name, char* password, int type){
     PUser user = (PUser)calloc(1, sizeof(User));
     if(user == NULL)
         return 0;
@@ -10,67 +8,29 @@ int createUser(char* name, char* password, UserType type){
     strcpy(user->name, name);
     strcpy(user->password, password);
 
-    addNode(&users, user);
+    addNode(&Usuarios.usuarios, user);
+    Usuarios.serealize();
 }
 
-void deleteUser(PUser user){
-    deleteNode(&users, user);
-}
-
-PUser login(char* name, char* password){
-    
-    // Read users from file
-    /*
-        POR HACER:
-            Leer los usuarios del archivo y agregarlos a la lista de usuarios
-
-             !!!!!!! addNode(&users, xx);
-
-        --- 
-
-            NOTA:
-                NO HAY NINGUN USUARIO
-
-                abrir archivo, en caso de que no haya crearlo
-                if(archivo vacio){
-                    escribir que hay 0 usuarios
-                }
-            
-                for(i=0;i<cant_nodos; i++){
-                    leer nodo en la lista de usuarios
-                }
-                
-    */
-    {
-        FILE* file = fopen("users.dat", "r+");
-        if(file == NULL){
-            file = fopen("users.dat", "w+");
-            if(file == NULL)
-                return NULL;
-
-            fprintf(file, "0\n");
-        }
-        
-        int number_of_users = 0;
-        fscanf(file, "%d\n", &number_of_users);
-
-        for(int i = 0; i < number_of_users; i++){
-            PUser user = (PUser)calloc(1, sizeof(User));
-            if(user == NULL){
-                fclose(file);
-                return NULL;
-            }
-
-            fscanf(file, " %s %s %d", user->name, user->password, &user->type);
-            addNode(&users, user);
-        }
-        fclose(file);
-    }
-    
+void deleteUser(char* name){
     PUser user;
 
-    for(int i = 0; i < users.size; i++){
-        user = (PUser)getNode(&users, i);
+    for(int i = 0; i < Usuarios.usuarios.size; i++){
+        user = (PUser)getNode(&Usuarios.usuarios, i);
+
+        if(strcmp(user->name, name) == 0){
+            deleteNode(&Usuarios.usuarios, user);
+            Usuarios.serealize();
+            return;
+        }
+    }
+}
+
+PUser login(char* name, char* password){    
+    PUser user;
+
+    for(int i = 0; i < Usuarios.usuarios.size; i++){
+        user = (PUser)getNode(&Usuarios.usuarios, i);
 
         if(strcmp(user->name, name) == 0 && strcmp(user->password, password) == 0){
             return user;
@@ -84,20 +44,62 @@ int AddUser(PUser user){
     if(user == NULL)
         return -1;
 
-    addNode(&users, user);
+    addNode(&Usuarios.usuarios, user);
+    Usuarios.serealize();
+}
 
-    // Write users to file
-    {
-        FILE* file = fopen("users.dat", "w+");
-        if(file == NULL)
-            return -1;
+int serealize(){
+    // Abrir el archivo
+    FILE* file = fopen("users.bin", "w+");
+    if(file == NULL)
+        return 0;
 
-        fprintf(file, "%d\n", users.size);
+    // Escribir el numero de usuarios
+    fprintf(file, "%d\n", Usuarios.usuarios.size);
 
-        for(int i = 0; i < users.size; i++){
-            user = (PUser)getNode(&users, i);
-            fprintf(file, "%s %s %d\n", user->name, user->password, user->type);
-        }
-        fclose(file);
+    // Escribir los usuarios
+    int contador = 0;
+    for(PUser usuario = getNode(&Usuarios.usuarios, 0); usuario != NULL ; usuario = getNode(&Usuarios.usuarios, ++contador)){
+        fprintf(file, "%d %s %s %d\n", usuario->id, usuario->name, usuario->password, usuario->type);
     }
+
+    fclose(file);
+
+    return 1;
+}
+
+int deserialize(){
+    // Abrir el archivo
+    FILE* file = fopen("users.bin", "r+");
+    if(file == NULL)
+        return 0;
+
+    // Leer el numero de usuarios
+    int size;
+    fscanf(file, "%d", &size);
+
+    // Leer los usuarios
+    for(int i = 0; i < size; i++){
+        PUser user = (PUser)calloc(1, sizeof(User));
+        if(user == NULL)
+            return 0;
+
+        if(fscanf(file, "%d %s %s %d", &user->id, user->name, user->password, &user->type) != 4){
+            free(user);
+            return 0;
+        }
+        addNode(&Usuarios.usuarios, user);
+    }
+
+    fclose(file);
+
+    return 1;
+}
+
+void CrearListaDeUsuarios(){
+    Usuarios.createUser = createUser;
+    Usuarios.deleteUser = deleteUser;
+    Usuarios.login = login;
+    Usuarios.serealize = serealize;
+    Usuarios.deserealize = deserialize;
 }

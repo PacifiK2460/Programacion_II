@@ -27,17 +27,10 @@ int main()
             return 1;
     }
 
-    // Skip login for now
-    // User user = {"admin", "admin", ADMIN};
+    loadDatabase();
+    
     { // Menu
-        // PMenu menu = createMenu("Menu Principal 🍔", "Escoge alguna opción ✅", 4,
-        //                         "🪙 Cargar Precios", NULL, NULL,
-        //                         "✏️ Modificar Precios", NULL, NULL,
-        //                         "🪪 Agregar Personal", NULL, NULL,
-        //                         "💻 Generar Reportes", NULL, NULL);
 
-        // if (menu == NULL)
-        //     return 1;
 
         splashScreen();
         while (1)
@@ -47,16 +40,11 @@ int main()
 
             PUser user = loginScreen();
 
-            if(user->type == ADMIN){
+            if(user->type == ADMIN)
                 adminMenu(user);
-            }else{
+            else if(user->type == USER)
                 userMenu(user);
-            };
 
-            // printStatusBar(user);
-            // showMenu(menu);
-            //santiano se la come
-            getc(stdin);
         }
     }
 }
