@@ -41,7 +41,7 @@ typedef struct Vendedor{
     ReporteDeVentas (*generarReporte)(struct PPersonal vendedor);
 } Vendedor, *PVendedor;
 
-typedef struct Personal{
+typedef struct _Personal{
     int id;
     Cargo cargo;
     char nombre[BUFFER_SIZE];

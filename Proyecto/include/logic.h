@@ -4,11 +4,12 @@
 #include <stdlib.h>
 #include <windows.h>
 
+#include "menu.h"
+
 #include "ansi.h"
 #include "users.h"
 #include "tui.h"
 #include "list.h"
-#include "menu.h"
 #include "objects.h"
 
 void splashScreen();

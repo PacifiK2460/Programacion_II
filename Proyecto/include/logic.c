@@ -1,5 +1,4 @@
 #include "logic.h"
-#include "objects.h"
 
 void splashScreen()
 {
@@ -222,7 +221,7 @@ void ModificarPrecios()
         {
             char nombre[BUFFER_SIZE];
             sprintf(nombre, "%s - $%.2f", producto->nombre, producto->precio);
-            addMenuOption(&productos, nombre);
+            addMenuOption(productos, nombre);
         }
     }
 
