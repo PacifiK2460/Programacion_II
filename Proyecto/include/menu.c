@@ -70,7 +70,7 @@ void showMenu(PMenu menu)
         // Go to the bottom of the screen and print the menu help
         int height = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
         CURSOR_GOTO(0, height);
-        printf(RESET "🆘" ITALIC " Use las flechas para moverse y enter para seleccionar" RESET);
+        printf(RESET "🆘" ITALIC " Use las flechas para moverse , enter para seleccionar y ESC para regresar." RESET);
 
         { // Read user input
             key = _getch();
@@ -89,6 +89,11 @@ void showMenu(PMenu menu)
                     if (menu->selectedOption >= numero_de_opciones)
                         menu->selectedOption = 0;
                 }
+            } // Check for ESC only
+            else if (key == 27)
+            {
+                menu->selectedOption = -1;
+                key = 13;
             }
         }
     } while (key != 13);
@@ -104,7 +109,7 @@ void destroyMenu(PMenu menu)
     free(menu);
 }
 
-int addOption(PMenu menu, char *title)
+int addMenuOption(PMenu menu, char *title)
 {
     if (menu == NULL)
         return 1;

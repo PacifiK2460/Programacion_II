@@ -72,30 +72,27 @@ typedef struct Pedido{
     List productos; // Tipo Encargo
 } Pedido, *PPedido;
 
-typedef struct ListadoDePersonal{
+typedef struct _ListadoDePersonal{
     List personal;
     int (*serialize)();
     int (*deserialize)();
 
     int (*addPersonal)(PPersonal personal);
 } ListadoDePersonal, *PListadoDePersonal;
-ListadoDePersonal Personal;
 
-typedef struct ListadoDeProductos{
+typedef struct _ListadoDeProductos{
     List productos;
     int (*serialize)();
     int (*deserialize)();
 
     int (*addProducto)(PProducto producto);
 } ListadoDeProductos, *PListadoDeProductos;
-ListadoDeProductos Productos;
 
-typedef struct ListadoDePedidos{
+typedef struct _ListadoDePedidos{
     List pedidos;
     int (*serialize)();
     int (*deserialize)();
 } ListadoDePedidos, *PListadoDePedidos;
-ListadoDePedidos Pedidos;
 
 void CrearListaDePersonal();
 void CrearListaDeProductos();

@@ -130,6 +130,9 @@ void cargarPrecios()
     printf(CURSOR_HIDE);
     showMenu(tipoDeProducto);
 
+    if(tipoDeProducto->selectedOption == -1)
+        return;
+
     char *nombre;
     { // Pedir nombre y validar
         do
@@ -228,6 +231,8 @@ void ModificarPrecios()
     printf(CLEAR_SCREEN);
     printf(CURSOR_HIDE);
     showMenu(productos);
+    if(productos->selectedOption == -1)
+        return;
 
     PProducto producto = getNode(&Productos.productos, productos->selectedOption);
 
@@ -275,6 +280,8 @@ void AgregarPersonal() {
     printf(CLEAR_SCREEN);
     printf(CURSOR_HIDE);
     showMenu(tipoDePersonal);
+    if(tipoDePersonal->selectedOption == -1)
+        return;
 
     char *nombre;
     do{
@@ -330,6 +337,8 @@ void adminMenu(PUser user)
         printf(CLEAR_SCREEN);
         printf(CURSOR_HIDE);
         showMenu(menu);
+        if(menu->selectedOption == -1)
+            return;
 
         switch (menu->selectedOption)
         {
@@ -367,6 +376,8 @@ void userMenu(PUser user)
         printf(CLEAR_SCREEN);
         printf(CURSOR_HIDE);
         showMenu(menu);
+        if(menu->selectedOption == -1)
+            return;
 
         switch (menu->selectedOption)
         {

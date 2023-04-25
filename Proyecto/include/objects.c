@@ -1,5 +1,9 @@
 #include "objects.h"
 
+ListadoDePersonal Personal;
+ListadoDeProductos Productos;
+ListadoDePedidos Pedidos;
+
 int addProducto(PProducto producto){
     if(producto == NULL)
         return 0;
@@ -8,7 +12,7 @@ int addProducto(PProducto producto){
 
 int serializeProductos(){
     // Abrir el archivo
-    FILE* file = fopen("productos.dat", "w+");
+    FILE* file = fopen("productos.dat", "a+");
     if(file == NULL)
         return 0;
 
@@ -30,7 +34,7 @@ int serializeProductos(){
 
 int deserealizeProductos(){
     // Abrir el archivo
-    FILE* file = fopen("productos.dat", "r+");
+    FILE* file = fopen("productos.dat", "a+");
     if(file == NULL)
         return 0;
 
@@ -66,7 +70,7 @@ int addPersonal(PPersonal personal){
 
 int serializePersonal(){
     // Abrir el archivo
-    FILE* file = fopen("personal.dat", "w+");
+    FILE* file = fopen("personal.dat", "a+");
     if(file == NULL)
         return 0;
 
@@ -98,7 +102,7 @@ int serializePersonal(){
 
 int deserealizePersonal(){
     // Abrir el archivo
-    FILE* file = fopen("personal.dat", "r+");
+    FILE* file = fopen("personal.dat", "a+");
     if(file == NULL)
         return 0;
 
@@ -140,7 +144,7 @@ void CrearListaDePersonal(){
 
 int serializePedidos(){
     // Abrir el archivo
-    FILE* file = fopen("pedidos.dat", "w+");
+    FILE* file = fopen("pedidos.dat", "a+");
     if(file == NULL)
         return 0;
 
@@ -171,7 +175,7 @@ int serializePedidos(){
 
 int deserealizePedidos(){
     // Abrir el archivo
-    FILE* file = fopen("pedidos.dat", "r+");
+    FILE* file = fopen("pedidos.dat", "a+");
     if(file == NULL)
         return 0;
 
@@ -211,5 +215,5 @@ int deserealizePedidos(){
 
 void CrearListaDePedidos(){
     Pedidos.serialize = serializePedidos;
-    Pedidos.deserialize = deserealizePedidos    ;
+    Pedidos.deserialize = deserealizePedidos;
 }

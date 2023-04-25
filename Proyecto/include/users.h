@@ -5,7 +5,6 @@
 
 #include "list.h"
 #include "constants.h"
-#include "objects.h"
 
 typedef struct User{
     int id;
@@ -14,12 +13,10 @@ typedef struct User{
     int type;
 } User, *PUser;
 
-enum UserType{
+typedef enum UserType{
     ADMIN,
     USER
 } UserType;
-
-
 typedef struct ListaDeUsuarios{
     List usuarios; // Tipo User
 
@@ -31,8 +28,5 @@ typedef struct ListaDeUsuarios{
     int (*serialize)();
     int (*deserialize)();
 } ListaDeUsuarios, *PListaDeUsuarios;
-
-ListaDeUsuarios Usuarios;
-
 
 void CrearListaDeUsuarios();

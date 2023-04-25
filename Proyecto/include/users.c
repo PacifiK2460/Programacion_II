@@ -1,5 +1,7 @@
 #include "users.h"
 
+ListaDeUsuarios Usuarios;
+
 int createUser(char* name, char* password, int type){
     PUser user = (PUser)calloc(1, sizeof(User));
     if(user == NULL)
@@ -50,7 +52,7 @@ int AddUser(PUser user){
 
 int serialize(){
     // Abrir el archivo
-    FILE* file = fopen("users.bin", "w+");
+    FILE* file = fopen("users.bin", "a+");
     if(file == NULL)
         return 0;
 
@@ -68,9 +70,9 @@ int serialize(){
     return 1;
 }
 
-int deserialize(){
+int deserialize(){  
     // Abrir el archivo
-    FILE* file = fopen("users.bin", "r+");
+    FILE* file = fopen("users.bin", "a+");
     if(file == NULL)
         return 0;
 
@@ -102,4 +104,5 @@ void CrearListaDeUsuarios(){
     Usuarios.login = login;
     Usuarios.serialize = serialize;
     Usuarios.deserialize = deserialize;
+    Usuarios.addUser = AddUser;
 }
