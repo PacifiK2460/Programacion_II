@@ -52,7 +52,7 @@ int AddUser(PUser user){
 
 int serialize(){
     // Abrir el archivo
-    FILE* file = fopen("users.bin", "a+");
+    FILE* file = fopen("users.dat", "a+");
     if(file == NULL)
         return 0;
 
@@ -72,7 +72,7 @@ int serialize(){
 
 int deserialize(){  
     // Abrir el archivo
-    FILE* file = fopen("users.bin", "a+");
+    FILE* file = fopen("users.dat", "a+");
     if(file == NULL)
         return 0;
 
