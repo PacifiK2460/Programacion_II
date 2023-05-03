@@ -71,6 +71,9 @@ void printStatusBar()
 
 char *input(char *message, int maxLength)
 {
+    printf(RESET);
+    printf(CLEAR_SCREEN);
+
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
     int width = csbi.srWindow.Right - csbi.srWindow.Left + 1;
@@ -98,6 +101,7 @@ char *input(char *message, int maxLength)
     input[strlen(input) - 1] = '\0';
 
     printf(RESET);
+    printf(CLEAR_SCREEN);
     return input;
 }
 
@@ -143,4 +147,5 @@ void alertScreen(char *message, int type)
     CURSOR_GOTO(2, (height / 2));
     holdScreen();
     printf(RESET);
+    printf(CLEAR_SCREEN);
 }

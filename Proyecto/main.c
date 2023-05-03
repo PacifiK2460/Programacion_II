@@ -4,7 +4,6 @@
 
 #include "include/menu.h"
 #include "include/tui.h"
-#include "include/users.h"
 #include "include/logic.h"
 
 int main()
@@ -38,11 +37,11 @@ int main()
             printf(CLEAR_SCREEN);
             printf(RESET);
 
-            PUser user = loginScreen();
+            PPersonal user = loginScreen();
 
-            if(user->type == ADMIN)
+            if(user->tipo == ADMIN)
                 adminMenu(user);
-            else if(user->type == USER)
+            else if(user->tipo == USER)
                 userMenu(user);
 
         }
