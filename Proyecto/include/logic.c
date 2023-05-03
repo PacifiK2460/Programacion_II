@@ -754,7 +754,7 @@ void userMenu(PPersonal user)
         switch (menu->selectedOption)
         {
         case 0:
-            realizarPedido();
+            realizarPedido(user);
             break;
         case 1:
             verPedidos();
